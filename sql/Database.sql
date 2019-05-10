@@ -1,3 +1,16 @@
+drop table repete;
+drop table exercice;
+drop table programme;
+drop table possede;
+drop table seance;
+drop table premium;
+drop table coach;
+drop table donner;
+drop table programmer;
+drop table utilisateur;
+
+ALTER DATABASE sportify CHARACTER SET utf8 COLLATE utf8_general_ci;
+
 create table repete(
     id_repete int not null,
     poid_rep int(2) null,
@@ -50,17 +63,17 @@ create table premium(
 );
 
 create table coach(
-    id_coach int not null,
+    id_coach int AUTO_INCREMENT not null,
     nom_c varchar(30) not null,
     prenom_c varchar(30) not null,
     age_c int(2) not null,
-    adresse_c varchar(100) not null,
-    ville_c varchar(100) not null,
-    code_postal_c varchar(5) not null,
-    mail_c varchar(100) not null,
+    adresse_c varchar(100) null,
+    ville_c varchar(100) null,
+    code_postal_c varchar(5) null ,
+    mail_c varchar(100) UNIQUE not null,
     telephone_c varchar(100) not null,
     specialite varchar(70) not null,
-    images_c varchar(1000) not null,
+    images_c varchar(1000) DEFAULT '0.png' null,
     primary key (id_coach)
 );
 
@@ -83,23 +96,24 @@ create table programmer(
     FOREIGN KEY (id_coach) REFERENCES coach(id_coach)
 );
 
-create table utilisateur(
-    id_utilisateur int not null,
+create table utilisateur (
+    id_utilisateur int AUTO_INCREMENT not null,
     nom_u varchar(30) not null,
     prenom_u varchar(30) not null,
     age_u int(2) not null,
-    adresse_u varchar(100) not null,
-    ville_u varchar(100) not null,
-    code_postal_u varchar(5) not null,
-    mail_u varchar(100) not null,
+    adresse_u varchar(100) null,
+    ville_u varchar(100) null,
+    code_postal_u varchar(5) null,
+    mail_u varchar(100) UNIQUE not null,
     telephone_u varchar(100) not null,
     poid_u int(2) not null,
     taille int(2) not null,
-    images_u varchar(1000) not null,
+    images_u varchar(1000) DEFAULT '0.png',
     id_seance int null,
     id_premium int null,
     primary key (id_utilisateur),
     FOREIGN KEY (id_premium) REFERENCES premium(id_premium),
     FOREIGN KEY (id_seance) REFERENCES seance(id_seance)
 );
+
 
