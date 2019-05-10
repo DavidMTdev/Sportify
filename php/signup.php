@@ -1,4 +1,4 @@
-<?php require_once("includes/header.php") ?>
+<?php require_once("includes/header.php"); ?>
 
 <form action="" method="POST" class="signup-box" enctype="multipart/form-data">
     <h1>Signup</h1>
@@ -15,9 +15,6 @@
         </div>
 
         <div class="user-infos">
-            <!-- <input class="signup-info" type="number" name="age" placeholder="Age"> -->
-            <!-- <input class="signup-info" type="number" name="poid" placeholder="Poids">
-                    <input class="signup-info" type="number" name="taille" placeholder="Taille(cm)"> -->
 
             <SELECT class="signup-info" name="age" size="1">
                 <OPTION> Age

@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/navbar.css">
-    <?php if (isset($_GET["page"]) && $_GET["page"] === "login") : ?>
+    <?php if (isset($_GET["page"]) && $_GET["page"] === "login" || $_SERVER["REQUEST_URI"] === "/sportify/php/login.php") : ?>
         <link rel="stylesheet" href="css/login.css">
-    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "signup") : ?>
+    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "signup" || $_SERVER["REQUEST_URI"] === "/sportify/php/signup.php") : ?>
         <link rel="stylesheet" href="css/signup.css">
     <?php endif; ?>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">

@@ -6,7 +6,7 @@
     <input class="login-password" type="password" name="password" placeholder="Password">
     <input class="login-submit" type="submit" value="Login">
 
-    <a href="signup.php?page=signup">Vous n'avez pas de compte créez en un !<br></a>
+    <a href="signup.php">Vous n'avez pas de compte créez en un !<br></a>
     <a href="">Mot de passe oublié ?<br> </a>
 </form>
 
