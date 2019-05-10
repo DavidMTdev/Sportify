@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
 
 // function login 
@@ -45,13 +44,15 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
 // insere l'inscription dans la base de donnée
 if (isset($_POST['mdp']) && isset($_POST['verification']) && isset($_POST['submit'])) {
     if ($_POST['mdp'] == $_POST['verification']) {
+        
+        $mail = checkMail();
+        $PostalCode = lenPostalCode();
+        $phone = lenPhone();
 
-        $file = upload();
-
-        if (!($file === 1) && !($file === 2)) {
+        if (!($mail == 1) && !($PostalCode == 2) && !($phone == 3)){
             $statement = $pdo->prepare(
-                "INSERT INTO utilisateur ( nom_u, prenom_u, mdp_u, age_u, adresse_u, ville_u, code_postal_u, mail_u, telephone_u, poid_u, taille, images_u) 
-                VALUES (:nom_u , :prenom_u, :mdp_u, :age_u, :adresse_u, :ville_u, :code_postal_u, :mail_u, :telephone_u, :poid_u, :taille, :images_u)"
+                "INSERT INTO utilisateur ( nom_u, prenom_u, mdp_u, age_u, adresse_u, ville_u, code_postal_u, mail_u, telephone_u, poid_u, taille) 
+                VALUES (:nom_u , :prenom_u, :mdp_u, :age_u, :adresse_u, :ville_u, :code_postal_u, :mail_u, :telephone_u, :poid_u, :taille)"
             );
             $statement->execute(array(
                 ':nom_u' => $_POST['nom'],
@@ -65,23 +66,23 @@ if (isset($_POST['mdp']) && isset($_POST['verification']) && isset($_POST['submi
                 ':telephone_u' => $_POST['tel'],
                 ':poid_u' => $_POST['poid'],
                 ':taille' => $_POST['taille'],
-                ':images_u' =>  $file
             ));
 
             $success = "Vous etes inscrit !";
             echo $success;
-        } elseif ($file === 1) {
-            $error = 'Vous devez uploader un fichier de type png, jpg ou jpeg';
-            echo $error;
-        } else {
-            $error = 'la photo est trop lourde';
-            echo $error;
+        } elseif($mail == 1){
+            echo 'compte deja existant';
+        } elseif($PostalCode == 2){
+            echo 'code postal pas bon';
+        } else{
+            echo 'numero de telephone incorrect';
         }
     } else {
         $error = 'les deux mot de passe ne sont pas pareil';
         echo $error;
     }
 }
+
 
 // stocker une image, donner nom defini a une image, ainsi que le type et la taille
 function upload()
@@ -94,7 +95,6 @@ function upload()
 
     $stmId = $pdo->query("SELECT id_utilisateur FROM utilisateur ");
     $id = $stmId->fetchAll(PDO::FETCH_ASSOC);
-    var_dump($id);
 
     $a = count($id) - 1;
 
@@ -106,7 +106,7 @@ function upload()
 
     $file = $var . $extension;
 
-    $folder = 'upload/' . $file;
+    $folder = '../upload/' . $file;
 
     if (!in_array($extension, $extensions)) {
         return 1;
@@ -119,5 +119,30 @@ function upload()
         return $file;
     } else {
         return 2;
+    }
+}
+
+function checkMail(){
+    $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+    $stmMail = $pdo->query("SELECT mail_u FROM utilisateur ");
+    $mail = $stmMail->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($mail as $key => $value) {
+        if ($value['mail_u'] === $_POST['email']){
+            return 1;
+        }
+    }
+}
+
+function lenPostalCode(){
+    $PostalCode = strlen($_POST['code']); 
+    if ($PostalCode != 5 ){
+        return 2;
+    }
+}
+
+function lenPhone(){
+    $Phone = strlen($_POST['tel']); 
+    if ($Phone != 10 ){
+        return 3;
     }
 }
