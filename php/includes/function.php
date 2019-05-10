@@ -72,7 +72,7 @@ if (isset($_POST['mdp']) && isset($_POST['verification']) && isset($_POST['submi
             ));
 
             $success = "Vous etes inscrit !";
-            echo $success;
+            echo Imc() . $success;
         } elseif($mail == 1){
             echo 'compte deja existant';
         } elseif($PostalCode == 2){
@@ -168,4 +168,10 @@ function choice(){
     elseif (isset($_POST['taille']) && $_POST['taille'] == 'Taille(cm)'){
         return 3;
     }
+}
+
+function Imc(){
+    $imc = ($_POST['poid']/ pow($_POST['taille'],2)) * 10000;
+    $poidIdeal = pow(($_POST['taille'] / 100),2) * 21.75;
+    echo 'Ton IMC est de : ' . round($imc,2) . "<br>" . "le poid ideal pour " . $_POST['taille'][0] . "m" . $_POST['taille'][1] . $_POST['taille'][2] . " est de : " . round($poidIdeal) . "kg <br>";
 }
