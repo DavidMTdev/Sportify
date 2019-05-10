@@ -34,7 +34,7 @@
     </header>
 
     <main>
-        <form action="" method="POST" class="signup-box">
+        <form action="" method="POST" class="signup-box" enctype="multipart/form-data">
             <h1>Signup</h1>
             <div class="signup">
                 <div class="user-name">
@@ -61,10 +61,11 @@
 
                 <div class="user-password">
                     <input class="signup-password" type="password" name="mdp" placeholder="Password">
-                    <input class="signup-password" type="password" name="" placeholder="Confirmer le password">
+                    <input class="signup-password" type="password" name="verification" placeholder="Confirmer le password">
+                    <input class="signup-password" type="file" name="image" placeholder="Confirmer le password">
                 </div>
 
-                <input class="signup-submit" type="submit" value="Signup">
+                <input class="signup-submit" type="submit" value="Signup" name="submit">
             </div>
         </form>
 
