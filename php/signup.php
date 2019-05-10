@@ -27,7 +27,7 @@
                 </ul>
 
                 <ul class="nav-login">
-                    <li><a href="">Se connecter</a></li>
+                    <li><a href="login.php">Se connecter</a></li>
                 </ul>
             </div>
         </div>
