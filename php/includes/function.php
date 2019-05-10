@@ -49,7 +49,10 @@ if (isset($_POST['mdp']) && isset($_POST['verification']) && isset($_POST['submi
         $PostalCode = lenPostalCode();
         $phone = lenPhone();
 
-        if (!($mail == 1) && !($PostalCode == 2) && !($phone == 3)){
+        $choice = choice();
+        
+
+        if (!($mail == 1) && !($PostalCode == 2) && !($phone == 3) && empty($choice)){
             $statement = $pdo->prepare(
                 "INSERT INTO utilisateur ( nom_u, prenom_u, mdp_u, age_u, adresse_u, ville_u, code_postal_u, mail_u, telephone_u, poid_u, taille) 
                 VALUES (:nom_u , :prenom_u, :mdp_u, :age_u, :adresse_u, :ville_u, :code_postal_u, :mail_u, :telephone_u, :poid_u, :taille)"
@@ -74,8 +77,16 @@ if (isset($_POST['mdp']) && isset($_POST['verification']) && isset($_POST['submi
             echo 'compte deja existant';
         } elseif($PostalCode == 2){
             echo 'code postal pas bon';
-        } else{
+        } elseif($phone == 3){
             echo 'numero de telephone incorrect';
+        } elseif($choice == 1){
+            echo "tu n'a pas rempli ton age";
+        }
+        elseif($choice == 2){
+            echo "tu n'a pas rempli ton poid";
+        }
+        elseif($choice == 3){
+            echo "tu n'a pas rempli ta taille";
         }
     } else {
         $error = 'les deux mot de passe ne sont pas pareil';
@@ -143,6 +154,18 @@ function lenPostalCode(){
 function lenPhone(){
     $Phone = strlen($_POST['tel']); 
     if ($Phone != 10 ){
+        return 3;
+    }
+}
+
+function choice(){
+    if (isset($_POST['age']) && $_POST['age'] == 'Age'){
+        return 1;
+    }
+    elseif (isset($_POST['poid']) && $_POST['poid'] == 'Poid(kg)'){
+        return 2;
+    }
+    elseif (isset($_POST['taille']) && $_POST['taille'] == 'Taille(cm)'){
         return 3;
     }
 }
