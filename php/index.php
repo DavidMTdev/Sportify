@@ -1,7 +1,5 @@
 <?php require_once("includes/header.php");
 
-
-
 if (isset($_GET["page"])) {
     $variable = $_GET["page"];
     switch ($variable) {
@@ -18,10 +16,7 @@ if (isset($_GET["page"])) {
             break;
     }
 }
-
-
 ?>
-
 <form action="" method="get" name="page"></form>
 
 </main>
