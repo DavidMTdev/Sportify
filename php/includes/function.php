@@ -17,7 +17,7 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
     $user = $statementU->fetchAll(PDO::FETCH_ASSOC);
     $coach = $statementC->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach ($utilisateur as $key => $value) {
+    foreach ($user as $key => $value) {
         // login for user
         if ($_POST["login"] == $user[$key]["mail_u"] && $_POST["password"] == $user[$key]["mdp_u"]) {
 
@@ -99,7 +99,7 @@ function upload()
     $a = count($id) - 1;
 
     if (empty($id)) {
-        $var = 0;
+        $var = 1;
     } else {
         $var = intval(end($id[$a])) + 1;
     }
