@@ -19,21 +19,21 @@
             <!-- <input class="signup-info" type="number" name="poid" placeholder="Poids">
                     <input class="signup-info" type="number" name="taille" placeholder="Taille(cm)"> -->
 
-            <SELECT class="signup-info" name="age" size="1">
+            <SELECT class="signup-info special " name="age" size="1">
                 <OPTION> Age
                     <?php for ($i = 16; $i <= 100; $i++) : ?>
                     <OPTION> <?= $i;
                         endfor ?>
             </SELECT>
 
-            <SELECT class="signup-info" name="poid" size="1">
+            <SELECT class="signup-info special" name="poid" size="1">
                 <OPTION> Poid(kg)
                     <?php for ($i = 40; $i <= 150; $i++) : ?>
                     <OPTION> <?= $i;
                         endfor ?>
             </SELECT>
 
-            <SELECT class="signup-info" name="taille" size="1">
+            <SELECT class="signup-info special" name="taille" size="1">
                 <OPTION> Taille(cm)
                     <?php for ($i = 100; $i <= 230; $i++) : ?>
                     <OPTION> <?= $i;
