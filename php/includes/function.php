@@ -29,7 +29,7 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
             break;
 
             // login for coach
-        } else {
+        } elseif ($_POST["login"] != $user[$key]["mail_u"] && $_POST["password"] != $user[$key]["mdp_u"]) {
             foreach ($coach as $k => $v) {
 
                 if ($_POST["login"] == $coach[$k]["mail_c"] && $_POST["password"] == $coach[$k]["mdp_c"]) {
@@ -41,12 +41,14 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
                     $success = "Vous etes connectée !";
                     echo $success;
                     break;
-                } else {
-                    $error = "Votre identifiant est incorrecte !";
-                    echo $error;
-                    break;
                 }
             }
+            if (isset($success)) {
+                break;
+            }
+        } else {
+            $error = "Votre identifiant est incorrecte !";
+            echo $error;
             break;
         }
     }
@@ -187,4 +189,13 @@ function Imc()
     $imc = ($_POST['poid'] / pow($_POST['taille'], 2)) * 10000;
     $poidIdeal = pow(($_POST['taille'] / 100), 2) * 21.75;
     echo 'Ton IMC est de : ' . round($imc, 2) . "<br>" . "le poid ideal pour " . $_POST['taille'][0] . "m" . $_POST['taille'][1] . $_POST['taille'][2] . " est de : " . round($poidIdeal) . "kg <br>";
+}
+
+if (isset($_SESSION["connectedUser"]) &&  $_SESSION["connectedUser"]) {
+    $statementU = $pdo->query(
+        'SELECT * FROM utilisateur where mail_u = "' . $_SESSION["login"] . '"'
+    );
+
+    $user = $statementU->fetchAll(PDO::FETCH_ASSOC);
+    // var_dump($user);
 }
