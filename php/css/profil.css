@@ -1,0 +1,9 @@
+.js-profil-menu {
+	background: #4f4f4f8d;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 700px;
+	height: 400px;
+}

@@ -9,6 +9,9 @@ if (isset($_GET["page"])) {
         case 'signup':
             require_once("signup.php");
             break;
+        case 'profil':
+            require_once("profil.php");
+            break;
         case 'index':
             break;
         default:
