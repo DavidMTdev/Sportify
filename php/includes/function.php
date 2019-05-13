@@ -26,19 +26,28 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
 
             $success = "Vous etes connectée !";
             echo $success;
+            break;
 
             // login for coach
-        } elseif ($_POST["login"] == $coach[$key]["mail_c"] && $_POST["password"] == $coach[$key]["mdp_c"]) {
-
-            $_SESSION["login"] = $_POST["login"];
-            $_SESSION["connectedCoach"] = true;
-            $_SESSION["connectedAt"] = new DateTime();
-
-            $success = "Vous etes connectée !";
-            echo $success;
         } else {
-            $error = "Votre identifiant est incorrecte !";
-            echo $error;
+            foreach ($coach as $k => $v) {
+
+                if ($_POST["login"] == $coach[$k]["mail_c"] && $_POST["password"] == $coach[$k]["mdp_c"]) {
+
+                    $_SESSION["login"] = $_POST["login"];
+                    $_SESSION["connectedCoach"] = true;
+                    $_SESSION["connecte dAt"] = new DateTime();
+
+                    $success = "Vous etes connectée !";
+                    echo $success;
+                    break;
+                } else {
+                    $error = "Votre identifiant est incorrecte !";
+                    echo $error;
+                    break;
+                }
+            }
+            break;
         }
     }
 }
@@ -74,13 +83,8 @@ if (isset($_POST['mdp']) && isset($_POST['verification']) && isset($_POST['submi
             ));
 
             $success = "Vous etes inscrit !";
-<<<<<<< HEAD
-            echo $success;
-        } elseif ($mail == 1) {
-=======
             echo Imc() . $success;
-        } elseif($mail == 1){
->>>>>>> 9cd63d61afdd951b1f67d4de8fa7c1532cd874ee
+        } elseif ($mail == 1) {
             echo 'compte deja existant';
         } elseif ($PostalCode == 2) {
             echo 'code postal pas bon';
@@ -153,7 +157,8 @@ function checkMail()
 function lenPostalCode()
 {
     $PostalCode = strlen($_POST['code']);
-    if ($PostalCode != 5) {
+    var_dump($_POST['code']);
+    if ($PostalCode != 5 && $PostalCode != '') {
         return 2;
     }
 }
@@ -177,8 +182,9 @@ function choice()
     }
 }
 
-function Imc(){
-    $imc = ($_POST['poid']/ pow($_POST['taille'],2)) * 10000;
-    $poidIdeal = pow(($_POST['taille'] / 100),2) * 21.75;
-    echo 'Ton IMC est de : ' . round($imc,2) . "<br>" . "le poid ideal pour " . $_POST['taille'][0] . "m" . $_POST['taille'][1] . $_POST['taille'][2] . " est de : " . round($poidIdeal) . "kg <br>";
+function Imc()
+{
+    $imc = ($_POST['poid'] / pow($_POST['taille'], 2)) * 10000;
+    $poidIdeal = pow(($_POST['taille'] / 100), 2) * 21.75;
+    echo 'Ton IMC est de : ' . round($imc, 2) . "<br>" . "le poid ideal pour " . $_POST['taille'][0] . "m" . $_POST['taille'][1] . $_POST['taille'][2] . " est de : " . round($poidIdeal) . "kg <br>";
 }
