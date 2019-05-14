@@ -1,0 +1,227 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #606060;
+}
+
+.profil-presentation {
+	display: flex;
+	padding: 30px 100px;
+	/* border-bottom: #808080 0.5px solid; */
+	background: #404040;
+	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
+	margin-bottom: 20px;
+}
+
+.profil-presentation img {
+	height: 250px;
+	width: 250px;
+	border-radius: 50%;
+}
+
+.profil-principal {
+	padding: 0 50px;
+	color: white;
+}
+
+.profil-principal h2,
+h3 {
+	padding: 10px 0;
+}
+
+.profil-premium {
+	color: #33cc66;
+}
+
+.profil-contact h2 {
+	text-align: center;
+	color: white;
+}
+
+.profil-contact,
+.profil-body,
+.profil-address,
+.profil-password,
+.profil-speciality {
+	padding: 20px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.profil-contact img {
+	padding: 0 7px;
+}
+
+.profil-contact li {
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+}
+
+.contact,
+.body,
+.address,
+.password,
+.speciality {
+	width: 50%;
+	/* border: 0.2px solid black; */
+	background: #404040;
+	padding: 20px;
+	box-shadow: 0 6px 4px rgba(0, 0, 0, .5);
+	border-radius: 8px;
+}
+
+.profil-body li {
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+}
+
+.profil-body img {
+	padding: 0 7px;
+}
+
+.profil-body h2 {
+	text-align: center;
+	color: white;
+}
+
+.profil-address li {
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+}
+
+.profil-address img {
+	padding: 0 7px;
+}
+
+.profil-address h2 {
+	text-align: center;
+	color: white;
+}
+
+.profil-speciality li {
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+}
+
+.profil-speciality img {
+	padding: 0 7px;
+}
+
+.profil-speciality h2 {
+	text-align: center;
+	color: white;
+}
+
+.profil-password li {
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+}
+
+.profil-password img {
+	padding: 0 7px;
+}
+
+.profil-password h2 {
+	text-align: center;
+	color: white;
+}
+
+.profil-informations {
+	/* display: grid;
+    grid-template-columns: 50% 50%; */
+	border-bottom: 0.5px solid white;
+	display: flex;
+	justify-content: center;
+}
+
+.border {
+	width: 160px;
+	height: 5px;
+	background: #33cc66;
+	margin: 15px auto;
+}
+
+.contact-modify,
+.address-modify,
+.password-modify,
+.body-modify,
+.speciality-modify {
+	background: none;
+	display: block;
+	margin: 20px auto;
+	text-align: center;
+	border: 2px solid #33cc66;
+	padding: 14px 10px;
+	width: 200px;
+	outline: none;
+	color: white;
+	border-radius: 24px;
+	transition: 0.25s;
+	cursor: pointer;
+}
+
+.contact-modify:hover {
+	background: #33cc66;
+}
+
+.address-modify:hover {
+	background: #33cc66;
+}
+
+.password-modify:hover {
+	background: #33cc66;
+}
+
+.body-modify:hover {
+	background: #33cc66;
+}
+
+.presentation-modify {
+	background: none;
+	display: block;
+	margin: 20px auto;
+	text-align: center;
+	border: 2px solid #33cc66;
+	padding: 14px 10px;
+	width: 200px;
+	outline: none;
+	color: white;
+	border-radius: 24px;
+	transition: 0.25s;
+	cursor: pointer;
+	float: right;
+}
+
+.presentation-modify:hover {
+	background: #33cc66;
+}
+
+.speciality-modify:hover {
+	background: #33cc66;
+}
+
+/* menu pour les modifications */
+.js-profil-menu {
+	background: #a09c9c;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 700px;
+	height: 400px;
+}
+
+.js-button-img {
+	cursor: pointer;
+}
