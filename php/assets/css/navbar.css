@@ -4,11 +4,18 @@
   font-family: 'Montserrat', sans-serif; 
 }
 
+header{
+    position: fixed;
+    width: 100%;
+}
 .nav-header{
     height: 70px;
     background :#404040;
     display: flex;
     align-items: center;
+    /* position: fixed; */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    width: 100%;
 }
 
 .nav{
@@ -70,4 +77,8 @@
 .nav-login li:hover{
     background: #494949;
     cursor: pointer;
+}
+
+main{
+    padding-top:69px;
 }

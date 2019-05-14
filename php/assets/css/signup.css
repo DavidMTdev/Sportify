@@ -53,7 +53,7 @@ body{
     border: 0;
     background: none;
     display: block;
-    margin: 5px 25px;
+    margin: 0 20px;
     padding: 10px;
     border: 2px solid #404040;
     padding: 14px 10px;
@@ -62,7 +62,6 @@ body{
     color: white;
     border-radius: 24px;
     transition: 0.25s;
-    box-shadow: 0 4px 5px rgba(0,0,0,.5);
 }
 
 .signup-info::placeholder{
@@ -104,9 +103,4 @@ body{
 
 .signup-box a:hover{
     color: #33cc66;
-}
-
-option{
-    color: white;
-    background:#606060;
 }
