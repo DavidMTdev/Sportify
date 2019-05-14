@@ -113,58 +113,54 @@ function upload()
     $extension = strrchr($file, '.');
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
 
-    if(isset($_SESSION["connectedCoach"])){
+    if (isset($_SESSION["connectedCoach"])) {
         $stmId = $pdo->query('SELECT id_coach FROM coach WHERE mail_c = "' . $_SESSION["login"] . '"');
         $id = $stmId->fetchAll(PDO::FETCH_ASSOC);
         $var = $id[0]['id_coach'];
         $file = $var . "C" . $extension;
-    }
-    elseif(isset($_SESSION["connectedUser"])){
+    } elseif (isset($_SESSION["connectedUser"])) {
         $stmId = $pdo->query('SELECT id_utilisateur FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"');
         $id = $stmId->fetchAll(PDO::FETCH_ASSOC);
         $var = $id[0]['id_utilisateur'];
         $file = $var . "U" . $extension;
     }
-    
 
-    
     $folder = '../upload/' . $file;
-    
+
     if (!in_array($extension, $extensions)) {
         $error = 1;
     }
 
-    if ($_FILES['img']['size'] > 1 * pow(10, 6) ) {
-       $error = 2;
+    if ($_FILES['img']['size'] > 1 * pow(10, 6)) {
+        $error = 2;
     }
-    
-    if (!isset($error)){
-        if(isset($_SESSION["connectedCoach"])){
+
+    if (!isset($error)) {
+        if (isset($_SESSION["connectedCoach"])) {
             $statement = $pdo->prepare(
-                ('UPDATE coach SET images_c = :images_c WHERE mail_c = "' . $_SESSION["login"] . '"'));
+                ('UPDATE coach SET images_c = :images_c WHERE mail_c = "' . $_SESSION["login"] . '"')
+            );
             $statement->execute(array(
                 ':images_c' => $file
             ));
-        }
-        elseif(isset($_SESSION["connectedUser"])){
+        } elseif (isset($_SESSION["connectedUser"])) {
             $statement = $pdo->prepare(
-                ('UPDATE utilisateur SET images_u = :images_u WHERE mail_u = "' . $_SESSION["login"] . '"'));
+                ('UPDATE utilisateur SET images_u = :images_u WHERE mail_u = "' . $_SESSION["login"] . '"')
+            );
             $statement->execute(array(
                 ':images_u' => $file
             ));
         }
-       
+
         $file = strtolower($file);
         move_uploaded_file($_FILES['img']['tmp_name'], $folder);
         echo 'ton image a bien été modifer';
         return $file;
-        
-    } elseif($error == 1){
+    } elseif ($error == 1) {
         echo "l'extension n'est pas bonne";
-    } elseif($error == 2){
+    } elseif ($error == 2) {
         echo "l'image est trop lourde";
     }
-    
 }
 // retourne un message d'erreur si le mail existe deja
 function checkMail()
@@ -215,12 +211,12 @@ function Imc()
 }
 
 // permet de recuperer toute les infos du coach si il est connecter
-if (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) { 
-        $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
-        $statement = $pdo->query(
+if (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) {
+    $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+    $statement = $pdo->query(
         'SELECT * FROM coach WHERE mail_c = "' . $_SESSION["login"] . '"'
     );
-        $profilCoach = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $profilCoach = $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
 // modifie le nom,prenom et age du coach
@@ -237,15 +233,15 @@ if (isset($_POST['submit-info_c'])) {
     echo 'tes infos ont bien été modifier';
 }
 // modifie l'adresse,la ville et le code postal du coach'
-if (isset($_POST['submit-rural_c'])) {
+if (isset($_POST['submit-adress_c'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
         ('UPDATE coach SET adresse_c = :adresse_c, ville_c = :ville_c, code_postal_c = :code_postal_c WHERE mail_c = "' . $_SESSION["login"] . '"')
-    ); 
+    );
     $statement->execute(array(
         ':adresse_c' => $_POST['adresse_c'],
         ':ville_c' => $_POST['ville_c'],
-        'code_postal_c' => $_POST['code_c']
+        'code_postal_c' => $_POST['code_postal_c']
     ));
     echo 'ton adresse a bien été modifier';
 }
@@ -261,7 +257,7 @@ if (isset($_POST['submit-contact_c'])) {
     echo 'ton numero a bien été modifié';
 }
 // modifie la specialite du coach
-if (isset($_POST['submit-specialite'])) {
+if (isset($_POST['submit-speciality'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
         ('UPDATE coach SET specialite = :specialite WHERE mail_c = "' . $_SESSION["login"] . '"')
@@ -278,7 +274,7 @@ if (isset($_POST['submit-password_c'])) {
         'SELECT mdp_c FROM coach WHERE mail_c = "' . $_SESSION["login"] . '"'
     );
     $mdp = $mdp->fetchAll(PDO::FETCH_ASSOC);
-    
+
     if ($mdp[0]['mdp_c'] === $_POST['ancient-password'] && $_POST['new-password'] == $_POST['confirm-password']) {
         $statement = $pdo->prepare(
             ('UPDATE coach SET mdp_c = :mdp_c WHERE mail_c = "' . $_SESSION["login"] . '"')
@@ -294,7 +290,7 @@ if (isset($_POST['submit-password_c'])) {
     }
 }
 // modifie l'image du coach
-if (isset($_POST['submit-image_c'])){
+if (isset($_POST['submit-image_c'])) {
     upload();
 }
 
@@ -316,11 +312,11 @@ if (isset($_POST['submit-info_u'])) {
 }
 
 // modifie l'adresse,la ville et le code postal de l'utilisateur
-if (isset($_POST['submit-rural_u'])) {
+if (isset($_POST['submit-adress_u'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
         ('UPDATE utilisateur SET adresse_u = :adresse_u, ville_u = :ville_u, code_postal_u = :code_postal_u WHERE mail_u = "' . $_SESSION["login"] . '"')
-    ); 
+    );
     $statement->execute(array(
         ':adresse_u' => $_POST['adresse_u'],
         ':ville_u' => $_POST['ville_u'],
@@ -342,7 +338,7 @@ if (isset($_POST['submit-contact_u'])) {
 }
 
 // modifie les mensurations de l'utilisateur
-if (isset($_POST['submit-mensuration'])) {
+if (isset($_POST['submit-body'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
         ('UPDATE utilisateur SET taille = :taille, poid_u = :poid_u WHERE mail_u = "' . $_SESSION["login"] . '"')
@@ -362,7 +358,7 @@ if (isset($_POST['submit-password_u'])) {
         'SELECT mdp_u FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"'
     );
     $mdp = $mdp->fetchAll(PDO::FETCH_ASSOC);
-    
+
     if ($mdp[0]['mdp_u'] === $_POST['ancient-password'] && $_POST['new-password'] == $_POST['confirm-password']) {
         $statement = $pdo->prepare(
             ('UPDATE utilisateur SET mdp_u = :mdp_u WHERE mail_u = "' . $_SESSION["login"] . '"')
@@ -379,14 +375,14 @@ if (isset($_POST['submit-password_u'])) {
 }
 
 // modifie l'image de l'utilisateur
-if (isset($_POST['submit-image_u'])){
+if (isset($_POST['submit-image_u'])) {
     upload();
 }
+
 if (isset($_SESSION["connectedUser"]) &&  $_SESSION["connectedUser"]) {
     $statementU = $pdo->query(
         'SELECT * FROM utilisateur where mail_u = "' . $_SESSION["login"] . '"'
     );
 
     $user = $statementU->fetchAll(PDO::FETCH_ASSOC);
-    // var_dump($user);
 }
