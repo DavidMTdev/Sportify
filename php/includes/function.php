@@ -125,6 +125,8 @@ function upload()
         $file = $var . "U" . $extension;
     }
 
+
+
     $folder = '../upload/' . $file;
 
     if (!in_array($extension, $extensions)) {
@@ -134,6 +136,8 @@ function upload()
     if ($_FILES['img']['size'] > 1 * pow(10, 6)) {
         $error = 2;
     }
+
+
 
     if (!isset($error)) {
         if (isset($_SESSION["connectedCoach"])) {
@@ -156,6 +160,8 @@ function upload()
         move_uploaded_file($_FILES['img']['tmp_name'], $folder);
         echo 'ton image a bien été modifer';
         return $file;
+    } elseif ($_FILES['img']['size'] == 0) {
+        echo "tu n'a pas ajouté d'image";
     } elseif ($error == 1) {
         echo "l'extension n'est pas bonne";
     } elseif ($error == 2) {
@@ -178,7 +184,6 @@ function checkMail()
 function lenPostalCode()
 {
     $PostalCode = strlen($_POST['code']);
-    var_dump($_POST['code']);
     if ($PostalCode != 5 && $PostalCode != '') {
         return 2;
     }
@@ -219,54 +224,114 @@ if (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) {
     $profilCoach = $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
+// si utilisateur connecter alors on voit toute ses informations
+if (isset($_SESSION["connectedUser"]) &&  $_SESSION["connectedUser"]) {
+    $statementU = $pdo->query(
+        'SELECT * FROM utilisateur where mail_u = "' . $_SESSION["login"] . '"'
+    );
+
+    $user = $statementU->fetchAll(PDO::FETCH_ASSOC);
+}
+
 // modifie le nom,prenom et age du coach
 if (isset($_POST['submit-info_c'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
         ('UPDATE coach SET nom_c = :nom_c, prenom_c = :prenom_c, age_c = :age_c WHERE mail_c = "' . $_SESSION["login"] . '"')
     );
-    $statement->execute(array(
-        ':nom_c' => $_POST['nom_c'],
-        ':prenom_c' => $_POST['prenom_c'],
-        ':age_c' => $_POST['age_c']
-    ));
-    echo 'tes infos ont bien été modifier';
+    if ($_POST['nom_c'] == "") {
+        $_POST['nom_c'] = $profilCoach[0]['nom_c'];
+    }
+    if ($_POST['prenom_c'] == "") {
+        $_POST['prenom_c'] = $profilCoach[0]['prenom_c'];
+    }
+    if ($_POST['age_c'] == "") {
+        $_POST['age_c'] = $profilCoach[0]['age_c'];
+    }
+    if ($_POST['age_c'] == $profilCoach[0]['age_c'] && $_POST['prenom_c'] == $profilCoach[0]['prenom_c'] && $_POST['nom_c'] == $profilCoach[0]['nom_c']) {
+        echo  "rien n'a été modifié";
+    } else {
+        $statement->execute(array(
+            ':nom_c' => $_POST['nom_c'],
+            ':prenom_c' => $_POST['prenom_c'],
+            ':age_c' => $_POST['age_c']
+        ));
+        echo 'tes infos ont bien été modifier';
+    }
 }
+
 // modifie l'adresse,la ville et le code postal du coach'
-if (isset($_POST['submit-adress_c'])) {
+if (isset($_POST['submit-rural_c'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
         ('UPDATE coach SET adresse_c = :adresse_c, ville_c = :ville_c, code_postal_c = :code_postal_c WHERE mail_c = "' . $_SESSION["login"] . '"')
     );
-    $statement->execute(array(
-        ':adresse_c' => $_POST['adresse_c'],
-        ':ville_c' => $_POST['ville_c'],
-        'code_postal_c' => $_POST['code_postal_c']
-    ));
-    echo 'ton adresse a bien été modifier';
+    if ($_POST['adresse_c'] == "") {
+        $_POST['adresse_c'] = $profilCoach[0]['adresse_c'];
+    }
+    if ($_POST['ville_c'] == "") {
+        $_POST['ville_c'] = $profilCoach[0]['ville_c'];
+    }
+    if ($_POST['code_postal_c'] == "") {
+        $_POST['code_postal_c'] = $profilCoach[0]['code_postal_c'];
+    }
+
+    $PostalCode = strlen($_POST['code_postal_c']);
+    if ($_POST['adresse_c'] == $profilCoach[0]['adresse_c'] && $_POST['ville_c'] == $profilCoach[0]['ville_c'] && $_POST['code_postal_c'] == $profilCoach[0]['code_postal_c']) {
+        echo  "rien n'a été modifié";
+    } elseif ($PostalCode == 5) {
+        echo 'tes infos ont bien été modifier';
+        $statement->execute(array(
+            ':adresse_c' => $_POST['adresse_c'],
+            ':ville_c' => $_POST['ville_c'],
+            'code_postal_c' => $_POST['code_postal_c']
+        ));
+    } elseif ($PostalCode != 5) {
+        echo 'ton code postal est invalide';
+    }
 }
+
 // modifie le telephone du coach
 if (isset($_POST['submit-contact_c'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
         ('UPDATE coach SET telephone_c = :telephone_c WHERE mail_c = "' . $_SESSION["login"] . '"')
     );
-    $statement->execute(array(
-        ':telephone_c' => $_POST['telephone_c']
-    ));
-    echo 'ton numero a bien été modifié';
+    if ($_POST['telephone_c'] == "") {
+        $_POST['telephone_c'] = $profilCoach[0]['telephone_c'];
+    }
+
+    $lentelephone = strlen($_POST['telephone_c']);
+    if ($_POST['telephone_c'] == $profilCoach[0]['telephone_c']) {
+        echo  "rien n'a été modifié";
+    } elseif ($lentelephone == 10) {
+        echo 'tes infos ont bien été modifier';
+        $statement->execute(array(
+            ':telephone_c' => $_POST['telephone_c']
+        ));
+    } elseif ($lentelephone != 10) {
+        echo 'ton numero de telephone est invalide';
+    }
 }
 // modifie la specialite du coach
-if (isset($_POST['submit-speciality'])) {
+if (isset($_POST['submit-specialite'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
         ('UPDATE coach SET specialite = :specialite WHERE mail_c = "' . $_SESSION["login"] . '"')
     );
-    $statement->execute(array(
-        ':specialite' => $_POST['specialite']
-    ));
-    echo 'ta specialite a bien été modifié';
+    if ($_POST['specialite'] == "") {
+        $_POST['specialite'] = $profilCoach[0]['specialite'];
+    }
+    if ($_POST['specialite'] == $profilCoach[0]['specialite']) {
+        echo  "rien n'a été modifié";
+    } else {
+        $statement->execute(array(
+            ':specialite' => $_POST['specialite']
+        ));
+        echo 'ta specialite a bien été modifié';
+    }
 }
+
 // modifie le mot de passe du coach
 if (isset($_POST['submit-password_c'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
@@ -303,27 +368,60 @@ if (isset($_POST['submit-info_u'])) {
     $statement = $pdo->prepare(
         ('UPDATE utilisateur SET nom_u = :nom_u, prenom_u = :prenom_u, age_u = :age_u WHERE mail_u = "' . $_SESSION["login"] . '"')
     );
-    $statement->execute(array(
-        ':nom_u' => $_POST['nom_u'],
-        ':prenom_u' => $_POST['prenom_u'],
-        ':age_u' => $_POST['age_u']
-    ));
-    echo 'tes infos ont bien été modifier';
+    if ($_POST['nom_u'] == "") {
+        $_POST['nom_u'] = $user[0]['nom_u'];
+    }
+    if ($_POST['prenom_u'] == "") {
+        $_POST['prenom_u'] = $user[0]['prenom_u'];
+    }
+    if ($_POST['age_u'] == "") {
+        $_POST['age_u'] = $user[0]['age_u'];
+    }
+    if ($_POST['age_u'] == $user[0]['age_u'] && $_POST['prenom_u'] == $user[0]['prenom_u'] && $_POST['nom_u'] == $user[0]['nom_u']) {
+        echo  "rien n'a été modifié";
+    } else {
+        echo 'tes infos ont bien été modifier';
+        $statement->execute(array(
+            ':nom_u' => $_POST['nom_u'],
+            ':prenom_u' => $_POST['prenom_u'],
+            ':age_u' => $_POST['age_u']
+        ));
+    }
 }
 
 // modifie l'adresse,la ville et le code postal de l'utilisateur
-if (isset($_POST['submit-adress_u'])) {
+if (isset($_POST['submit-rural_u'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
         ('UPDATE utilisateur SET adresse_u = :adresse_u, ville_u = :ville_u, code_postal_u = :code_postal_u WHERE mail_u = "' . $_SESSION["login"] . '"')
     );
-    $statement->execute(array(
-        ':adresse_u' => $_POST['adresse_u'],
-        ':ville_u' => $_POST['ville_u'],
-        'code_postal_u' => $_POST['code_postal_u']
-    ));
-    echo 'ton adresse a bien été modifier';
+    if ($_POST['adresse_u'] == "") {
+        $_POST['adresse_u'] = $user[0]['adresse_u'];
+    }
+    if ($_POST['ville_u'] == "") {
+        $_POST['ville_u'] = $user[0]['ville_u'];
+    }
+    if ($_POST['code_postal_u'] == "") {
+        $_POST['code_postal_u'] = $user[0]['code_postal_u'];
+    }
+
+    $PostalCode = strlen($_POST['code_postal_u']);
+    if ($_POST['adresse_u'] == $user[0]['adresse_u'] && $_POST['ville_u'] == $user[0]['ville_u'] && $_POST['code_postal_u'] == $user[0]['code_postal_u']) {
+        echo  "rien n'a été modifié";
+    } elseif ($PostalCode == 5) {
+        echo 'tes infos ont bien été modifier';
+        $statement->execute(array(
+            ':adresse_u' => $_POST['adresse_u'],
+            ':ville_u' => $_POST['ville_u'],
+            'code_postal_u' => $_POST['code_postal_u']
+        ));
+    } elseif ($PostalCode != 5) {
+        echo 'ton code postal est invalide';
+    }
 }
+
+
+
 
 // modifie le telephone de l'utilisateur
 if (isset($_POST['submit-contact_u'])) {
@@ -331,23 +429,43 @@ if (isset($_POST['submit-contact_u'])) {
     $statement = $pdo->prepare(
         ('UPDATE utilisateur SET telephone_u = :telephone_u WHERE mail_u = "' . $_SESSION["login"] . '"')
     );
-    $statement->execute(array(
-        ':telephone_u' => $_POST['telephone_u']
-    ));
-    echo 'ton numero a bien été modifié';
+    if ($_POST['telephone_u'] == "") {
+        $_POST['telephone_u'] = $user[0]['telephone_u'];
+    }
+    $lentelephone = strlen($_POST['telephone_u']);
+    if ($_POST['telephone_u'] == $user[0]['telephone_u']) {
+        echo  "rien n'a été modifié";
+    } elseif ($lentelephone == 10) {
+        echo 'tes infos ont bien été modifier';
+        $statement->execute(array(
+            ':telephone_u' => $_POST['telephone_u']
+        ));
+    } elseif ($lentelephone != 10) {
+        echo 'ton numero de telephone est invalide';
+    }
 }
 
 // modifie les mensurations de l'utilisateur
-if (isset($_POST['submit-body'])) {
+if (isset($_POST['submit-mensuration'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
         ('UPDATE utilisateur SET taille = :taille, poid_u = :poid_u WHERE mail_u = "' . $_SESSION["login"] . '"')
     );
-    $statement->execute(array(
-        ':taille' => $_POST['taille'],
-        'poid_u' => $_POST['poid_u']
-    ));
-    echo 'tes mensurations ont bien été modifié';
+    if ($_POST['taille'] == "") {
+        $_POST['taille'] = $user[0]['taille'];
+    }
+    if ($_POST['poid_u'] == "") {
+        $_POST['poid_u'] = $user[0]['poid_u'];
+    }
+    if ($_POST['taille'] == $user[0]['taille'] && $_POST['poid_u'] == $user[0]['poid_u']) {
+        echo  "rien n'a été modifié";
+    } else {
+        echo 'tes mensurations ont bien été modifié';
+        $statement->execute(array(
+            ':taille' => $_POST['taille'],
+            'poid_u' => $_POST['poid_u']
+        ));
+    }
 }
 
 
@@ -377,12 +495,4 @@ if (isset($_POST['submit-password_u'])) {
 // modifie l'image de l'utilisateur
 if (isset($_POST['submit-image_u'])) {
     upload();
-}
-
-if (isset($_SESSION["connectedUser"]) &&  $_SESSION["connectedUser"]) {
-    $statementU = $pdo->query(
-        'SELECT * FROM utilisateur where mail_u = "' . $_SESSION["login"] . '"'
-    );
-
-    $user = $statementU->fetchAll(PDO::FETCH_ASSOC);
 }
