@@ -261,7 +261,7 @@ if (isset($_POST['submit-info_c'])) {
 }
 
 // modifie l'adresse,la ville et le code postal du coach'
-if (isset($_POST['submit-rural_c'])) {
+if (isset($_POST['submit-adress_c'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
         ('UPDATE coach SET adresse_c = :adresse_c, ville_c = :ville_c, code_postal_c = :code_postal_c WHERE mail_c = "' . $_SESSION["login"] . '"')
@@ -314,7 +314,7 @@ if (isset($_POST['submit-contact_c'])) {
     }
 }
 // modifie la specialite du coach
-if (isset($_POST['submit-specialite'])) {
+if (isset($_POST['submit-speciality'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
         ('UPDATE coach SET specialite = :specialite WHERE mail_c = "' . $_SESSION["login"] . '"')
@@ -390,7 +390,7 @@ if (isset($_POST['submit-info_u'])) {
 }
 
 // modifie l'adresse,la ville et le code postal de l'utilisateur
-if (isset($_POST['submit-rural_u'])) {
+if (isset($_POST['submit-adress_u'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
         ('UPDATE utilisateur SET adresse_u = :adresse_u, ville_u = :ville_u, code_postal_u = :code_postal_u WHERE mail_u = "' . $_SESSION["login"] . '"')
@@ -446,7 +446,7 @@ if (isset($_POST['submit-contact_u'])) {
 }
 
 // modifie les mensurations de l'utilisateur
-if (isset($_POST['submit-mensuration'])) {
+if (isset($_POST['submit-body'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
         ('UPDATE utilisateur SET taille = :taille, poid_u = :poid_u WHERE mail_u = "' . $_SESSION["login"] . '"')
