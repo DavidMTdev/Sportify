@@ -44,7 +44,7 @@ body{
     color: white;
 }
 
-.profil-contact,.profil-body,.profil-address,.profil-password{
+.profil-contact,.profil-body,.profil-address,.profil-password,.profil-speciality{
     padding: 20px;
     width: 100%;
     display: flex;
@@ -61,7 +61,7 @@ body{
     padding: 10px 0;
 }
 
-.contact,.body,.address,.password{
+.contact,.body,.address,.password,.speciality{
     width: 50%;
     /* border: 0.2px solid black; */
     background: #404040;
@@ -103,6 +103,22 @@ body{
 }
 
 
+.profil-speciality li{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.profil-speciality img{
+    padding: 0 7px;
+}
+
+.profil-speciality h2{
+    text-align: center;
+    color: white;
+}
+
+
 .profil-password li{
     display: flex;
     align-items: center;
@@ -135,7 +151,7 @@ body{
     margin: 15px auto;
 }
 
-.contact-modify,.address-modify,.password-modify,.body-modify{
+.contact-modify,.address-modify,.password-modify,.body-modify,.speciality-modify{
     background: none;
     display: block;
     margin: 20px auto;
@@ -183,5 +199,9 @@ body{
 }
 
 .presentation-modify:hover{
+    background : #33cc66;
+}
+
+.speciality-modify:hover{
     background : #33cc66;
 }
