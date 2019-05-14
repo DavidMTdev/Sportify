@@ -28,7 +28,7 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
             break;
 
             // login for coach
-        } else {
+        } elseif ($_POST["login"] != $user[$key]["mail_u"] && $_POST["password"] != $user[$key]["mdp_u"]) {
             foreach ($coach as $k => $v) {
 
                 if ($_POST["login"] == $coach[$k]["mail_c"] && $_POST["password"] == $coach[$k]["mdp_c"]) {
@@ -40,12 +40,14 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
                     $success = "Vous etes connectée !";
                     echo $success;
                     break;
-                } else {
-                    $error = "Votre identifiant est incorrecte !";
-                    echo $error;
-                    break;
                 }
             }
+            if (isset($success)) {
+                break;
+            }
+        } else {
+            $error = "Votre identifiant est incorrecte !";
+            echo $error;
             break;
         }
     }
@@ -379,4 +381,12 @@ if (isset($_POST['submit-password_u'])) {
 // modifie l'image de l'utilisateur
 if (isset($_POST['submit-image_u'])){
     upload();
+}
+if (isset($_SESSION["connectedUser"]) &&  $_SESSION["connectedUser"]) {
+    $statementU = $pdo->query(
+        'SELECT * FROM utilisateur where mail_u = "' . $_SESSION["login"] . '"'
+    );
+
+    $user = $statementU->fetchAll(PDO::FETCH_ASSOC);
+    // var_dump($user);
 }

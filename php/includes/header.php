@@ -12,7 +12,10 @@
         <link rel="stylesheet" href="css/login.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "signup" || $_SERVER["REQUEST_URI"] === "/Sportify/php/signup.php") : ?>
         <link rel="stylesheet" href="css/signup.css">
+    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "profil" || $_SERVER["REQUEST_URI"] === "/Sportify/php/profil.php") : ?>
+        <link rel="stylesheet" href="css/profil.css">
     <?php endif; ?>
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <title>Inscription</title>
 </head>

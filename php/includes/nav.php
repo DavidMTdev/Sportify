@@ -6,10 +6,10 @@
         <ul class="nav-menu">
             <li><a href="">Nutrition</a></li>
             <?php if (isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"]) : ?>
-                <li><a href="">Profil</a></li>
+                <li><a href="profil.php">Profil</a></li>
                 <li><a href="">Coach</a></li>
             <?php elseif (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) : ?>
-                <li><a href="">Profil</a></li>
+                <li><a href="profil.php">Profil</a></li>
             <?php endif; ?>
         </ul>
 
