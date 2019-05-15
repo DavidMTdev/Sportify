@@ -1,4 +1,6 @@
-<?php require_once("includes/header.php") ?>
+<?php require_once("includes/header.php");
+    $premium = premium();
+?>
 
 <?php if (isset($_SESSION["connectedUser"]) &&  $_SESSION["connectedUser"]) : ?>
     <!-- user -->
@@ -9,8 +11,10 @@
             </div>
             <div class="profil-principal">
                 <h2><?= $user[0]['nom_u'] . " " . $user[0]['prenom_u'] ?></h2>
-                <h3><?= $user[0]['age_u'] ?></h3>
-                <h3 class="profil-premium">Profil Premium</h3>
+                <h3><?= $user[0]['age_u'] ?> ans</h3>
+                <?php if(!empty($premium[0]['id_premium'])) :?>
+                <h3 class="profil-premium">Profil Premium ( <?= $premium[0]['date_abo_debut'] ?> - <?= $premium[0]['date_abo_fin'] ?> )</h3>
+                <?php endif; ?>
                 <br>
                 <h3>Description</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum qui consequatur esse. Amet enim sit

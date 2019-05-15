@@ -496,3 +496,86 @@ if (isset($_POST['submit-password_u'])) {
 if (isset($_POST['submit-image_u'])) {
     upload();
 }
+
+// modifie la description du coach
+if (isset($_POST['submit-info_c'])) {
+    $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+    $statement = $pdo->prepare(
+        ('UPDATE coach SET description_c = :description_c WHERE mail_c = "' . $_SESSION["login"] . '"')
+    );
+    if ($_POST['description_c'] == "") {
+        $_POST['description_c'] = $profilCoach[0]['description_c'];
+    }
+    if ($_POST['description_c'] == $profilCoach[0]['description_c']) {
+        echo  "rien n'a été modifié";
+    } elseif(strlen($_POST['description_c'] > 250)){
+        echo "il y a 250 caractere maximum dans ta description !!!!!!";
+    } else {
+        $statement->execute(array(
+            ':description_c' => $_POST['description_c']
+        ));
+        echo 'ta description a bien été modifié';
+    }
+}
+
+// modifie la description du coach
+if (isset($_POST['submit-info_u'])) {
+    $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+    $statement = $pdo->prepare(
+        ('UPDATE coach SET description_u = :description_u WHERE mail_u = "' . $_SESSION["login"] . '"')
+    );
+    if ($_POST['description_u'] == "") {
+        $_POST['description_u'] = $profilCoach[0]['description_u'];
+    }
+    if ($_POST['description_u'] == $profilCoach[0]['description_u']) {
+        echo  "rien n'a été modifié";
+    } elseif(strlen($_POST['description_u'] > 250)){
+        echo "il y a 250 caractere maximum dans ta description !!!!!!";
+    } else {
+        $statement->execute(array(
+            ':description_u' => $_POST['description_u']
+        ));
+        echo 'ta description a bien été modifié';
+    }
+}
+
+//pour devenir premium
+if(isset($_POST['submitPremium'])){
+    $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+    $premium = $pdo->query(
+        'SELECT id_utilisateur FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"'
+    );
+    $premium = $premium->fetchAll(PDO::FETCH_ASSOC);
+    
+    $statementPremium = $pdo->prepare(
+        ('UPDATE utilisateur SET id_premium = :id_premium WHERE mail_u = "' . $_SESSION["login"] . '"')
+    );
+    $statementPremium->execute(array(
+        ':id_premium' => $premium[0]['id_utilisateur']
+    ));
+    $statementPremiumDate = $pdo->prepare(
+        "INSERT INTO premium(id_premium, date_abo_debut,date_abo_fin) 
+        VALUES (:id_premium, :date_abo_debut, :date_abo_fin)"
+    );
+    $date = date('Y-m-d');
+    $dateFin = date('Y-m-d',strtotime("+1 year"));
+    $statementPremiumDate->execute(array(
+        ':id_premium' => $premium[0]['id_utilisateur'],
+        ':date_abo_debut' => $date,
+        ':date_abo_fin' => $dateFin
+    ));
+    
+    header('location: profil.php');
+}
+
+// pour savoir si l'utilisateur est premium ou pas
+function premium(){
+    if(isset($_SESSION["connectedUser"])){
+        $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+        $premium = $pdo->query('SELECT u.id_premium, date_abo_debut, date_abo_fin FROM utilisateur u JOIN premium ON u.id_premium = premium.id_premium WHERE mail_u = "' . $_SESSION["login"] . '"');
+        $premium = $premium->fetchAll(PDO::FETCH_ASSOC);
+        return $premium;
+       }
+}
+
+
