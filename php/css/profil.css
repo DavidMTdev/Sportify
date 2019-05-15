@@ -212,7 +212,7 @@ h3 {
 }
 
 /* menu pour les modifications */
-.js-profil-menu {
+/* .js-profil-menu {
 	background: #a09c9c;
 	position: fixed;
 	left: 50%;
@@ -220,7 +220,7 @@ h3 {
 	transform: translate(-50%, -50%);
 	width: 700px;
 	height: 400px;
-}
+} */
 
 .js-button-img {
 	cursor: pointer;

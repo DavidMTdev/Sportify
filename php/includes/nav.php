@@ -7,7 +7,7 @@
             <li><a href="">Nutrition</a></li>
             <?php if (isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"]) : ?>
                 <li><a href="profil.php">Profil</a></li>
-                <li><a href="">Coach</a></li>
+                <li><a href="coach.php">Coach</a></li>
             <?php elseif (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) : ?>
                 <li><a href="profil.php">Profil</a></li>
             <?php endif; ?>

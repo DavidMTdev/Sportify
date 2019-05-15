@@ -14,6 +14,9 @@
         <link rel="stylesheet" href="css/signup.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "profil" || $_SERVER["REQUEST_URI"] === "/Sportify/php/profil.php") : ?>
         <link rel="stylesheet" href="css/profil.css">
+        <link rel="stylesheet" href="css/modification-window.css">
+    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "coach" || $_SERVER["REQUEST_URI"] === "/Sportify/php/coach.php") : ?>
+        <link rel="stylesheet" href="css/coach.css">
     <?php endif; ?>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <title>Inscription</title>
