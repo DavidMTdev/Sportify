@@ -23,8 +23,8 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
             $_SESSION["connectedUser"] = true;
             $_SESSION["connectedAt"] = new DateTime();
 
-            $success = "Vous etes connectée !";
-            echo $success;
+            header('Location: accueil.php');
+
             break;
 
             // login for coach
@@ -37,8 +37,8 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
                     $_SESSION["connectedCoach"] = true;
                     $_SESSION["connecte dAt"] = new DateTime();
 
-                    $success = "Vous etes connectée !";
-                    echo $success;
+                    header('Location: accueil.php');
+
                     break;
                 }
             }
@@ -47,9 +47,10 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
             }
         } else {
             $error = "Votre identifiant est incorrecte !";
-            echo $error;
-            break;
         }
+    }
+    if (isset($error)) {
+        echo $error;
     }
 }
 
@@ -85,6 +86,12 @@ if (isset($_POST['mdp']) && isset($_POST['verification']) && isset($_POST['submi
 
             $success = "Vous etes inscrit !";
             echo Imc() . $success;
+
+            $_SESSION["login"] = $_POST['email'];
+            $_SESSION["connectedUser"] = true;
+            $_SESSION["connectedAt"] = new DateTime();
+
+            header('Location: profil.php');
         } elseif ($mail == 1) {
             echo 'compte deja existant';
         } elseif ($PostalCode == 2) {
@@ -495,4 +502,20 @@ if (isset($_POST['submit-password_u'])) {
 // modifie l'image de l'utilisateur
 if (isset($_POST['submit-image_u'])) {
     upload();
+}
+
+// redirection quand le User est connecté
+if (isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"]) {
+    if (isset($_GET["page"]) && $_GET["page"] === "login" || $_SERVER["REQUEST_URI"] === "/Sportify/php/login.php") {
+        header('Location: accueil.php');
+    } elseif (isset($_GET["page"]) && $_GET["page"] === "signup" || $_SERVER["REQUEST_URI"] === "/Sportify/php/signup.php") {
+        header('Location: profil.php');
+    }
+}
+
+// redirection quand le Coach est connecté
+if (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) {
+    if ((isset($_GET["page"]) && $_GET["page"] === "login" || $_SERVER["REQUEST_URI"] === "/Sportify/php/login.php") || (isset($_GET["page"]) && $_GET["page"] === "signup" || $_SERVER["REQUEST_URI"] === "/Sportify/php/signup.php")) {
+        header('Location: accueil.php');
+    }
 }

@@ -12,7 +12,11 @@ if (isset($_GET["page"])) {
         case 'profil':
             require_once("profil.php");
             break;
-        case 'index':
+        case 'accueil':
+            require_once("accueil.php");
+            break;
+        case 'coach':
+            require_once("coach.php");
             break;
         default:
             echo "page non trouvée";
