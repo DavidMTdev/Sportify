@@ -18,93 +18,94 @@ jsButtonBody.addEventListener('click', changeInfoBody);
 
 //fonction d'affichage du menu
 function changeInfoBody() {
-	createProfilMenu('js-form-body', '');
-
-	createLabel('.js-form-body', 'poid_u', 'Votre poid');
-	createInput('.js-form-body', 'text', 'poid_u', 'Poid', '');
-
-	createLabel('.js-form-body', 'taille', 'Votre taille');
-	createInput('.js-form-body', 'text', 'taille', 'Taille', '');
-
-	createButtonSubmit('submit-body', '.js-form-body');
-
-	createButtonCancel();
+	createProfilMenu();
+	createH2('physique');
+	createProfilFrom();
+	createForm('js-form', '');
+	// createLabel('.js-form-body', 'poid_u', 'Votre poid');
+	createInput('.js-form', 'text', 'poid_u', 'Poid', '');
+	// createLabel('.js-form-body', 'taille', 'Votre taille');
+	createInput('.js-form', 'text', 'taille', 'Taille', '');
+	createButtonSubmit('submit-info_u', '.js-form');
 }
 
 function changeInfoPassword() {
-	createProfilMenu('js-form-password', '');
-
-	createLabel('.js-form-password', 'ancient-password', 'Ancien Mot de passe<');
-	createInput('.js-form-password', 'password', 'ancient-password', 'Ancient Password', '');
-
-	createLabel('.js-form-password', 'new-password', 'Ancien Mot de passe<');
-	createInput('.js-form-password', 'password', 'new-password', 'New Password', '');
-
-	createLabel('.js-form-password', 'confirm-password', 'Confirmer Mot de passe<');
-	createInput('.js-form-password', 'password', 'confirm-password', 'Confirm Password', '');
-
-	createButtonSubmit('submit-password_u', '.js-form-password');
-
-	createButtonCancel();
+	createProfilMenu();
+	createH2('contact');
+	createProfilFrom();
+	createForm('js-form', '');
+	// createLabel('.js-form-password', 'ancient-password', 'Ancien Mot de passe<');
+	createInput('.js-form', 'password', 'ancient-password', 'Ancient Password', '');
+	// createLabel('.js-form-password', 'new-password', 'Ancien Mot de passe<');
+	createInput('.js-form', 'password', 'new-password', 'New Password', '');
+	// createLabel('.js-form-password', 'confirm-password', 'Confirmer Mot de passe<');
+	createInput('.js-form', 'password', 'confirm-password', 'Confirm Password', '');
+	createButtonSubmit('submit-info_u', '.js-form');
 }
 
 function changeInfoContact() {
-	createProfilMenu('js-form-contact', '');
-
-	createLabel('.js-form-contact', 'telephone_u', 'Telephone');
-	createInput('.js-form-contact', 'text', 'telephone_u', 'Telephone', '');
-
-	createButtonSubmit('submit-contact_u', '.js-form-contact');
-
-	createButtonCancel();
+	createProfilMenu();
+	createH2('contact');
+	createProfilFrom();
+	createForm('js-form', '');
+	// createLabel('.js-form-contact', 'telephone_u', 'Telephone');
+	createInput('.js-form', 'text', 'telephone_u', 'Telephone', '');
+	createButtonSubmit('submit-info_u', '.js-form');
 }
 
 function changeInfoAdress() {
-	createProfilMenu('js-form-adress', '');
-
-	createLabel('.js-form-adress', 'adresse_u', 'Adresse');
-	createInput('.js-form-adress', 'text', 'adresse_u', 'Adresse', '');
-
-	createLabel('.js-form-adress', 'ville_u', 'Ville');
-	createInput('.js-form-adress', 'text', 'ville_u', 'Ville', '');
-
-	createLabel('.js-form-adress', 'code_postal_u', 'Code Postal');
-	createInput('.js-form-adress', 'text', 'code_postal_u', 'Code Postal', '');
-
-	createButtonSubmit('submit-adress_u', '.js-form-adress');
-
-	createButtonCancel();
+	createProfilMenu();
+	createH2('addresse');
+	createProfilFrom();
+	createForm('js-form', '');
+	// createLabel('.js-form-adress', 'adresse_u', 'Adresse');
+	createInput('.js-form', 'text', 'adresse_u', 'Adresse', '');
+	// createLabel('.js-form-adress', 'ville_u', 'Ville');
+	createInput('.js-form', 'text', 'ville_u', 'Ville', '');
+	// createLabel('.js-form-adress', 'code_postal_u', 'Code Postal');
+	createInput('.js-form', 'text', 'code_postal_u', 'Code Postal', '');
+	createButtonSubmit('submit-info_u', '.js-form');
 }
 
 function changeInfoPrincipal() {
-	createProfilMenu('js-form-principal', '');
-
-	createLabel('.js-form-principal', 'nom_u', 'Nom');
-	createInput('.js-form-principal', 'text', 'nom_u', 'Nom', '');
-
-	createLabel('.js-form-principal', 'prenom_u', 'Prenom');
-	createInput('.js-form-principal', 'text', 'prenom_u', 'Prenom', '');
-
-	createLabel('.js-form-principal', 'age_u', 'Age');
-	createInput('.js-form-principal', 'text', 'age_u', 'Age', '');
-
-	createButtonSubmit('submit-info_u', '.js-form-principal');
-
-	createButtonCancel();
+	createProfilMenu();
+	createH2('principal');
+	createProfilFrom();
+	createForm('js-form', '');
+	// createLabel('.js-form-principal', 'nom_u', 'Nom');
+	createInput('.js-form', 'text', 'nom_u', 'Nom', '');
+	// createLabel('.js-form-principal', 'prenom_u', 'Prenom');
+	createInput('.js-form', 'text', 'prenom_u', 'Prenom', '');
+	// createLabel('.js-form-principal', 'age_u', 'Age');
+	createInput('.js-form', 'text', 'age_u', 'Age', '');
+	createTextArea('.js-form', 'description_u', 'enter une description');
+	createButtonSubmit('submit-info_u', '.js-form');
 }
 
 function changeImg() {
-	createProfilMenu('js-form-img', 'multipart/form-data');
-
-	createLabel('.js-form-img', 'img', 'choisi une image');
-	createInput('.js-form-img', 'file', 'img', '', '');
-
-	createButtonSubmit('submit-image_u', '.js-form-img');
-
-	createButtonCancel();
+	createProfilMenu();
+	createH2('image');
+	createProfilFrom();
+	createForm('js-form', 'multipart/form-data');
+	// createLabel('.js-form-img', 'img', 'choisi une image');
+	createInput('.js-form', 'file', 'img', '', '');
+	createButtonSubmit('submit-image_u', '.js-form');
 }
 
 //fonction de creation des balise html
+function createTextArea(nameClass, name, placeholder) {
+	const form = document.querySelector(nameClass);
+
+	var newTextArea = document.createElement('textarea');
+
+	newTextArea.setAttribute('name', name);
+	newTextArea.setAttribute('placeholder', placeholder);
+	newTextArea.setAttribute('cols', '50');
+	newTextArea.setAttribute('rows', '5');
+
+	form.appendChild(newTextArea);
+}
+
 function createLabel(nameClass, name, text) {
 	const form = document.querySelector(nameClass);
 
@@ -135,26 +136,39 @@ function createButtonSubmit(name, nameClass) {
 
 	newButton.setAttribute('type', 'submit');
 	newButton.setAttribute('name', name);
+	newButton.setAttribute('class', 'js-button-form');
 	newButton.innerText = 'Valider';
 
 	form.appendChild(newButton);
 }
 
-function createProfilMenu(nameClass, enctype) {
+function createProfilMenu() {
 	const main = document.querySelector('main');
-	// var newdivJsProfilModify = document.createElement('div');
 
-	// newdivJsProfilModify.setAttribute('class', 'js-profil-modify');
+	var newdivjsFiltreBlur = document.createElement('div');
+	newdivjsFiltreBlur.setAttribute('class', 'js-filter-blur');
 
-	// main.appendChild(newdivJsProfilModify);
+	main.appendChild(newdivjsFiltreBlur);
 
-	// const divJsProfilModify = document.querySelector('.js-profil-modify');
 	var divJsProfilMenu = document.createElement('div');
 
 	divJsProfilMenu.setAttribute('class', 'js-profil-menu');
 	main.appendChild(divJsProfilMenu);
 
+	createButtonCancel();
+}
+
+function createProfilFrom() {
 	const jsProfilMenu = document.querySelector('.js-profil-menu');
+	var newDiv = document.createElement('div');
+
+	newDiv.setAttribute('class', 'js-profil-form');
+
+	jsProfilMenu.appendChild(newDiv);
+}
+
+function createForm(nameClass, enctype) {
+	const jsProfilMenu = document.querySelector('.js-profil-form');
 	var newForm = document.createElement('form');
 
 	newForm.setAttribute('method', 'POST');
@@ -164,20 +178,39 @@ function createProfilMenu(nameClass, enctype) {
 	jsProfilMenu.appendChild(newForm);
 }
 
+function createH2(h2) {
+	const jsProfilMenu = document.querySelector('.js-profil-menu');
+
+	var newH2 = document.createElement('h2');
+	newH2.innerText = 'Modification informations ' + h2;
+
+	jsProfilMenu.appendChild(newH2);
+}
+
 function createButtonCancel() {
 	const jsProfilMenu = document.querySelector('.js-profil-menu');
-	var buttonCancel = document.createElement('button');
+	var newbuttonCancel = document.createElement('button');
 
-	buttonCancel.setAttribute('class', 'js-profil-cancel');
-	buttonCancel.setAttribute('onclick', 'cancel(".js-profil-menu")');
-	buttonCancel.innerText = 'Retour';
+	newbuttonCancel.setAttribute('class', 'js-profil-cancel');
+	newbuttonCancel.setAttribute('onclick', 'cancel(".js-profil-menu")');
+	// newbuttonCancel.innerText = 'Retour';
 
-	jsProfilMenu.appendChild(buttonCancel);
+	jsProfilMenu.appendChild(newbuttonCancel);
+
+	const ButtonCancel = document.querySelector('.js-profil-cancel');
+	var newImg = document.createElement('img');
+
+	newImg.setAttribute('src', 'icons/icons8-effacer-64_1.png');
+
+	ButtonCancel.appendChild(newImg);
 }
 
 //fonction suppression de la div js-form-menu
 function cancel(nameClass) {
 	const main = document.querySelector('main');
 	const div = document.querySelector(nameClass);
+	const divFiltre = document.querySelector('.js-filter-blur');
+
 	main.removeChild(div);
+	main.removeChild(divFiltre);
 }

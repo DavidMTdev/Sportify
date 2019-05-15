@@ -3,9 +3,7 @@ $premium = premium();
 if(empty($premium[0]['id_premium'])){
     header('location: premium.php');
 }
-// $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
-// $listcoach = $pdo->query('SELECT images_c, nom_c, prenom_c,specialite, descritpion_c, note FROM coach WHERE mail_c = "' . $_SESSION["login"] . '"');
-// $listcoach = $listcoach->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
