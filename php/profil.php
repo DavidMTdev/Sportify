@@ -13,9 +13,7 @@
                 <h3 class="profil-premium">Profil Premium</h3>
                 <br>
                 <h3>Description</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum qui consequatur esse. Amet enim sit
-                    eos itaque, officia doloremque sed corporis non incidunt, aliquid eligendi dolores perspiciatis
-                    eius dolorum minus?</p>
+                <p><?= $user[0]['description_u'] ?></p>
                 <button class="presentation-modify js-button-principal">Modifier</button>
             </div>
         </div>
@@ -77,9 +75,7 @@
                 <h3 class="profil-premium">Coach</h3>
                 <br>
                 <h3>Description</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum qui consequatur esse. Amet enim sit
-                    eos itaque, officia doloremque sed corporis non incidunt, aliquid eligendi dolores perspiciatis
-                    eius dolorum minus?</p>
+                <p><?= $profilCoach[0]['description_c'] ?></p>
                 <button class="presentation-modify js-button-principal">Modifier</button>
             </div>
         </div>

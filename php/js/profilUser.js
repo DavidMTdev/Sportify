@@ -78,6 +78,7 @@ function changeInfoPrincipal() {
 	createInput('.js-form', 'text', 'prenom_u', 'Prenom', '');
 	// createLabel('.js-form-principal', 'age_u', 'Age');
 	createInput('.js-form', 'text', 'age_u', 'Age', '');
+	createTextArea('.js-form', 'description_u', 'enter une description');
 	createButtonSubmit('submit-info_u', '.js-form');
 }
 
@@ -92,6 +93,19 @@ function changeImg() {
 }
 
 //fonction de creation des balise html
+function createTextArea(nameClass, name, placeholder) {
+	const form = document.querySelector(nameClass);
+
+	var newTextArea = document.createElement('textarea');
+
+	newTextArea.setAttribute('name', name);
+	newTextArea.setAttribute('placeholder', placeholder);
+	newTextArea.setAttribute('cols', '50');
+	newTextArea.setAttribute('rows', '5');
+
+	form.appendChild(newTextArea);
+}
+
 function createLabel(nameClass, name, text) {
 	const form = document.querySelector(nameClass);
 
