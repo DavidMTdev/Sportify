@@ -1,0 +1,171 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: #606060;
+}
+
+.supplement-presentation{
+    display:flex;
+    padding: 30px 100px;
+    background: #404040;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+.supplement-image img{
+    height: 150px;
+    width: 150px;
+    border-radius: 20px;
+}
+
+
+.supplement-principal{
+    padding: 0 50px;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+.supplement-principal h2{
+    padding: 10px 0;
+}
+
+.supplement-description h2{
+    text-align: center;
+    color: white;
+}
+
+.supplement-description,.supplement-quantity,.supplement-goal,.supplement-benefaction,.supplement-type{
+    padding: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.supplement-description img{
+    padding: 0 7px;
+}
+
+.supplement-description li{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.description,.quantity,.goal,.benefaction,.type{
+    width: 50%;
+    /* border: 0.2px solid black; */
+    background: #404040;
+    padding: 20px;
+    box-shadow: 0 6px 4px rgba(0,0,0,.5);
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+}
+
+.supplement-quantity li{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.supplement-quantity img{
+    padding: 0 7px;
+}
+
+.supplement-quantity h2{
+    text-align: center;
+    color: white;
+}
+
+
+.supplement-goal li{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.supplement-goal img{
+    padding: 0 7px;
+}
+
+.supplement-goal h2{
+    text-align: center;
+    color: white;
+}
+
+
+.supplement-type li{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.supplement-type img{
+    padding: 0 7px;
+}
+
+.supplement-type h2{
+    text-align: center;
+    color: white;
+}
+
+.supplement-benefaction li{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.supplement-benefaction img{
+    padding: 0 7px;
+}
+
+.supplement-benefaction h2{
+    text-align: center;
+    color: white;
+}
+
+.profil-informations{
+    border-bottom: 0.5px solid white;
+    display: flex;
+    justify-content: center;
+}
+
+.border{
+    width: 160px;
+    height: 5px;
+    background: #1ed760;
+    margin: 15px auto;
+}
+
+
+
+@media screen and (max-width:700px){
+    .supplement-presentation{
+        padding: 30px 20px;
+    }
+
+    .supplement-principal{
+        padding: 0 20px;
+        color: white;
+        text-align: center;
+        width: 100%;
+    }
+
+    .supplement-image img{
+        height: 100px;
+        width: 100px;
+        border-radius: 20px;
+    }
+
+    .supplement-principal h2{
+        padding: 10px 0;
+        font-size: 15px;
+    }
+
+}
