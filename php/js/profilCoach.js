@@ -24,7 +24,7 @@ function changeInfoSpeciality() {
 	createForm('js-form', '');
 	// createLabel('.js-form-speciality', 'specialite', 'Specialite');
 	createInput('.js-form', 'text', 'specialite', 'Specialite', '');
-	createButtonSubmit('submit-info_u', '.js-form');
+	createButtonSubmit('submit-info_c', '.js-form');
 }
 
 function changeInfoPassword() {
@@ -38,7 +38,7 @@ function changeInfoPassword() {
 	createInput('.js-form', 'password', 'new-password', 'New Password', '');
 	// createLabel('.js-form-password', 'confirm-password', 'Confirmer Mot de passe<');
 	createInput('.js-form', 'password', 'confirm-password', 'Confirm Password', '');
-	createButtonSubmit('submit-info_u', '.js-form');
+	createButtonSubmit('submit-password_c', '.js-form');
 }
 
 function changeInfoContact() {
@@ -46,9 +46,9 @@ function changeInfoContact() {
 	createH2('contact');
 	createProfilFrom();
 	createForm('js-form', '');
-	// createLabel('.js-form-contact', 'telephone_u', 'Telephone');
-	createInput('.js-form', 'text', 'telephone_u', 'Telephone', '');
-	createButtonSubmit('submit-info_u', '.js-form');
+	// createLabel('.js-form-contact', 'telephone_c', 'Telephone');
+	createInput('.js-form', 'text', 'telephone_c', 'Telephone', '');
+	createButtonSubmit('submit-contact_c', '.js-form');
 }
 
 function changeInfoAdress() {
@@ -56,13 +56,13 @@ function changeInfoAdress() {
 	createH2('addresse');
 	createProfilFrom();
 	createForm('js-form', '');
-	// createLabel('.js-form-adress', 'adresse_u', 'Adresse');
-	createInput('.js-form', 'text', 'adresse_u', 'Adresse', '');
-	// createLabel('.js-form-adress', 'ville_u', 'Ville');
-	createInput('.js-form', 'text', 'ville_u', 'Ville', '');
-	// createLabel('.js-form-adress', 'code_postal_u', 'Code Postal');
-	createInput('.js-form', 'text', 'code_postal_u', 'Code Postal', '');
-	createButtonSubmit('submit-info_u', '.js-form');
+	// createLabel('.js-form-adress', 'adresse_c', 'Adresse');
+	createInput('.js-form', 'text', 'adresse_c', 'Adresse', '');
+	// createLabel('.js-form-adress', 'ville_c', 'Ville');
+	createInput('.js-form', 'text', 'ville_c', 'Ville', '');
+	// createLabel('.js-form-adress', 'code_postal_c', 'Code Postal');
+	createInput('.js-form', 'text', 'code_postal_c', 'Code Postal', '');
+	createButtonSubmit('submit-adress_c', '.js-form');
 }
 
 function changeInfoPrincipal() {
@@ -70,14 +70,14 @@ function changeInfoPrincipal() {
 	createH2('principal');
 	createProfilFrom();
 	createForm('js-form', '');
-	// createLabel('.js-form-principal', 'nom_u', 'Nom');
-	createInput('.js-form', 'text', 'nom_u', 'Nom', '');
-	// createLabel('.js-form-principal', 'prenom_u', 'Prenom');
-	createInput('.js-form', 'text', 'prenom_u', 'Prenom', '');
-	// createLabel('.js-form-principal', 'age_u', 'Age');
-	createInput('.js-form', 'text', 'age_u', 'Age', '');
+	// createLabel('.js-form-principal', 'nom_c', 'Nom');
+	createInput('.js-form', 'text', 'nom_c', 'Nom', '');
+	// createLabel('.js-form-principal', 'prenom_c', 'Prenom');
+	createInput('.js-form', 'text', 'prenom_c', 'Prenom', '');
+	// createLabel('.js-form-principal', 'age_c', 'Age');
+	createInput('.js-form', 'text', 'age_c', 'Age', '');
 	createTextArea('.js-form', 'description_c', 'enter une description');
-	createButtonSubmit('submit-info_u', '.js-form');
+	createButtonSubmit('submit-info_c', '.js-form');
 }
 
 function changeImg() {
@@ -87,7 +87,7 @@ function changeImg() {
 	createForm('js-form', 'multipart/form-data');
 	// createLabel('.js-form-img', 'img', 'choisi une image');
 	createInput('.js-form', 'file', 'img', '', '');
-	createButtonSubmit('submit-image_u', '.js-form');
+	createButtonSubmit('submit-image_c', '.js-form');
 }
 
 //fonction de creation des balise html

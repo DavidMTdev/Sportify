@@ -1,5 +1,6 @@
 <?php require_once("includes/header.php");
     $premium = premium();
+    
 ?>
 
 <?php if (isset($_SESSION["connectedUser"]) &&  $_SESSION["connectedUser"]) : ?>
@@ -66,7 +67,7 @@
         </div>
     </div>
     <!-- user -->
-<?php else : ?>
+<?php elseif(isset($_SESSION["connectedCoach"]) &&  $_SESSION["connectedCoach"]) : ?>
     <!-- coach -->
     <div class="profil">
         <div class="profil-presentation">
