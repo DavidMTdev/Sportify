@@ -123,7 +123,7 @@ function upload()
     if (isset($_POST['submit_create_program'])) {
         $stmId = $pdo->query('SELECT id_programme FROM programme');
         $id = $stmId->fetchAll(PDO::FETCH_ASSOC);
-        $var = $id[count($id)-1]['id_programme'];
+        $var = $id[count($id) - 1]['id_programme'];
         var_dump($var);
         $file = $var . "P" . $extension;
         $stmprogram = $pdo->prepare(
@@ -610,33 +610,15 @@ if ((isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) || (isse
     if (isset($_GET['id'])) {
         $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
 
-        $statementProgram = $pdo->query('SELECT * FROM programme ');
+        $statementProgram = $pdo->query('SELECT * FROM programme WHERE id_programme <= 15');
         $listProgram = $statementProgram->fetchAll(PDO::FETCH_ASSOC);
         // var_dump($listProgram);
     }
 }
 
-// Afficher la seance du user premium pour le coach
-if ((isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"])) {
-    if (isset($_GET['id'])) {
-        $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
-
-        $statementPremium = $pdo->query('SELECT u.id_premium, nom_u, prenom_u, dates, seance, nom_c
-        FROM utilisateur u
-        join premium prem on u.id_premium = prem.id_premium
-        join programmer prog on prog.id_premium = prem.id_premium
-        join seance s on s.id_seance = prog.id_seance
-        join coach c on c.id_coach = prog.id_coach
-        where u.id_premium = "' . $_GET['id'] . '"');
-        $sessionPremium = $statementPremium->fetchAll(PDO::FETCH_ASSOC);
-        // var_dump($sessionPremium);
-    }
-}
-
-<<<<<<< HEAD
 // creer un programme
 if (isset($_POST['submit_create_program'])) {
-    
+
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement_create_program = $pdo->prepare(
         "INSERT INTO programme ( nom_pro, descriptions, niveau, objectif) 
@@ -677,6 +659,7 @@ $statementExercice = $pdo->query('SELECT * FROM exercice
     JOIN repete ON repete.id_repete = exercice.id_repete
     order by id_exercice');
 $statementExercice = $statementExercice->fetchAll(PDO::FETCH_ASSOC);
+// var_dump($statementExercice);
 
 switch ($_SESSION['niveau']) {
     case 1:
@@ -728,54 +711,77 @@ if (isset($_POST['submit_choiceExercice'])) {
         echo 'il faut minimum 2 exercices a ton programme';
     }
 }
-=======
-// Afficher la seance du user premium
-if ((isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"])) {
-    $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
-    $premium = premium();
 
-    if (empty($premium[0]['id_premium'])) {
-        $statementUser = $pdo->query(
-            'SELECT u.id_utilisateur, s.id_seance, dates, seance
+// Afficher la seance du user premium pour le coach
+if ((isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"])) {
+    if (isset($_GET['id'])) {
+        $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+
+        $statementPremium = $pdo->query('SELECT u.id_premium, nom_u, prenom_u, dates, validation_s, nom_c
+        FROM utilisateur u
+        join premium prem on u.id_premium = prem.id_premium
+        join programmer prog on prog.id_premium = prem.id_premium
+        join seance s on s.id_seance = prog.id_seance
+        join coach c on c.id_coach = prog.id_coach
+        where u.id_premium = "' . $_GET['id'] . '"');
+        $sessionPremium = $statementPremium->fetchAll(PDO::FETCH_ASSOC);
+        //var_dump($sessionPremium);
+    }
+}
+
+// Afficher la seance du user premium
+if (isset($_GET["page"]) && $_GET["page"] === "meeting" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/meeting.php") {
+
+    if ((isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"])) {
+        $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+        $premium = premium();
+
+        if (empty($premium[0]['id_premium'])) {
+            $statementUser = $pdo->query(
+                'SELECT u.id_utilisateur, s.id_seance, dates, validation_s
         FROM utilisateur u
         join creer cr on cr.id_utilisateur = u.id_utilisateur
         join seance s on s.id_seance = cr.id_seance
         WHERE mail_u = "' . $_SESSION["login"] . '"'
-        );
-        $statementUser = $statementUser->fetchAll(PDO::FETCH_ASSOC);
-
-        if (empty($statementUser)) {
-            $statementUser = $pdo->query(
-                'SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"'
             );
             $statementUser = $statementUser->fetchAll(PDO::FETCH_ASSOC);
+            // var_dump($statementUser);
 
-            $result = true;
-        }
+            if (empty($statementUser)) {
+                $statementUser = $pdo->query(
+                    'SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"'
+                );
+                $statementUser = $statementUser->fetchAll(PDO::FETCH_ASSOC);
 
-        $result = false;
-    } else {
-        $statementPremium = $pdo->query('SELECT u.id_utilisateur, s.id_seance, dates, seance, nom_c
+                $result = true;
+                return 0;
+            }
+            $result = false;
+        } else {
+            $statementPremium = $pdo->query('SELECT u.id_utilisateur, s.id_seance, dates, validation_s, nom_c
         FROM utilisateur u
         join creer cr on cr.id_utilisateur = u.id_utilisateur
         join seance s on s.id_seance = cr.id_seance
         join programmer prog on prog.id_seance = s.id_seance
         join coach c on c.id_coach = prog.id_coach
         WHERE mail_u = "' . $_SESSION["login"] . '"');
-        $sessionPremium = $statementPremium->fetchAll(PDO::FETCH_ASSOC);
-
-        if (empty($sessionPremium)) {
-            $statementPremium = $pdo->query(
-                'SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"'
-            );
             $sessionPremium = $statementPremium->fetchAll(PDO::FETCH_ASSOC);
+            // var_dump($sessionPremium);
 
-            $result = true;
+            if (empty($sessionPremium)) {
+                $statementPremium = $pdo->query(
+                    'SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"'
+                );
+                $sessionPremium = $statementPremium->fetchAll(PDO::FETCH_ASSOC);
+
+                $result = true;
+                return 0;
+            }
+
+            $result = false;
         }
-        $result = false;
     }
 }
-
 
 function checkedCheckBox($checkBox)
 {
@@ -790,10 +796,10 @@ if (isset($_GET['id_seance'])) {
     if (isset($_GET['checked']) && $_GET['weigth'] != '') {
         $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
         $statement = $pdo->prepare(
-            ('UPDATE seance SET seance = :seance WHERE id_seance = "' . $_GET['id_seance'] . '"')
+            ('UPDATE seance SET validation_s = :validation_s WHERE id_seance = "' . $_GET['id_seance'] . '"')
         );
         $statement->execute(array(
-            ':seance' => 1
+            ':validation_s' => 1
         ));
 
         $statement = $pdo->prepare(
@@ -805,10 +811,10 @@ if (isset($_GET['id_seance'])) {
     } else {
         $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
         $statement = $pdo->prepare(
-            ('UPDATE seance SET seance = :seance WHERE id_seance = "' . $_GET['id_seance'] . '"')
+            ('UPDATE seance SET validation_s = :validation_s WHERE id_seance = "' . $_GET['id_seance'] . '"')
         );
         $statement->execute(array(
-            ':seance' => 0
+            ':validation_s' => 0
         ));
 
         if (isset($_GET['weigth'])) {
@@ -823,4 +829,3 @@ if (isset($_GET['id_seance'])) {
 }
 
 // var_dump($_SERVER);
->>>>>>> 724f495fbe16cb5b4b1a733dc5de817f39acb2a1
