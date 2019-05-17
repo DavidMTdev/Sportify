@@ -53,7 +53,9 @@ create table seance(
     id_seance int AUTO_INCREMENT not null,
     dates date not null,
     id_programme int not null,
-    validation_seance int DEFAULT 0 not null,
+    validation_s int DEFAULT 0 not null,
+    poid_s int null,
+
     primary key (id_seance),
     FOREIGN KEY (id_programme) REFERENCES programme(id_programme)
 );
