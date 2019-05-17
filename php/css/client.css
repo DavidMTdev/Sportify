@@ -1,0 +1,124 @@
+body{
+    margin:0;
+    padding:0;
+    background:#606060;
+}
+
+.border{
+    width:160px;
+    height:5px;
+    background:#3c6;
+    margin:26px auto;
+}
+
+.client-title{
+    text-align:center;
+    padding:20px 0;
+    color:#fff;
+}
+
+.client-principal-container{
+    padding: 20px 40px;
+}
+.client-container{
+    background: #404040;
+    padding: 20px;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5);
+    margin: 20px 0;
+}
+.client-infos-container{
+    color: white;
+}
+
+.client-infos-title{
+    display:grid;
+    grid-template-columns:20% 20% 20% 20% 20%;
+    padding:10px 0;
+    border-bottom:#3c6 1px solid;
+}
+
+.client-infos{
+    display:grid;
+    grid-template-columns:20% 20% 20% 20% 20%;
+    padding:10px 0;
+    align-items:center;
+}
+
+.client-infos h3{
+    margin:10px 0;
+}
+
+.client-seance{
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0 0 0 ;
+}
+
+.button-create-seance{
+    background: none;
+    text-align: center;
+    border: 2px solid #1ed760;
+    padding: 14px 10px;
+    width: 250px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.button-create-seance:hover{
+    background : #1ed760;
+}
+
+@media screen and (max-width:950px){
+    .client-principal-container{
+        padding: 20px 0;
+    }
+    .client-container {
+        padding: 20px 0px;
+        background: #404040;
+        box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5);
+        margin: 20px ;
+    }
+    .client-infos-container{
+        color: white;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .client-infos-title{
+        display: flex;
+        flex-direction: column;
+        padding:10px 0;
+        border-bottom:#3c6 1px solid;
+        width: 100%;
+        font-size: 15px;
+    }
+
+    .client-surname,.client-name,.client-mail,.client-tel,.client-date{
+        width: 100%;
+        text-align: left;
+        margin: 20px 0;
+    }
+    .client-surname-title,.client-name-title,.client-mail-title,.client-tel-title,.client-date-title{
+        margin: 18px;
+    }
+    
+    .client-infos{
+        /* display:grid;
+        grid-template-rows:16% 16% 20% 20% 16% 12%; */
+        display: flex;
+        flex-direction: column;
+        padding :10px 0 0 0;
+        align-items:center;
+        border-bottom:#3c6 1px solid;
+        width: 100%;
+    }
+
+    .client-seance{
+        width: 100%;
+    }
+}
