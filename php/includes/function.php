@@ -633,7 +633,6 @@ if ((isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"])) {
     }
 }
 
-<<<<<<< HEAD
 // creer un programme
 if (isset($_POST['submit_create_program'])) {
     
@@ -668,6 +667,7 @@ if (isset($_POST['submit_create_program'])) {
         upload();
         echo 'tu as creer ton programme';
     }
+    $_SESSION['niveau'] = $niveau;
 }
 
 
@@ -677,7 +677,9 @@ $statementExercice = $pdo->query('SELECT * FROM exercice
     JOIN repete ON repete.id_repete = exercice.id_repete
     order by id_exercice');
 $statementExercice = $statementExercice->fetchAll(PDO::FETCH_ASSOC);
-
+if(empty($_SESSION['niveau'])){
+    $_SESSION['niveau'] = 0;
+}
 switch ($_SESSION['niveau']) {
     case 1:
         for ($i = 0; $i < count($statementExercice); $i += 3) {
@@ -728,7 +730,6 @@ if (isset($_POST['submit_choiceExercice'])) {
         echo 'il faut minimum 2 exercices a ton programme';
     }
 }
-=======
 // Afficher la seance du user premium
 if ((isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
@@ -823,4 +824,3 @@ if (isset($_GET['id_seance'])) {
 }
 
 // var_dump($_SERVER);
->>>>>>> 724f495fbe16cb5b4b1a733dc5de817f39acb2a1
