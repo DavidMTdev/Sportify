@@ -50,7 +50,7 @@ create table possede(
 );
 
 create table seance(
-    id_seance int not null,
+    id_seance int AUTO_INCREMENT not null,
     dates date not null,
     id_programme int not null,
     validation_seance int DEFAULT 0 not null,

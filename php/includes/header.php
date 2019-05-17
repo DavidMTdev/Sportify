@@ -1,4 +1,8 @@
-<?php require_once("includes/function.php") ?>
+<?php require_once("includes/function.php");
+if(empty($_SESSION['id_coach'])){
+    $_SESSION['id_coach'] = 0;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="fr">

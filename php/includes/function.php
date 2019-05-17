@@ -118,9 +118,21 @@ function upload()
     $extensions = array('.png', '.jpg', '.jpeg');
     $file = $_FILES['img']['name'];
     $extension = strrchr($file, '.');
-    $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
 
-    if (isset($_SESSION["connectedCoach"])) {
+    $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+    if (isset($_POST['submit_create_program'])) {
+        $stmId = $pdo->query('SELECT id_programme FROM programme');
+        $id = $stmId->fetchAll(PDO::FETCH_ASSOC);
+        $var = $id[count($id)-1]['id_programme'];
+        var_dump($var);
+        $file = $var . "P" . $extension;
+        $stmprogram = $pdo->prepare(
+            ('UPDATE programme SET images_pro = :images_pro WHERE id_programme = "' . $var . '"')
+        );
+        $stmprogram->execute(array(
+            ':images_pro' => $file
+        ));
+    } elseif (isset($_SESSION["connectedCoach"])) {
         $stmId = $pdo->query('SELECT id_coach FROM coach WHERE mail_c = "' . $_SESSION["login"] . '"');
         $id = $stmId->fetchAll(PDO::FETCH_ASSOC);
         $var = $id[0]['id_coach'];
@@ -143,7 +155,6 @@ function upload()
     if ($_FILES['img']['size'] > 1 * pow(10, 6)) {
         $error = 2;
     }
-
 
 
     if (!isset($error)) {
@@ -622,5 +633,100 @@ if (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) {
         where u.id_premium = "' . $_GET['id'] . '"');
         $sessionPremium = $statementPremium->fetchAll(PDO::FETCH_ASSOC);
         // var_dump($sessionPremium);
+    }
+}
+
+// creer un programme
+if (isset($_POST['submit_create_program'])) {
+    
+    $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+    $statement_create_program = $pdo->prepare(
+        "INSERT INTO programme ( nom_pro, descriptions, niveau, objectif) 
+        VALUES (:nom_pro , :descriptions, :niveau, :objectif)"
+    );
+    if ($_POST['niveau'] == "niveau") {
+        echo "tu n'a pas choisis de niveau";
+    } else {
+        switch ($_POST['niveau']) {
+            case 'debutant':
+                $niveau = 1;
+                break;
+            case 'intermediare':
+                $niveau = 2;
+                break;
+            case 'difficile':
+                $niveau = 3;
+                break;
+            case 'custom':
+                $niveau = 4;
+                break;
+        }
+        $statement_create_program->execute(array(
+            ':nom_pro' => $_POST['nom_pro'],
+            ':descriptions' => $_POST['descriptions'],
+            ':niveau' => $niveau,
+            ':objectif' => $_POST['objectif']
+        ));
+        upload();
+        echo 'tu as creer ton programme';
+    }
+}
+
+
+//recupere les exercices pour les checkbox
+$pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+$statementExercice = $pdo->query('SELECT * FROM exercice 
+    JOIN repete ON repete.id_repete = exercice.id_repete
+    order by id_exercice');
+$statementExercice = $statementExercice->fetchAll(PDO::FETCH_ASSOC);
+
+switch ($_SESSION['niveau']) {
+    case 1:
+        for ($i = 0; $i < count($statementExercice); $i += 3) {
+            $listExercice[] = $statementExercice[$i];
+        }
+        break;
+
+    case 2:
+        for ($i = 1; $i < count($statementExercice); $i += 3) {
+            $listExercice[] = $statementExercice[$i];
+        }
+        break;
+    case 3:
+        for ($i = 2; $i < count($statementExercice); $i += 3) {
+            $listExercice[] = $statementExercice[$i];
+        }
+        break;
+}
+
+
+if (isset($_POST['submit_choiceExercice'])) {
+    $statement_recupProgram = $pdo->query('SELECT id_programme FROM programme ');
+    $statement_recupProgram = $statement_recupProgram->fetchAll(PDO::FETCH_ASSOC);
+    $DernierProgrammeCreer = $statement_recupProgram[count($statement_recupProgram) - 1];
+    foreach ($statementExercice as $key => $value) {
+        if (isset($_POST['exercice' . $key])) {
+            $listchecked[] = $key + 1;
+        }
+    }
+    if (!empty($listchecked)) {
+        if (count($listchecked) > 1) {
+            $stmPossede = $pdo->prepare(
+                "INSERT INTO possede ( id_exercice, id_programme) 
+            VALUES (:id_exercice, :id_programme)"
+            );
+            foreach ($listchecked as $key => $value) {
+                $stmPossede->execute(array(
+                    ':id_exercice' => $listchecked[$key],
+                    ':id_programme' => $DernierProgrammeCreer['id_programme']
+                ));
+            }
+            echo 'ton programme a bien été creer';
+        } else {
+            echo 'il faut minimum 2 exercices a ton programme';
+        }
+        echo 'il faut minimum 2 exercices a ton programme';
+    } else {
+        echo 'il faut minimum 2 exercices a ton programme';
     }
 }
