@@ -48,24 +48,25 @@ $premium = premium();
                 </tr>
             </thead>
             <tbody>
-
-                <?php foreach ($statementUser as $key => $value) : ?>
-                    <form action="" method="get">
-                        <tr>
-                            <td><?= $key + 1 ?></td>
-                            <td><?= $value['dates'] ?></td>
-                            <td>
-                                <input type="checkbox" name="checked" <?= checkedCheckBox($value['seance']); ?>>
-                            </td>
-                            <td>
-                                <input type="number" name="weigth">
-                            </td>
-                            <td>
-                                <button type="submit" name='id_seance' value=<?= $value['id_seance'] ?>>valider</button>
-                            </td>
-                        </tr>
-                    </form>
-                <?php endforeach; ?>
+                <?php if (!($result)) : ?>
+                    <?php foreach ($statementUser as $key => $value) : ?>
+                        <form action="" method="get">
+                            <tr>
+                                <td><?= $key + 1 ?></td>
+                                <td><?= $value['dates'] ?></td>
+                                <td>
+                                    <input type="checkbox" name="checked" <?= checkedCheckBox($value['seance']); ?>>
+                                </td>
+                                <td>
+                                    <input type="number" name="weigth">
+                                </td>
+                                <td>
+                                    <button type="submit" name='id_seance' value=<?= $value['id_seance'] ?>>valider</button>
+                                </td>
+                            </tr>
+                        </form>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </tbody>
         </table>
     <?php else : ?>
@@ -86,25 +87,26 @@ $premium = premium();
                 </tr>
             </thead>
             <tbody>
-
-                <?php foreach ($sessionPremium as $key => $value) : ?>
-                    <form action="" method="get">
-                        <tr>
-                            <td><?= $key + 1 ?></td>
-                            <td><?= $value['dates'] ?></td>
-                            <td>
-                                <input type="checkbox" name="checked" <?= checkedCheckBox($value['seance']); ?>>
-                            </td>
-                            <td>
-                                <input type="number" name="weigth">
-                            </td>
-                            <td><?= $value['nom_c'] ?></td>
-                            <td>
-                                <button type="submit" name='id_seance' value=<?= $value['id_seance'] ?>>valider</button>
-                            </td>
-                        </tr>
-                    </form>
-                <?php endforeach; ?>
+                <?php if (!($result)) : ?>
+                    <?php foreach ($sessionPremium as $key => $value) : ?>
+                        <form action="" method="get">
+                            <tr>
+                                <td><?= $key + 1 ?></td>
+                                <td><?= $value['dates'] ?></td>
+                                <td>
+                                    <input type="checkbox" name="checked" <?= checkedCheckBox($value['seance']); ?>>
+                                </td>
+                                <td>
+                                    <input type="number" name="weigth">
+                                </td>
+                                <td><?= $value['nom_c'] ?></td>
+                                <td>
+                                    <button type="submit" name='id_seance' value=<?= $value['id_seance'] ?>>valider</button>
+                                </td>
+                            </tr>
+                        </form>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </tbody>
         </table>
     <?php endif; ?>

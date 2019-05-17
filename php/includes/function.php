@@ -636,8 +636,17 @@ if ((isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"])) {
         WHERE mail_u = "' . $_SESSION["login"] . '"'
         );
         $statementUser = $statementUser->fetchAll(PDO::FETCH_ASSOC);
-        // var_dump($premium[0]['id_premium']);
 
+        if (empty($statementUser)) {
+            $statementUser = $pdo->query(
+                'SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"'
+            );
+            $statementUser = $statementUser->fetchAll(PDO::FETCH_ASSOC);
+
+            $result = true;
+        }
+
+        $result = false;
     } else {
         $statementPremium = $pdo->query('SELECT u.id_utilisateur, s.id_seance, dates, seance, nom_c
         FROM utilisateur u
@@ -647,7 +656,16 @@ if ((isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"])) {
         join coach c on c.id_coach = prog.id_coach
         WHERE mail_u = "' . $_SESSION["login"] . '"');
         $sessionPremium = $statementPremium->fetchAll(PDO::FETCH_ASSOC);
-        // var_dump($sessionPremium);
+
+        if (empty($sessionPremium)) {
+            $statementPremium = $pdo->query(
+                'SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"'
+            );
+            $sessionPremium = $statementPremium->fetchAll(PDO::FETCH_ASSOC);
+
+            $result = true;
+        }
+        $result = false;
     }
 }
 
@@ -696,3 +714,5 @@ if (isset($_GET['id_seance'])) {
         }
     }
 }
+
+// var_dump($_SERVER);
