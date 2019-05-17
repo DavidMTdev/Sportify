@@ -3,10 +3,9 @@
     if(empty($premium[0]['id_premium'])){
         header('location: premium.php');
     }
-    else{
-        $listeCoachProfil = $pdo->query('SELECT * FROM coach WHERE id_coach = "' . $_GET['id_coach'] . '"');
-        $listeCoachProfil = $listeCoachProfil->fetchAll(PDO::FETCH_ASSOC);
-    }
+    
+        
+    
 ?>
 
 

@@ -563,7 +563,11 @@ $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
 $afficherCoach = $pdo->query('SELECT c.id_coach, images_c, nom_c, prenom_c, note, specialite, description_c FROM coach c JOIN donner ON donner.id_coach = c.id_coach');
 $afficherCoach = $afficherCoach->fetchAll(PDO::FETCH_ASSOC);
 
-
+if(isset($_GET['id_coach'])){
+$listeCoachProfil = $pdo->query('SELECT * FROM coach WHERE id_coach = "' . $_GET['id_coach'] . '"');
+$listeCoachProfil = $listeCoachProfil->fetchAll(PDO::FETCH_ASSOC);
+$_SESSION['id_coach'] = $listeCoachProfil[0]['id_coach'];
+}
 
 
 

@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css/login.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "signup" || $_SERVER["REQUEST_URI"] === "/Sportify/php/signup.php") : ?>
         <link rel="stylesheet" href="css/signup.css">
-    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "profil" || $_SERVER["REQUEST_URI"] === "/Sportify/php/profil.php") : ?>
+    <?php elseif ((isset($_GET["page"]) && $_GET["page"] === "profil" || $_SERVER["REQUEST_URI"] === "/Sportify/php/profil.php") || ($_SERVER["REQUEST_URI"] === "/Sportify/php/listecoachprofil.php?id_coach=" . $_SESSION['id_coach']))  : ?>
         <link rel="stylesheet" href="css/profil.css">
         <link rel="stylesheet" href="css/modification-window.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "coach" || $_SERVER["REQUEST_URI"] === "/Sportify/php/coach.php") : ?>

@@ -3,27 +3,7 @@ $premium = premium();
 if(empty($premium[0]['id_premium'])){
     header('location: premium.php');
 }
-
 ?>
-
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/coach.css">
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <title>Accueil</title>
-</head>
-
-<body>
-    <main>
         
         <div class="coach">
             <div class="coach-container">
@@ -32,7 +12,9 @@ if(empty($premium[0]['id_premium'])){
                 <div class="coach-all">
                 <?php foreach ($afficherCoach as $key => $value): ?>
                     <div class="col">
+                        <form action="" method="get">
                         <a href="listecoachprofil.php?id_coach=<?php print $afficherCoach[$key]['id_coach'] ?>">
+                        </form>
                             <div class="coach-presentation">
                                 <img src="../upload/<?php echo $afficherCoach[$key]['images_c'] ?> "alt="">
 
