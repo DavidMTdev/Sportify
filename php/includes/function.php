@@ -452,9 +452,6 @@ if (isset($_POST['submit-adress_u'])) {
     }
 }
 
-
-
-
 // modifie le telephone de l'utilisateur
 if (isset($_POST['submit-contact_u'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
@@ -619,8 +616,8 @@ if ((isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) || (isse
     }
 }
 
-// Afficher la seance du user premium
-if (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) {
+// Afficher la seance du user premium pour le coach
+if ((isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"])) {
     if (isset($_GET['id'])) {
         $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
 
@@ -636,6 +633,7 @@ if (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) {
     }
 }
 
+<<<<<<< HEAD
 // creer un programme
 if (isset($_POST['submit_create_program'])) {
     
@@ -730,3 +728,99 @@ if (isset($_POST['submit_choiceExercice'])) {
         echo 'il faut minimum 2 exercices a ton programme';
     }
 }
+=======
+// Afficher la seance du user premium
+if ((isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"])) {
+    $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+    $premium = premium();
+
+    if (empty($premium[0]['id_premium'])) {
+        $statementUser = $pdo->query(
+            'SELECT u.id_utilisateur, s.id_seance, dates, seance
+        FROM utilisateur u
+        join creer cr on cr.id_utilisateur = u.id_utilisateur
+        join seance s on s.id_seance = cr.id_seance
+        WHERE mail_u = "' . $_SESSION["login"] . '"'
+        );
+        $statementUser = $statementUser->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($statementUser)) {
+            $statementUser = $pdo->query(
+                'SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"'
+            );
+            $statementUser = $statementUser->fetchAll(PDO::FETCH_ASSOC);
+
+            $result = true;
+        }
+
+        $result = false;
+    } else {
+        $statementPremium = $pdo->query('SELECT u.id_utilisateur, s.id_seance, dates, seance, nom_c
+        FROM utilisateur u
+        join creer cr on cr.id_utilisateur = u.id_utilisateur
+        join seance s on s.id_seance = cr.id_seance
+        join programmer prog on prog.id_seance = s.id_seance
+        join coach c on c.id_coach = prog.id_coach
+        WHERE mail_u = "' . $_SESSION["login"] . '"');
+        $sessionPremium = $statementPremium->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($sessionPremium)) {
+            $statementPremium = $pdo->query(
+                'SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"'
+            );
+            $sessionPremium = $statementPremium->fetchAll(PDO::FETCH_ASSOC);
+
+            $result = true;
+        }
+        $result = false;
+    }
+}
+
+
+function checkedCheckBox($checkBox)
+{
+    if ($checkBox == 1) {
+        return 'checked';
+    }
+}
+
+// valider la séance de user
+if (isset($_GET['id_seance'])) {
+
+    if (isset($_GET['checked']) && $_GET['weigth'] != '') {
+        $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+        $statement = $pdo->prepare(
+            ('UPDATE seance SET seance = :seance WHERE id_seance = "' . $_GET['id_seance'] . '"')
+        );
+        $statement->execute(array(
+            ':seance' => 1
+        ));
+
+        $statement = $pdo->prepare(
+            ('UPDATE seance SET poid_s = :poid_s WHERE id_seance = "' . $_GET['id_seance'] . '"')
+        );
+        $statement->execute(array(
+            ':poid_s' => $_GET['weigth']
+        ));
+    } else {
+        $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+        $statement = $pdo->prepare(
+            ('UPDATE seance SET seance = :seance WHERE id_seance = "' . $_GET['id_seance'] . '"')
+        );
+        $statement->execute(array(
+            ':seance' => 0
+        ));
+
+        if (isset($_GET['weigth'])) {
+            $statement = $pdo->prepare(
+                ('UPDATE seance SET poid_s = :poid_s WHERE id_seance = "' . $_GET['id_seance'] . '"')
+            );
+            $statement->execute(array(
+                ':poid_s' => NULL
+            ));
+        }
+    }
+}
+
+// var_dump($_SERVER);
+>>>>>>> 724f495fbe16cb5b4b1a733dc5de817f39acb2a1

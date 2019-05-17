@@ -23,64 +23,65 @@ $premium = premium();
                     <button class="presentation-modify js-button-principal">Modifier</button>
                 </div>
             </div>
-            <div class="profil-contact">
-                <div class="contact">
-                    <h2>Contact</h2>
-                    <div class="border"></div>
-                    <ul>
-                        <li><img src="icons/icons8-sonnerie-phonelink-24.png" alt=""><?= $user[0]['telephone_u']  ?></li>
-                        <li><img src="icons/icons8-email-filled-24.png" alt=""><?= $user[0]['mail_u']  ?></li>
-                    </ul>
-
-                    <div class="modify-information-button-container">
-                        <button class="contact-modify js-button-contact">Modifier</button>
-                    </div>
-                </div>
-
-            </div>
         </div>
-
-        <div class="profil-address">
-            <div class="address">
-                <h2>Adresse</h2>
+        <div class="profil-contact">
+            <div class="contact">
+                <h2>Contact</h2>
                 <div class="border"></div>
                 <ul>
-                    <li><img src="icons/icons8-adresse-24.png" alt=""><?= $user[0]['adresse_u']  ?></li>
-                    <li><img src="icons/icons8-epingle-de-carte-24.png" alt=""><?= $user[0]['code_postal_u'] . " " . $user[0]['ville_u'] ?></li>
+                    <li><img src="icons/icons8-sonnerie-phonelink-24.png" alt=""><?= $user[0]['telephone_u']  ?></li>
+                    <li><img src="icons/icons8-email-filled-24.png" alt=""><?= $user[0]['mail_u']  ?></li>
                 </ul>
 
                 <div class="modify-information-button-container">
-                    <button class="address-modify js-button-adress">Modifier</button>
+                    <button class="contact-modify js-button-contact">Modifier</button>
                 </div>
+            </div>
 
-            </div>
         </div>
+    </div>
 
-        <div class="profil-password">
-            <div class="password">
-                <h2>Informations confidentialité</h2>
-                <div class="border"></div>
-                <ul>
-                    <li><img src="icons/icons8-mot-de-passe-24.png" alt="">**********</li>
-                </ul>
-                <div class="modify-information-button-container">
-                    <button class="password-modify js-button-password">Modifier votre mot de passe</button>
-                </div>
+    <div class="profil-address">
+        <div class="address">
+            <h2>Adresse</h2>
+            <div class="border"></div>
+            <ul>
+                <li><img src="icons/icons8-adresse-24.png" alt=""><?= $user[0]['adresse_u']  ?></li>
+                <li><img src="icons/icons8-epingle-de-carte-24.png" alt=""><?= $user[0]['code_postal_u'] . " " . $user[0]['ville_u'] ?></li>
+            </ul>
+
+            <div class="modify-information-button-container">
+                <button class="address-modify js-button-adress">Modifier</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="profil-password">
+        <div class="password">
+            <h2>Informations confidentialité</h2>
+            <div class="border"></div>
+            <ul>
+                <li><img src="icons/icons8-mot-de-passe-24.png" alt="">**********</li>
+            </ul>
+            <div class="modify-information-button-container">
+                <button class="password-modify js-button-password">Modifier votre mot de passe</button>
             </div>
         </div>
-        <div class="profil-body">
-            <div class="body">
-                <h2>Informations physique</h2>
-                <div class="border"></div>
-                <ul>
-                    <li><img src="icons/icons8-redimensionner-verticallement-filled-24.png" alt=""><?= $user[0]['taille']  ?></li>
-                    <li><img src="icons/icons8-échelle-24.png" alt=""><?= $user[0]['poid_u'] ?></li>
-                </ul>
-                <div class="modify-information-button-container">
-                    <button class="body-modify js-button-body">Modifier</button>
-                </div>
+    </div>
+    <div class="profil-body">
+        <div class="body">
+            <h2>Informations physique</h2>
+            <div class="border"></div>
+            <ul>
+                <li><img src="icons/icons8-redimensionner-verticallement-filled-24.png" alt=""><?= $user[0]['taille']  ?></li>
+                <li><img src="icons/icons8-échelle-24.png" alt=""><?= $user[0]['poid_u'] ?></li>
+            </ul>
+            <div class="modify-information-button-container">
+                <button class="body-modify js-button-body">Modifier</button>
             </div>
         </div>
+    </div>
     </div>
     <!-- user -->
 <?php elseif (isset($_SESSION["connectedCoach"]) &&  $_SESSION["connectedCoach"]) : ?>
