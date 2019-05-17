@@ -17,22 +17,22 @@ function cancelLogin() {
 
 function addLoginBurger() {
     var addLogin = document.querySelector('.nav-menu');
-    var aLogin = document.createElement('a');
-    aLogin.setAttribute('href', 'login.php');
 
-    var login = document.querySelectorAll('.nav-menu a');
+    var liLogin = document.createElement('li');
+    var login = document.querySelectorAll('.nav-menu li');
 
     if (login.length == 3) {
-        addLogin.appendChild(aLogin);
+        addLogin.appendChild(liLogin);
 
-        var login = document.querySelectorAll('.nav-menu a');
+        var login = document.querySelectorAll('.nav-menu li');
 
-        var liLogin = document.createElement('li');
-        liLogin.innerText = 'Se connecter';
+        var aLogin = document.createElement('a');
+        aLogin.setAttribute('href', 'login.php');
+        aLogin.innerText = 'Se connecter';
 
         var a = login.length - 1;
 
-        login[a].appendChild(liLogin);
+        login[a].appendChild(aLogin);
     }
 
 }
