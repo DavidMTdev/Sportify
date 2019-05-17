@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../php/css/modification-window.css">
+    <link rel="stylesheet" href="assets/css/modification-window.css">
     <title>Document</title>
 </head>
 
@@ -13,21 +13,20 @@
     <button>Valider</button>
     <div class="js-filter-blur"></div>
     <div class="js-profil-menu">
-        <button class="js-profil-cancel" onclick="cancel(&quot;.js-profil-menu&quot;)"><img
-                src="assets/icons/icons8-effacer-64 (1).png" alt=""></button>
+            <button class="js-profil-cancel" onclick="cancel(&quot;.js-profil-menu&quot;)"><img src="assets/icons/icons8-effacer-64 (1).png" alt=""></button>
         <h2>Modification informations contact</h2>
-
+        
         <!-- A rajouter : -->
-        <div class="js-profil-form">
+        <div class="js-profil-contact">
 
-            <form method="POST" class="js-form" enctype="">
-                <input type="text" name="nom_c" placeholder="Modifier votre nom" value="">
-                <input type="text" name="prenom_c" placeholder="Modifier votre Prenom" value="">
-                <input type="text" name="age_c" placeholder="Modifier votre Age" value="">
-                <button type="submit" name="submit-info_c">Valider</button>
-            </form>
-
-        </div>
+        <form method="POST" class="js-form-principal" enctype="">
+            <input type="text" name="nom_c" placeholder="Modifier votre nom" value="">
+            <input type="text" name="prenom_c" placeholder="Modifier votre Prenom" value="">
+            <input type="text" name="age_c" placeholder="Modifier votre Age" value="">
+            <button class="js-button-form" type="submit"name="submit-info_c">Valider</button>
+        </form>
+        
+    </div>
 
     </div>
 

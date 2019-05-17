@@ -26,7 +26,7 @@ body{
 .border{
     width: 160px;
     height: 5px;
-    background: #404040;
+    background: #33cc66;
     margin: 26px auto;
 }
 
@@ -81,6 +81,8 @@ body{
 .coach-speciality h4{
     color: #33cc66;
 }
+
+
 
 @media screen and (max-width:900px){
     .col{

@@ -1,16 +1,21 @@
 <?php require_once("includes/header.php") ?>
 
-<form action="" method="POST" class="login-box">
-    <h1>Login</h1>
-    <input class="login-name" type="mail" name="login" placeholder="Username">
-    <input class="login-password" type="password" name="password" placeholder="Password">
-    <input class="login-submit" type="submit" value="Login">
 
-    <a href="signup.php">Vous n'avez pas de compte créez en un !<br></a>
-    <a href="">Mot de passe oublié ?<br> </a>
-</form>
-
-</main>
+        <div class="login-container">
+            <form action="" method="POST" class="login-box">
+                <h1>Login</h1>
+                <div class="border"></div>
+                <div class="login">
+                    <div class="user-infos">
+                        <input class="login-info" type="text" name="" placeholder="Username">
+                        <input class="login-info" type="password" name="" placeholder="Password">
+                        <input class="login-submit" type="submit" name="" id="" value="Login">
+                        <a href="signup.php">Vous n'avez pas de compte créez en un !<br></a>
+                        <a href="">Mot de passe oublié ?<br> </a>
+                    </div>
+                </div>
+            </form>
+        </div>
 
 </body>
 

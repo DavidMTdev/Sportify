@@ -244,7 +244,7 @@ if (isset($_SESSION["connectedUser"]) &&  $_SESSION["connectedUser"]) {
 if (isset($_POST['submit-info_c'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
-        ('UPDATE coach SET nom_c = :nom_c, prenom_c = :prenom_c, age_c = :age_c WHERE mail_c = "' . $_SESSION["login"] . '"')
+        ('UPDATE coach SET nom_c = :nom_c, prenom_c = :prenom_c, age_c = :age_c, description_c = :description_c WHERE mail_c = "' . $_SESSION["login"] . '"')
     );
     if ($_POST['nom_c'] == "") {
         $_POST['nom_c'] = $profilCoach[0]['nom_c'];
@@ -255,13 +255,20 @@ if (isset($_POST['submit-info_c'])) {
     if ($_POST['age_c'] == "") {
         $_POST['age_c'] = $profilCoach[0]['age_c'];
     }
-    if ($_POST['age_c'] == $profilCoach[0]['age_c'] && $_POST['prenom_c'] == $profilCoach[0]['prenom_c'] && $_POST['nom_c'] == $profilCoach[0]['nom_c']) {
+    if ($_POST['description_c'] == "") {
+        $_POST['description_c'] = $profilCoach[0]['description_c'];
+    }
+    $lenDescription = strlen($_POST['description_c']);
+    if ($_POST['age_c'] == $profilCoach[0]['age_c'] && $_POST['prenom_c'] == $profilCoach[0]['prenom_c'] && $_POST['nom_c'] == $profilCoach[0]['nom_c'] && $_POST['description_c'] == $profilCoach[0]['description_c']) {
         echo  "rien n'a été modifié";
+    } elseif ($lenDescription > 250) {
+        echo 'ta description fais plus de 250 caracteres';
     } else {
         $statement->execute(array(
             ':nom_c' => $_POST['nom_c'],
             ':prenom_c' => $_POST['prenom_c'],
-            ':age_c' => $_POST['age_c']
+            ':age_c' => $_POST['age_c'],
+            'description_c' => $_POST['description_c']
         ));
         echo 'tes infos ont bien été modifier';
     }
@@ -373,7 +380,7 @@ if (isset($_POST['submit-image_c'])) {
 if (isset($_POST['submit-info_u'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
-        ('UPDATE utilisateur SET nom_u = :nom_u, prenom_u = :prenom_u, age_u = :age_u WHERE mail_u = "' . $_SESSION["login"] . '"')
+        ('UPDATE utilisateur SET nom_u = :nom_u, prenom_u = :prenom_u, age_u = :age_u, description_u = :description_u WHERE mail_u = "' . $_SESSION["login"] . '"')
     );
     if ($_POST['nom_u'] == "") {
         $_POST['nom_u'] = $user[0]['nom_u'];
@@ -384,14 +391,21 @@ if (isset($_POST['submit-info_u'])) {
     if ($_POST['age_u'] == "") {
         $_POST['age_u'] = $user[0]['age_u'];
     }
-    if ($_POST['age_u'] == $user[0]['age_u'] && $_POST['prenom_u'] == $user[0]['prenom_u'] && $_POST['nom_u'] == $user[0]['nom_u']) {
+    if ($_POST['description_u'] == "") {
+        $_POST['description_u'] = $user[0]['description_u'];
+    }
+    $lenDescription = strlen($_POST['description_u']);
+    if ($_POST['age_u'] == $user[0]['age_u'] && $_POST['prenom_u'] == $user[0]['prenom_u'] && $_POST['nom_u'] == $user[0]['nom_u'] && $_POST['description_u'] == $user[0]['description_u']) {
         echo  "rien n'a été modifié";
+    } elseif ($lenDescription > 250) {
+        echo 'ta description fais plus de 250 caracteres';
     } else {
         echo 'tes infos ont bien été modifier';
         $statement->execute(array(
             ':nom_u' => $_POST['nom_u'],
             ':prenom_u' => $_POST['prenom_u'],
-            ':age_u' => $_POST['age_u']
+            ':age_u' => $_POST['age_u'],
+            ':description_u' => $_POST['description_u']
         ));
     }
 }
@@ -504,48 +518,6 @@ if (isset($_POST['submit-image_u'])) {
     upload();
 }
 
-// modifie la description du coach
-if (isset($_POST['submit-info_c'])) {
-    $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
-    $statement = $pdo->prepare(
-        ('UPDATE coach SET description_c = :description_c WHERE mail_c = "' . $_SESSION["login"] . '"')
-    );
-    if ($_POST['description_c'] == "") {
-        $_POST['description_c'] = $profilCoach[0]['description_c'];
-    }
-    if ($_POST['description_c'] == $profilCoach[0]['description_c']) {
-        echo  "rien n'a été modifié";
-    } elseif (strlen($_POST['description_c'] > 250)) {
-        echo "il y a 250 caractere maximum dans ta description !!!!!!";
-    } else {
-        $statement->execute(array(
-            ':description_c' => $_POST['description_c']
-        ));
-        echo 'ta description a bien été modifié';
-    }
-}
-
-// modifie la description du user
-if (isset($_POST['submit-info_u'])) {
-    $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
-    $statement = $pdo->prepare(
-        ('UPDATE coach SET description_u = :description_u WHERE mail_u = "' . $_SESSION["login"] . '"')
-    );
-    if ($_POST['description_u'] == "") {
-        $_POST['description_u'] = $user[0]['description_u'];
-    }
-    if ($_POST['description_u'] == $user[0]['description_u']) {
-        echo  "rien n'a été modifié";
-    } elseif (strlen($_POST['description_u'] > 250)) {
-        echo "il y a 250 caractere maximum dans ta description !!!!!!";
-    } else {
-        $statement->execute(array(
-            ':description_u' => $_POST['description_u']
-        ));
-        echo 'ta description a bien été modifié';
-    }
-}
-
 //pour devenir premium
 if (isset($_POST['submitPremium'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
@@ -586,6 +558,16 @@ function premium()
     }
 }
 
+// permet de recuperer les infos pour la liste des coachs
+$pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+$afficherCoach = $pdo->query('SELECT c.id_coach, images_c, nom_c, prenom_c, note, specialite, description_c FROM coach c JOIN donner ON donner.id_coach = c.id_coach');
+$afficherCoach = $afficherCoach->fetchAll(PDO::FETCH_ASSOC);
+
+if (isset($_GET['id_coach'])) {
+    $listeCoachProfil = $pdo->query('SELECT * FROM coach WHERE id_coach = "' . $_GET['id_coach'] . '"');
+    $listeCoachProfil = $listeCoachProfil->fetchAll(PDO::FETCH_ASSOC);
+    $_SESSION['id_coach'] = $listeCoachProfil[0]['id_coach'];
+}
 
 // redirection quand le User est connecté
 if (isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"]) {
