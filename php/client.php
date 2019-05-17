@@ -19,7 +19,7 @@
                 <td><?= $value['telephone_u'] ?></td>
                 <td><?= $value['date_abo_debut'] ?></td>
                 <td>
-                    <form action=<?= "seance.php" ?> method="get">
+                    <form action=<?= "meeting.php" ?> method="get">
                         <button type="submit" name="id" value=<?= $value['id_premium']; ?>>Créer une séance</button>
                     </form>
                 </td>
