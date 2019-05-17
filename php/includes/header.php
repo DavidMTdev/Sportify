@@ -8,16 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/premium.css">
     <?php if (isset($_GET["page"]) && $_GET["page"] === "login" || $_SERVER["REQUEST_URI"] === "/Sportify/php/login.php") : ?>
         <link rel="stylesheet" href="css/login.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "signup" || $_SERVER["REQUEST_URI"] === "/Sportify/php/signup.php") : ?>
         <link rel="stylesheet" href="css/signup.css">
-    <?php elseif ((isset($_GET["page"]) && $_GET["page"] === "profil" || $_SERVER["REQUEST_URI"] === "/Sportify/php/profil.php") || ($_SERVER["REQUEST_URI"] === "/Sportify/php/listecoachprofil.php?id_coach=" . $_SESSION['id_coach']))  : ?>
+    <?php elseif ((isset($_GET["page"]) && $_GET["page"] === "profil" || $_SERVER["REQUEST_URI"] === "/Sportify/php/profil.php") || (!(isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) && $_SERVER["REQUEST_URI"] === "/Sportify/php/listecoachprofil.php?id_coach=" . $_SESSION['id_coach'])) : ?>
         <link rel="stylesheet" href="css/profil.css">
         <link rel="stylesheet" href="css/modification-window.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "coach" || $_SERVER["REQUEST_URI"] === "/Sportify/php/coach.php") : ?>
         <link rel="stylesheet" href="css/coach.css">
+    <?php elseif ((isset($_GET["page"]) && $_GET["page"] === "premium" || $_SERVER["REQUEST_URI"] === "/Sportify/php/premium.php") && !(empty($premium[0]['id_premium']))) : ?>
+        <link rel="stylesheet" href="css/premium.css">
     <?php endif; ?>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <title>Inscription</title>
@@ -28,6 +29,7 @@
             <script src="js/profilCoach.js" async></script>
         <?php endif; ?>
     <?php endif; ?>
+    <script src="js/burger.js" async></script>
 
 </head>
 
