@@ -650,6 +650,7 @@ if (isset($_POST['submit_create_program'])) {
         upload();
         echo 'tu as creer ton programme';
     }
+    $_SESSION['niveau'] = $niveau;
 }
 
 
@@ -661,6 +662,9 @@ $statementExercice = $pdo->query('SELECT * FROM exercice
 $statementExercice = $statementExercice->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($statementExercice);
 
+if (empty($_SESSION['niveau'])) {
+    $_SESSION['niveau'] = 0;
+}
 switch ($_SESSION['niveau']) {
     case 1:
         for ($i = 0; $i < count($statementExercice); $i += 3) {
