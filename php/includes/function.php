@@ -515,7 +515,7 @@ if (isset($_POST['submit-info_c'])) {
     }
     if ($_POST['description_c'] == $profilCoach[0]['description_c']) {
         echo  "rien n'a été modifié";
-    } elseif(strlen($_POST['description_c'] > 250)){
+    } elseif (strlen($_POST['description_c'] > 250)) {
         echo "il y a 250 caractere maximum dans ta description !!!!!!";
     } else {
         $statement->execute(array(
@@ -525,18 +525,18 @@ if (isset($_POST['submit-info_c'])) {
     }
 }
 
-// modifie la description du coach
+// modifie la description du user
 if (isset($_POST['submit-info_u'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $statement = $pdo->prepare(
         ('UPDATE coach SET description_u = :description_u WHERE mail_u = "' . $_SESSION["login"] . '"')
     );
     if ($_POST['description_u'] == "") {
-        $_POST['description_u'] = $profilCoach[0]['description_u'];
+        $_POST['description_u'] = $user[0]['description_u'];
     }
-    if ($_POST['description_u'] == $profilCoach[0]['description_u']) {
+    if ($_POST['description_u'] == $user[0]['description_u']) {
         echo  "rien n'a été modifié";
-    } elseif(strlen($_POST['description_u'] > 250)){
+    } elseif (strlen($_POST['description_u'] > 250)) {
         echo "il y a 250 caractere maximum dans ta description !!!!!!";
     } else {
         $statement->execute(array(
@@ -547,13 +547,13 @@ if (isset($_POST['submit-info_u'])) {
 }
 
 //pour devenir premium
-if(isset($_POST['submitPremium'])){
+if (isset($_POST['submitPremium'])) {
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     $premium = $pdo->query(
         'SELECT id_utilisateur FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"'
     );
     $premium = $premium->fetchAll(PDO::FETCH_ASSOC);
-    
+
     $statementPremium = $pdo->prepare(
         ('UPDATE utilisateur SET id_premium = :id_premium WHERE mail_u = "' . $_SESSION["login"] . '"')
     );
@@ -565,24 +565,25 @@ if(isset($_POST['submitPremium'])){
         VALUES (:id_premium, :date_abo_debut, :date_abo_fin)"
     );
     $date = date('Y-m-d');
-    $dateFin = date('Y-m-d',strtotime("+1 year"));
+    $dateFin = date('Y-m-d', strtotime("+1 year"));
     $statementPremiumDate->execute(array(
         ':id_premium' => $premium[0]['id_utilisateur'],
         ':date_abo_debut' => $date,
         ':date_abo_fin' => $dateFin
     ));
-    
+
     header('location: profil.php');
 }
 
 // pour savoir si l'utilisateur est premium ou pas
-function premium(){
-    if(isset($_SESSION["connectedUser"])){
+function premium()
+{
+    if (isset($_SESSION["connectedUser"])) {
         $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
         $premium = $pdo->query('SELECT u.id_premium, date_abo_debut, date_abo_fin FROM utilisateur u JOIN premium ON u.id_premium = premium.id_premium WHERE mail_u = "' . $_SESSION["login"] . '"');
         $premium = $premium->fetchAll(PDO::FETCH_ASSOC);
         return $premium;
-       }
+    }
 }
 
 
@@ -599,5 +600,45 @@ if (isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"]) {
 if (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) {
     if ((isset($_GET["page"]) && $_GET["page"] === "login" || $_SERVER["REQUEST_URI"] === "/Sportify/php/login.php") || (isset($_GET["page"]) && $_GET["page"] === "signup" || $_SERVER["REQUEST_URI"] === "/Sportify/php/signup.php")) {
         header('Location: accueil.php');
+    }
+}
+
+
+// Afficher la liste des user premium
+if (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) {
+    if (isset($_GET["page"]) && $_GET["page"] === "client" || $_SERVER["REQUEST_URI"] === "/Sportify/php/client.php") {
+        $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+
+        $statementPremium = $pdo->query('SELECT u.id_premium, nom_u, prenom_u, mail_u, telephone_u, p.date_abo_debut FROM utilisateur u JOIN premium  p ON u.id_premium = p.id_premium where u.id_premium is not null');
+        $listPremium = $statementPremium->fetchAll(PDO::FETCH_ASSOC);
+        // var_dump($listPremium);
+    }
+}
+
+//  Afficher la liste des programme enregistrer
+if ((isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) || (isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"])) {
+    if (isset($_GET['id'])) {
+        $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+
+        $statementProgram = $pdo->query('SELECT * FROM programme ');
+        $listProgram = $statementProgram->fetchAll(PDO::FETCH_ASSOC);
+        // var_dump($listProgram);
+    }
+}
+
+// Afficher la seance du user premium
+if (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) {
+    if (isset($_GET['id'])) {
+        $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+
+        $statementPremium = $pdo->query('SELECT u.id_premium, nom_u, prenom_u, dates, seance, nom_c
+        FROM utilisateur u
+        join premium prem on u.id_premium = prem.id_premium
+        join programmer prog on prog.id_premium = prem.id_premium
+        join seance s on s.id_seance = prog.id_seance
+        join coach c on c.id_coach = prog.id_coach
+        where u.id_premium = "' . $_GET['id'] . '"');
+        $sessionPremium = $statementPremium->fetchAll(PDO::FETCH_ASSOC);
+        // var_dump($sessionPremium);
     }
 }

@@ -21,10 +21,12 @@
     <?php endif; ?>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <title>Inscription</title>
-    <?php if (isset($_SESSION["connectedUser"]) &&  $_SESSION["connectedUser"]) : ?>
-        <script src="js/profilUser.js" async></script>
-    <?php else : ?>
-        <script src="js/profilCoach.js" async></script>
+    <?php if (isset($_GET["page"]) && $_GET["page"] === "profil" || $_SERVER["REQUEST_URI"] === "/Sportify/php/profil.php") : ?>
+        <?php if (isset($_SESSION["connectedUser"]) &&  $_SESSION["connectedUser"]) : ?>
+            <script src="js/profilUser.js" async></script>
+        <?php else : ?>
+            <script src="js/profilCoach.js" async></script>
+        <?php endif; ?>
     <?php endif; ?>
 
 </head>
