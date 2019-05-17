@@ -16,7 +16,7 @@
                      <li><a href="profil.php">Profil</a></li>
                      <li><a href="coach.php">Coach</a></li>
                  <?php endif; ?>
-                 <li><a href="seance.php">Seance</a></li>
+                 <li><a href="meeting.php">Seance</a></li>
 
              <?php elseif (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) : ?>
                  <li><a href="profil.php">Profil</a></li>
