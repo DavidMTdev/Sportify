@@ -30,7 +30,7 @@
         <?php endif; ?>
     <?php endif; ?>
     <script src="js/burger.js" async></script>
-
+    <link rel="stylesheet" href="css/client.css">
 </head>
 
 <body>
