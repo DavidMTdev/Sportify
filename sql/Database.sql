@@ -13,7 +13,7 @@ drop table creer;
 ALTER DATABASE sportify CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 create table repete(
-    id_repete int not null,
+    id_repete int AUTO_INCREMENT not null,
     poid_rep int(2) null,
     nb_rep int(1) null,
     duree time null,
@@ -21,7 +21,7 @@ create table repete(
 );
 
 create table exercice(
-    id_exercice int not null,
+    id_exercice int AUTO_INCREMENT not null,
     nom_ex varchar(50) not null,
     images_ex varchar(1000) DEFAULT '0.png' not null,
     machine varchar(50) null,

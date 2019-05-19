@@ -124,7 +124,6 @@ function upload()
         $stmId = $pdo->query('SELECT id_programme FROM programme');
         $id = $stmId->fetchAll(PDO::FETCH_ASSOC);
         $var = $id[count($id) - 1]['id_programme'];
-
         $file = $var . "P" . $extension;
         $stmprogram = $pdo->prepare(
             ('UPDATE programme SET images_pro = :images_pro WHERE id_programme = "' . $var . '"')
@@ -156,22 +155,24 @@ function upload()
         $error = 2;
     }
 
-
+    $imgPro = $var . "P" . $extension;
     if (!isset($error)) {
-        if (isset($_SESSION["connectedCoach"])) {
-            $statement = $pdo->prepare(
-                ('UPDATE coach SET images_c = :images_c WHERE mail_c = "' . $_SESSION["login"] . '"')
-            );
-            $statement->execute(array(
-                ':images_c' => $file
-            ));
-        } elseif (isset($_SESSION["connectedUser"])) {
-            $statement = $pdo->prepare(
-                ('UPDATE utilisateur SET images_u = :images_u WHERE mail_u = "' . $_SESSION["login"] . '"')
-            );
-            $statement->execute(array(
-                ':images_u' => $file
-            ));
+        if ($file != $imgPro) {
+            if (isset($_SESSION["connectedCoach"])) {
+                $statement = $pdo->prepare(
+                    ('UPDATE coach SET images_c = :images_c WHERE mail_c = "' . $_SESSION["login"] . '"')
+                );
+                $statement->execute(array(
+                    ':images_c' => $file
+                ));
+            } elseif (isset($_SESSION["connectedUser"])) {
+                $statement = $pdo->prepare(
+                    ('UPDATE utilisateur SET images_u = :images_u WHERE mail_u = "' . $_SESSION["login"] . '"')
+                );
+                $statement->execute(array(
+                    ':images_u' => $file
+                ));
+            }
         }
 
         $file = strtolower($file);
@@ -702,13 +703,13 @@ $statementExercice = $pdo->query('SELECT * FROM exercice
     JOIN repete ON repete.id_repete = exercice.id_repete
     order by id_exercice');
 $statementExercice = $statementExercice->fetchAll(PDO::FETCH_ASSOC);
-// var_dump($statementExercice);
 
 if (empty($_SESSION['niveau'])) {
     $_SESSION['niveau'] = 0;
 }
 switch ($_SESSION['niveau']) {
     case 1:
+    case 4:
         for ($i = 0; $i < count($statementExercice); $i += 3) {
             $listExercice[] = $statementExercice[$i];
         }
@@ -726,39 +727,142 @@ switch ($_SESSION['niveau']) {
         break;
 }
 
-
+// creer le programme et  les exercices
 if (isset($_POST['submit_choiceExercice'])) {
+    $listDuree = [];
+    $listNbrepete = [];
+    $listeNbserie = [];
+
     $statement_recupProgram = $pdo->query('SELECT id_programme FROM programme ');
     $statement_recupProgram = $statement_recupProgram->fetchAll(PDO::FETCH_ASSOC);
+
+    $stmAllRepete = $pdo->query('SELECT * FROM repete');
+    $stmAllRepete = $stmAllRepete->fetchAll(PDO::FETCH_ASSOC);
+
     $DernierProgrammeCreer = $statement_recupProgram[count($statement_recupProgram) - 1];
-    foreach ($statementExercice as $key => $value) {
-        if (isset($_POST['exercice' . $key])) {
-            $listchecked[] = $key + 1;
+    if ($_SESSION['niveau'] == 4) {
+        $count = 0;
+        foreach ($statementExercice as $key => $value) {
+            var_dump($key);
+            if (isset($_POST['exercice' . $key])) {
+
+                $listchecked[] = [
+                    "id_exercice" => ($key),
+                    "nom_ex" => $statementExercice[$key]['nom_ex'],
+                    'images_ex' => $statementExercice[$key]['images_ex'],
+                    "machine" => $statementExercice[$key]['machine'],
+                    "id_repete" => (count($stmAllRepete) + 1 + $count),
+                    "nb_serie" => $_POST['serie' . $key]
+                ];
+                $listInput[] = ($_POST['custom' . $key]);
+
+                $count += 1;
+            }
+            // var_dump($_POST['exercice' . $key]);
+        }
+        var_dump($listchecked);
+    } else {
+        foreach ($statementExercice as $key => $value) {
+            if (isset($_POST['exercice' . $key])) {
+                $listchecked[] = [
+                    "id_exercice" => ($key + 1),
+                ];
+            }
         }
     }
 
-    if (!empty($listchecked)) {
-        if (count($listchecked) > 1) {
+    if ($_SESSION['niveau'] == 4 && !empty($listInput)) {
+        foreach ($listchecked as $key => $value) {
+            if ($listInput[$key] == "" || empty($listchecked[$key]["nb_serie"])) {
+                $error = "il y'a un exercice que tu as coché ou tu n'a pas mis le nombre de repete ou le nombre de serie que tu veux faire que tu vas faire";
+            }
+        }
+        if (isset($error)) {
+            echo $error;
+        } else {
+            foreach ($listInput as $key => $value) {
+                $choice = strlen($listInput[$key]);
+                if ($choice == 5) {
+                    $listDuree[] = $listInput[$key];
+                } else {
+                    $listNbrepete[] = $listInput[$key];
+                }
+            }
+            $stmNewRepete = $pdo->prepare(
+                "INSERT INTO repete (poid_rep, nb_rep, duree)  VALUES (:poid_rep, :nb_rep, :duree)"
+            );
+            foreach ($listDuree as $key => $value) {
+                $stmNewRepete->execute(array(
+                    'poid_rep' => NULL,
+                    ":nb_rep" => NULL,
+                    ':duree' => $listDuree[$key]
+                ));
+            }
+            $stmNewRepete = $pdo->prepare(
+                "INSERT INTO repete ( nb_rep, poid_rep, duree) VALUES (:nb_rep, :poid_rep, :duree)"
+            );
+            foreach ($listNbrepete as $key => $value) {
+                $stmNewRepete->execute(array(
+                    'poid_rep' => NULL,
+                    ":nb_rep" => $listNbrepete[$key],
+                    ':duree' => NULL
+                ));
+            }
+            $stmExercice = $pdo->prepare(
+                "INSERT INTO exercice ( nom_ex, machine, images_ex, id_repete) 
+                VALUES (:nom_ex, :machine, :images_ex, :id_repete)"
+            );
+            foreach ($listchecked as $key => $value) {
+                $stmExercice->execute(array(
+                    ':nom_ex' => $listchecked[$key]['nom_ex'],
+                    ':machine' => $listchecked[$key]['machine'],
+                    'images_ex' => $listchecked[$key]['images_ex'],
+                    'id_repete' => $listchecked[$key]['id_repete']
+                ));
+            }
+
+
             $stmPossede = $pdo->prepare(
-                "INSERT INTO possede ( id_exercice, id_programme) 
-            VALUES (:id_exercice, :id_programme)"
+                "INSERT INTO possede ( id_exercice, id_programme, nb_serie) 
+                    VALUES (:id_exercice, :id_programme, :nb_serie)"
             );
             foreach ($listchecked as $key => $value) {
 
                 $stmPossede->execute(array(
-                    ':id_exercice' => $listchecked[$key],
-                    ':id_programme' => $DernierProgrammeCreer['id_programme']
+                    ':id_exercice' => $listchecked[$key]['id_exercice'],
+                    ':id_programme' => $DernierProgrammeCreer['id_programme'],
+                    ':nb_serie' => $listchecked[$key]['nb_serie'],
                 ));
             }
-            echo 'ton programme a bien été creer';
+
+            echo 'ton programme custom a été creer';
+        }
+    } elseif ($_SESSION['niveau'] == 4 && empty($listInput)) {
+        echo "tu as rempli un input sans cocher l'exercice";
+    } else {
+        if (!empty($listchecked)) {
+            if (count($listchecked) > 1) {
+                $stmPossede = $pdo->prepare(
+                    "INSERT INTO possede ( id_exercice, id_programme, nb_serie) 
+                VALUES (:id_exercice, :id_programme, :nb_serie)"
+                );
+                foreach ($listchecked as $key => $value) {
+                    $stmPossede->execute(array(
+                        ':id_exercice' => $listchecked[$key]['id_exercice'],
+                        ':id_programme' => $DernierProgrammeCreer['id_programme'],
+                        ':nb_serie' => ($_SESSION['niveau'] + 2)
+                    ));
+                }
+                echo 'ton programme a bien été creer';
+            } else {
+                echo 'il faut minimum 2 exercices a ton programme';
+            }
         } else {
             echo 'il faut minimum 2 exercices a ton programme';
         }
-        echo 'il faut minimum 2 exercices a ton programme';
-    } else {
-        echo 'il faut minimum 2 exercices a ton programme';
     }
 }
+
 
 // Afficher la seance du user premium pour le coach
 if ((isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"])) {
