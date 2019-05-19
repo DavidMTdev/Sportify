@@ -124,7 +124,7 @@ function upload()
         $stmId = $pdo->query('SELECT id_programme FROM programme');
         $id = $stmId->fetchAll(PDO::FETCH_ASSOC);
         $var = $id[count($id) - 1]['id_programme'];
-        var_dump($var);
+
         $file = $var . "P" . $extension;
         $stmprogram = $pdo->prepare(
             ('UPDATE programme SET images_pro = :images_pro WHERE id_programme = "' . $var . '"')
@@ -651,6 +651,48 @@ if (isset($_POST['submit_create_program'])) {
         echo 'tu as creer ton programme';
     }
     $_SESSION['niveau'] = $niveau;
+
+    // créer une séance avec un programme créer 
+    if (isset($_POST['date']) && isset($_POST['id'])) {
+        $statementProgram = $pdo->query('SELECT max(id_programme) FROM programme');
+        $statementProgram = $statementProgram->fetchAll(PDO::FETCH_ASSOC);
+
+        $statementMeeting = $pdo->prepare(
+            "INSERT INTO seance(dates, id_programme) 
+            VALUES (:dates, :id_programme)"
+        );
+
+        $statementMeeting->execute(array(
+            ':dates' => $_POST['date'],
+            ':id_programme' => intVal($statementProgram[0]['max(id_programme)'])
+        ));
+
+        $statementMeeting = $pdo->query('SELECT max(id_seance) FROM seance ');
+        $idMeeting = $statementMeeting->fetchAll(PDO::FETCH_ASSOC);
+
+        if ((isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"])) {
+            $statementCreateMeeting = $pdo->prepare(
+                "INSERT INTO creer(id_utilisateur, id_seance) 
+            VALUES (:id_utilisateur, :id_seance)"
+            );
+
+            $statementCreateMeeting->execute(array(
+                ':id_utilisateur' => $_POST['id'],
+                ':id_seance' => $idMeeting[0]['max(id_seance)']
+            ));
+        } else {
+            $statementCreateMeeting = $pdo->prepare(
+                "INSERT INTO programmer(id_premium, id_coach, id_seance) 
+                VALUES (:id_premium, :id_coach, :id_seance)"
+            );
+
+            $statementCreateMeeting->execute(array(
+                ':id_premium' => $_POST['id'],
+                ':id_coach' => $_POST['id_coach'],
+                ':id_seance' => $idMeeting[0]['max(id_seance)']
+            ));
+        }
+    }
 }
 
 
@@ -694,6 +736,7 @@ if (isset($_POST['submit_choiceExercice'])) {
             $listchecked[] = $key + 1;
         }
     }
+
     if (!empty($listchecked)) {
         if (count($listchecked) > 1) {
             $stmPossede = $pdo->prepare(
@@ -701,6 +744,7 @@ if (isset($_POST['submit_choiceExercice'])) {
             VALUES (:id_exercice, :id_programme)"
             );
             foreach ($listchecked as $key => $value) {
+
                 $stmPossede->execute(array(
                     ':id_exercice' => $listchecked[$key],
                     ':id_programme' => $DernierProgrammeCreer['id_programme']
@@ -721,15 +765,24 @@ if ((isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"])) {
     if (isset($_GET['id'])) {
         $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
 
-        $statementPremium = $pdo->query('SELECT u.id_premium, nom_u, prenom_u, dates, validation_s, nom_c
+        $statementPremium = $pdo->query('SELECT u.id_premium, s.id_seance, nom_u, prenom_u, dates, validation_s, nom_c
         FROM utilisateur u
         join premium prem on u.id_premium = prem.id_premium
         join programmer prog on prog.id_premium = prem.id_premium
         join seance s on s.id_seance = prog.id_seance
         join coach c on c.id_coach = prog.id_coach
+        where u.id_premium = 1
+        UNION
+        SELECT u.id_premium, s.id_seance, nom_u, prenom_u, dates, validation_s, nom_c
+        FROM utilisateur u
+   		LEFT join creer cr ON cr.id_utilisateur = u.id_utilisateur
+        LEFT join seance s on cr.id_seance = s.id_seance
+        LEFT JOIN programmer prog on prog.id_seance = s.id_seance
+        LEFT join coach c on c.id_coach = prog.id_coach
         where u.id_premium = "' . $_GET['id'] . '"');
+
         $sessionPremium = $statementPremium->fetchAll(PDO::FETCH_ASSOC);
-        //var_dump($sessionPremium);
+        // var_dump($sessionPremium);
     }
 }
 
@@ -764,10 +817,10 @@ if (isset($_GET["page"]) && $_GET["page"] === "meeting" || $_SERVER["SCRIPT_NAME
         } else {
             $statementPremium = $pdo->query('SELECT u.id_utilisateur, s.id_seance, dates, validation_s, nom_c
         FROM utilisateur u
-        join creer cr on cr.id_utilisateur = u.id_utilisateur
-        join seance s on s.id_seance = cr.id_seance
-        join programmer prog on prog.id_seance = s.id_seance
-        join coach c on c.id_coach = prog.id_coach
+        left join creer cr on cr.id_utilisateur = u.id_utilisateur
+        left join seance s on s.id_seance = cr.id_seance
+        left join programmer prog on prog.id_seance = s.id_seance
+        left join coach c on c.id_coach = prog.id_coach
         WHERE mail_u = "' . $_SESSION["login"] . '"');
             $sessionPremium = $statementPremium->fetchAll(PDO::FETCH_ASSOC);
             // var_dump($sessionPremium);
@@ -831,5 +884,49 @@ if (isset($_GET['id_seance'])) {
         }
     }
 }
-
 // var_dump($_SERVER);
+if ((isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"])) {
+    $statementIdCoach = $pdo->query('SELECT * FROM coach where mail_c = "' . $_SESSION['login'] . '"');
+    $idCoach = $statementIdCoach->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// créer une séance avec un programme déjà créer 
+if (isset($_POST['date']) && isset($_POST['id_prog']) && isset($_POST['id'])) {
+    $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+
+    $statementMeeting = $pdo->prepare(
+        "INSERT INTO seance(dates, id_programme) 
+        VALUES (:dates, :id_programme)"
+    );
+
+    $statementMeeting->execute(array(
+        ':dates' => $_POST['date'],
+        ':id_programme' => $_POST['id_prog'],
+    ));
+
+    $statementMeeting = $pdo->query('SELECT max(id_seance) FROM seance ');
+    $idMeeting = $statementMeeting->fetchAll(PDO::FETCH_ASSOC);
+
+    if ((isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"])) {
+        $statementCreateMeeting = $pdo->prepare(
+            "INSERT INTO creer(id_utilisateur, id_seance) 
+            VALUES (:id_utilisateur, :id_seance)"
+        );
+
+        $statementCreateMeeting->execute(array(
+            ':id_utilisateur' => $_POST['id'],
+            ':id_seance' => $idMeeting[0]['max(id_seance)']
+        ));
+    } else {
+        $statementCreateMeeting = $pdo->prepare(
+            "INSERT INTO programmer(id_premium, id_coach, id_seance) 
+            VALUES (:id_premium, :id_coach, :id_seance)"
+        );
+
+        $statementCreateMeeting->execute(array(
+            ':id_premium' => $_POST['id'],
+            ':id_coach' => $_POST['id_coach'],
+            ':id_seance' => $idMeeting[0]['max(id_seance)']
+        ));
+    }
+}

@@ -5,8 +5,9 @@ $premium = premium();
 ?>
 <?php if (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) : ?>
     <h1><?= "Séance " . $sessionPremium[0]['nom_u'] . " " . $sessionPremium[0]['prenom_u'] ?></h1>
-    <form action="createProgram.php" method="get">
-        <input type="date" name="date" id="" value=<?= $today ?>>
+    <form action="listProgram.php" method="get">
+        <input type="date" name="date" value=<?= $today ?>>
+        <input type="hidden" name="id_coach" value=<?= $idCoach[0]['id_coach']; ?>>
         <button type="submit" name='id' value=<?= $sessionPremium[0]['id_premium'] ?>>Créer une séance</button>
     </form>
     <table>
@@ -23,7 +24,7 @@ $premium = premium();
                 <tr>
                     <td><?= $key + 1 ?></td>
                     <td><?= $value['dates'] ?></td>
-                    <td><?= $value['seance'] ?></td>
+                    <td><?= $value['validation_s'] ?></td>
                     <td><?= $value['nom_c'] ?></td>
                 </tr>
             <?php endforeach; ?>
@@ -32,7 +33,7 @@ $premium = premium();
 <?php else : ?>
     <?php if (empty($premium[0]['id_premium'])) : ?>
         <h1><?= "Vos Séance" ?></h1>
-        <form action="createProgram.php" method="get">
+        <form action="listProgram.php" method="get">
             <input type="date" name="date" id="" value=<?= $today ?>>
             <button type="submit" name='id' value=<?= $statementUser[0]['id_utilisateur'] ?>>Créer une séance</button>
         </form>
@@ -55,7 +56,7 @@ $premium = premium();
                                 <td><?= $key + 1 ?></td>
                                 <td><?= $value['dates'] ?></td>
                                 <td>
-                                    <input type="checkbox" name="checked" <?= checkedCheckBox($value['seance']); ?>>
+                                    <input type="checkbox" name="checked" <?= checkedCheckBox($value['validation_s']); ?>>
                                 </td>
                                 <td>
                                     <input type="number" name="weigth">
@@ -71,7 +72,7 @@ $premium = premium();
         </table>
     <?php else : ?>
         <h1><?= "Vos Séance" ?></h1>
-        <form action="createProgram.php" method="get">
+        <form action="listProgram.php" method="get">
             <input type="date" name="date" id="" value=<?= $today ?>>
             <button type="submit" name='id' value=<?= $sessionPremium[0]['id_utilisateur'] ?>>Créer une séance</button>
         </form>
@@ -94,7 +95,7 @@ $premium = premium();
                                 <td><?= $key + 1 ?></td>
                                 <td><?= $value['dates'] ?></td>
                                 <td>
-                                    <input type="checkbox" name="checked" <?= checkedCheckBox($value['seance']); ?>>
+                                    <input type="checkbox" name="checked" <?= checkedCheckBox($value['validation_s']); ?>>
                                 </td>
                                 <td>
                                     <input type="number" name="weigth">
