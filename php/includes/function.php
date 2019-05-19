@@ -700,13 +700,15 @@ if (isset($_POST['submit_choiceExercice'])) {
     $DernierProgrammeCreer = $statement_recupProgram[count($statement_recupProgram) - 1];
     if ($_SESSION['niveau'] == 4) {
         $count = 0;
-        foreach ($listExercice as $key => $value) {
+        foreach ($statementExercice as $key => $value) {
+            var_dump($key);
             if (isset($_POST['exercice' . $key])) {
+                
                 $listchecked[] = [
-                    "id_exercice" => ($listExercice[$key]['id_exercice']),
-                    "nom_ex" => $listExercice[$key]['nom_ex'],
-                    'images_ex' => $listExercice[$key]['images_ex'],
-                    "machine" => $listExercice[$key]['machine'],
+                    "id_exercice" => ($key),
+                    "nom_ex" => $statementExercice[$key]['nom_ex'],
+                    'images_ex' => $statementExercice[$key]['images_ex'],
+                    "machine" => $statementExercice[$key]['machine'],
                     "id_repete" => (count($stmAllRepete) + 1 + $count),
                     "nb_serie" => $_POST['serie' . $key]
                 ];
