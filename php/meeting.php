@@ -65,30 +65,6 @@ $premium = premium();
 
     </div>
 
-    <table>
-
-        <thead>
-            <tr>
-                <th>Numéro séance</th>
-                <th>Date Séance</th>
-                <th>Valider</th>
-                <th>Coach</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <?php foreach ($sessionPremium as $key => $value) : ?>
-                <tr>
-                    <td><?= $key + 1 ?></td>
-                    <td><?= $value['dates'] ?></td>
-                    <td><?= $value['validation_s'] ?></td>
-                    <td><?= $value['nom_c'] ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-
-    </table>
-
 
 
 
