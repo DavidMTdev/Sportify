@@ -1070,8 +1070,8 @@ if(isset($_POST['valide_imc'])){
 
 }
 
-$stmImc = $pdo->query(
-    'SELECT imc, date_imc FROM imc WHERE id_utilisateur = "' . $statementUser[0]['id_utilisateur'] . '"'
-);
-$stmImc = $stmImc->fetchAll(PDO::FETCH_ASSOC);
+// $stmImc = $pdo->query(
+//     'SELECT imc, date_imc FROM imc WHERE id_utilisateur = "' . $statementUser[0]['id_utilisateur'] . '"'
+// );
+// $stmImc = $stmImc->fetchAll(PDO::FETCH_ASSOC);
 
