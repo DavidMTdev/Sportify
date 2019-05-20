@@ -63,11 +63,11 @@ body{
 
 .contact,.body,.address,.password,.speciality{
     width: 50%;
-    /* border: 0.2px solid black; */
     background: #404040;
     padding: 20px;
     box-shadow: 0 6px 4px rgba(0,0,0,.5);
     border-radius: 8px;
+    color: white;
 }
 
 
@@ -165,7 +165,6 @@ body{
 
 .contact-modify,.address-modify,.password-modify,.body-modify,.speciality-modify{
     background: none;
-    /* display: block; */
     margin: 20px 0;
     text-align: center;
     border: 2px solid #1ed760;

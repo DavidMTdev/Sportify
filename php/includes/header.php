@@ -1,5 +1,5 @@
 <?php require_once("includes/function.php");
-if(empty($_SESSION['id_coach'])){
+if (empty($_SESSION['id_coach'])) {
     $_SESSION['id_coach'] = 0;
 }
 ?>
@@ -28,6 +28,8 @@ if(empty($_SESSION['id_coach'])){
         <link rel="stylesheet" href="css/premium.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "client" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/client.php") : ?>
         <link rel="stylesheet" href="css/client.css">
+    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "client" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/meeting.php") : ?>
+        <link rel="stylesheet" href="css/meeting.css">
     <?php endif; ?>
 
     <?php if (isset($_GET["page"]) && $_GET["page"] === "profil" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/profil.php") : ?>
@@ -43,6 +45,7 @@ if(empty($_SESSION['id_coach'])){
     <?php endif; ?>
     <script src="js/burger.js" async></script>
     <title>Inscription</title>
+    <link rel="stylesheet" href="css/listProgram.css">
 </head>
 
 <body>
