@@ -9,15 +9,68 @@ body{
     margin: 15px auto;
 }
 
+.create-session-container{
+    display: flex;
+    justify-content: center;
+}
+
 .create-program-title{
     text-align: center;
     color: white;
     padding: 20px 0;
 }
 
-.create-session-container{
+.create-session-input{
+    border: 0;
+    background: none;
+    margin: 10px;
+    border: 2px solid #404040;
+    padding: 14px 10px;
+    width: 300px;
+    max-height: 50px;
+    max-width: 300px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    box-shadow: 0 4px 4px #404040;
+    transition: 0.25s;
+}
+
+.create-session-input::placeholder{
+    color: white;
+}
+
+.create-session-input:focus{
+    border-color: #33cc66;
+}
+
+.create-session-level{
     display: flex;
     justify-content: center;
 }
+
+.create-session-level option{
+    color: black;
+}
+
+.create-session-button{
+    background: none;
+    margin: 20px 0;
+    text-align: center;
+    border: 2px solid #1ed760;
+    padding: 14px 10px;
+    width: 100%;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.create-session-button:hover{
+    background : #1ed760;
+}
+
+
 
 

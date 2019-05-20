@@ -14,19 +14,19 @@
             <input type="hidden" name="id_coach" value=<?= $_GET['id_coach']; ?>>
 
             <div class="create-session-name">
-                <input type="text" name="nom_pro" placeholder="Nom Programme">
+                <input type="text" name="nom_pro" placeholder="Nom Programme" class="create-session-input">
             </div>
 
             <div class="create-session-img">
-                <input type="file" name="img">
+                <input type="file" name="img" class="create-session-input">
             </div>
 
             <div class="create-session-description">
-                <input type="textarea" name="descriptions" placeholder="description du programme">
+                <textarea name="descriptions" placeholder="Description du programme" id="" cols="30" rows="10" class="create-session-input"></textarea>
             </div>
 
             <div class="create-session-level">
-                <SELECT name="niveau" size="1">
+                <SELECT name="niveau" size="1" class="create-session-input">
                     <OPTION> Niveau
                     <OPTION> Débutant
                     <OPTION> Intermédiaire
@@ -36,11 +36,11 @@
             </div>
 
             <div class="create-session-objective">
-                <input type="textarea" name="objectif" placeholder="objectif du programme">
+                <textarea name="objectif" placeholder="Objectifs du programme" id="" cols="30" rows="10" class="create-session-input"></textarea>
             </div>
 
             <div class="create-session-submit">
-                <button type="submit" name="submit_create_program">choisir tes exercices</button>
+                <button type="submit" name="submit_create_program" class="create-session-button">choisir tes exercices</button>
             </div>
 
         </form>
@@ -52,19 +52,19 @@
             <input type="hidden" name="id" value=<?= $_GET['id']; ?>>
 
             <div class="create-session-name">
-                <input type="text" name="nom_pro" placeholder="Nom Programme">
-            </div>
-
-            <div class="create-session-img">
-                <input type="file" name="img">
+                <input type="text" name="nom_pro" placeholder="Nom du programme" class="create-session-input">
             </div>
 
             <div class="create-session-description">
-                <input type="textarea" name="descriptions" placeholder="description du programme">
+                <textarea name="descriptions" placeholder="Description du programme" id="" cols="30" rows="10" class="create-session-input"></textarea>
+            </div>
+
+            <div class="create-session-objective">
+            <textarea name="objectif" placeholder="Objectifs du programme" id="" cols="30" rows="10" class="create-session-input"></textarea>
             </div>
 
             <div class="create-session-level">
-                <SELECT name="niveau" size="1">
+                <SELECT name="niveau" size="1" class="create-session-input">
                     <OPTION> Niveau
                     <OPTION> Débutant
                     <OPTION> Intermédiaire
@@ -73,11 +73,12 @@
                 </SELECT>
             </div>
 
-            <div class="create-session-objective">
-                <input type="textarea" name="objectif" placeholder="objectif du programme">
+            <div class="create-session-img">
+                <input type="file" name="img">
             </div>
+
             <div class="create-session-submit">
-                <button type="submit" name="submit_create_program">Choisir les exercices</button>
+                <button type="submit" name="submit_create_program" class="create-session-button">Choisir les exercices</button>
             </div>
         </form>
     </div>
