@@ -84,14 +84,32 @@ if (isset($_POST['mdp']) && isset($_POST['verification']) && isset($_POST['submi
                 ':taille' => $_POST['taille'],
             ));
 
-            $success = "Vous etes inscrit !";
-            echo Imc() . $success;
-
             $_SESSION["login"] = $_POST['email'];
             $_SESSION["connectedUser"] = true;
             $_SESSION["connectedAt"] = new DateTime();
 
-            header('Location: profil.php');
+            $statementUser = $pdo->query('SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"');
+            $statementUser = $statementUser->fetchAll(PDO::FETCH_ASSOC);
+            
+            
+            $Imc = Imc();
+            $statementDay = $pdo->prepare(
+                "INSERT INTO imc (imc, date_imc, id_utilisateur) 
+                VALUES (:imc, :date_imc, :id_utilisateur)"
+            );
+
+            $statementDay->execute(array(
+                ':imc' => $Imc,
+                ':date_imc' => date('Y-m-d'),
+                ':id_utilisateur' => $statementUser[0]['id_utilisateur'],
+            ));
+
+            $success = "Vous etes inscrit !";
+            
+
+           
+
+            // header('Location: profil.php');
         } elseif ($mail == 1) {
             echo 'compte deja existant';
         } elseif ($PostalCode == 2) {
@@ -232,6 +250,7 @@ function Imc()
     $imc = ($_POST['poid'] / pow($_POST['taille'], 2)) * 10000;
     $poidIdeal = pow(($_POST['taille'] / 100), 2) * 21.75;
     echo 'Ton IMC est de : ' . round($imc, 2) . "<br>" . "le poid ideal pour " . $_POST['taille'][0] . "m" . $_POST['taille'][1] . $_POST['taille'][2] . " est de : " . round($poidIdeal) . "kg <br>";
+    return $imc;
 }
 
 // permet de recuperer toute les infos du coach si il est connecter
@@ -1034,3 +1053,25 @@ if (isset($_POST['date']) && isset($_POST['id_prog']) && isset($_POST['id'])) {
         ));
     }
 }
+$statementUser = $pdo->query('SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"');
+$statementUser = $statementUser->fetchAll(PDO::FETCH_ASSOC);
+if(isset($_POST['valide_imc'])){
+    $Imc = Imc();
+    $statementDay = $pdo->prepare(
+        "INSERT INTO imc (imc, date_imc, id_utilisateur) 
+        VALUES (:imc, :date_imc, :id_utilisateur)"
+    );
+
+    $statementDay->execute(array(
+        ':imc' => $Imc,
+        ':date_imc' => date('Y-m-d'),
+        ':id_utilisateur' => $statementUser[0]['id_utilisateur'],
+    ));
+
+}
+
+$stmImc = $pdo->query(
+    'SELECT imc, date_imc FROM imc WHERE id_utilisateur = "' . $statementUser[0]['id_utilisateur'] . '"'
+);
+$stmImc = $stmImc->fetchAll(PDO::FETCH_ASSOC);
+

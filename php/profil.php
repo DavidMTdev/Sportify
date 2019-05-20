@@ -83,6 +83,10 @@ $premium = premium();
         </div>
     </div>
     </div>
+
+    <div class="graphic" style="width: 50%; height: 50%;">
+    <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
     <!-- user -->
 <?php elseif (isset($_SESSION["connectedCoach"]) &&  $_SESSION["connectedCoach"]) : ?>
     <!-- coach -->

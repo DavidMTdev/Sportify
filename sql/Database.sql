@@ -9,6 +9,7 @@ drop table donner;
 drop table programmer;
 drop table utilisateur;
 drop table creer;
+drop table imc;
 
 ALTER DATABASE sportify CHARACTER SET utf8 COLLATE utf8_general_ci;
 
@@ -131,6 +132,16 @@ create table creer(
     FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur),
     FOREIGN KEY (id_seance) REFERENCES seanceid_seance(id_seance)
 );
+
+create table imc(
+    id_imc int AUTO_INCREMENT not null,
+    imc int not null,
+    date_imc date not null,
+    id_utilisateur int not null,
+    primary key (id_imc),
+    FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur)
+);
+
 
 insert into repete values (1,null,12,null);
 insert into repete values (2,null,15,null);
