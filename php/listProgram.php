@@ -1,4 +1,9 @@
-<?php require_once("includes/header.php"); ?>
+<?php require_once("includes/header.php"); 
+$imcRecurrence = imcRecurrence();
+if($imcRecurrence == 1){
+    header('location: imc.php');
+}
+?>
 
 <div class="list-program-title">
     <h1>Liste des programmes enregistrés</h1>

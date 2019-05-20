@@ -1,4 +1,8 @@
-<?php require_once('includes/header.php'); 
+<?php require_once('includes/header.php');
+$imcRecurrence = imcRecurrence();
+if($imcRecurrence == 1){
+    header('location: imc.php');
+} 
 $premium = premium();
 if(empty($premium[0]['id_premium'])){
     header('location: premium.php');

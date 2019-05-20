@@ -1,4 +1,8 @@
-<?php require_once("includes/header.php"); ?>
+<?php require_once("includes/header.php"); 
+$imcRecurrence = imcRecurrence();
+if($imcRecurrence == 1){
+    header('location: imc.php');
+}?>
 
 <?php if (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) : ?>
     <form action="choiceExercice.php" method="post" enctype="multipart/form-data">

@@ -119,6 +119,7 @@ create table utilisateur (
     poid_u int(2) not null,
     taille int(2) not null,
     images_u varchar(1000) DEFAULT '0.png',
+    validation_imc int not null,
     id_premium int null,
     primary key (id_utilisateur),
     FOREIGN KEY (id_premium) REFERENCES premium(id_premium)

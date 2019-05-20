@@ -2,6 +2,10 @@
 $dataTime = new DateTime();
 $today = $dataTime->format("Y-m-d");
 $premium = premium();
+$imcRecurrence = imcRecurrence();
+if($imcRecurrence == 1){
+    header('location: imc.php');
+}
 ?>
 
 

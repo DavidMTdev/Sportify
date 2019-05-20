@@ -1,5 +1,9 @@
 <?php require_once("includes/header.php");
 $premium = premium();
+$imcRecurrence = imcRecurrence();
+if($imcRecurrence == 1){
+    header('location: imc.php');
+}
 
 ?>
 
@@ -85,6 +89,8 @@ $premium = premium();
     </div>
 
     <div class="graphic" style="width: 50%; height: 50%;">
+    <button class="left">gauche</button>
+    <button class="right">droite</button>
     <canvas id="myChart" width="400" height="400"></canvas>
     </div>
     <!-- user -->

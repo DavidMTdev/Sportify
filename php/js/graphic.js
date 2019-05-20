@@ -1,15 +1,42 @@
 console.log(imc);
+// const buttonleft = document.querySelector('.left');
+// buttonleft.addEventListener('click',  left);
 
+// const buttonright = document.querySelector('.right');
+// buttonright.addEventListener('click',  rigth);
 
-var date = [["01-01-19",65],["02-01-19",66],["03-01-19",""],["04-01-19",70],["05-01-19",64]]
+lenImc = imc.length;
 var dates = []
 var IMC = []
-imc.forEach(element => {
-    dates.push(element['imc']); 
-    IMC.push(element['date_imc'])
-});  
+
+// function left(){
+//     if ((lenImc - 4) >= 0 && lenImc > 4){
+//         lenImc -= 1;
+//     }
+// }
+
+// function rigth(){
+//     if (lenImc <= imc.length && lenImc > 4){
+//         lenImc += 1;
+//     }
+// }
+if (lenImc < 4){
+    for (var i = 0; i < lenImc; i++){
+        dates.push(imc[i]['imc']); 
+        IMC.push(imc[i]['date_imc']);
+    }
+}
+else{
+    for (var i = (lenImc - 4); i < lenImc; i++){
+        dates.push(imc[i]['imc']); 
+        IMC.push(imc[i]['date_imc']);
+    }
+}
+
 console.log(dates);
 console.log(IMC);
+
+
 
 
 
