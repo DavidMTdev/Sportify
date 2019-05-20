@@ -1091,8 +1091,6 @@ if (isset($_SESSION["connectedUser"])) {
 }
 
 
-
-
 // function pour que l'imc soit demander toute les 2 semaines
 function imcRecurrence()
 {

@@ -30,22 +30,29 @@ if (empty($_SESSION['id_coach'])) {
         <link rel="stylesheet" href="css/client.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "client" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/meeting.php") : ?>
         <link rel="stylesheet" href="css/meeting.css">
+    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "client" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/listProgram.php") : ?>
+        <link rel="stylesheet" href="css/listprogram.css">
+    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "client" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/createProgram.php") : ?>
+        <link rel="stylesheet" href="css/createprogram.css">
     <?php endif; ?>
+
 
     <?php if (isset($_GET["page"]) && $_GET["page"] === "profil" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/profil.php") : ?>
         <?php if (isset($_SESSION["connectedUser"]) &&  $_SESSION["connectedUser"]) : ?>
             <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
             <script src="js/profilUser.js" async></script>
             <script src="js/graphic.js" async></script>
-            <script>var imc = <?php echo json_encode($stmImc); ?>;</script>
-            
+            <script>
+                var imc = <?php echo json_encode($stmImc); ?>;
+            </script>
+
         <?php else : ?>
             <script src="js/profilCoach.js" async></script>
         <?php endif; ?>
     <?php endif; ?>
     <script src="js/burger.js" async></script>
     <title>Inscription</title>
-    <link rel="stylesheet" href="css/listProgram.css">
+    <!-- <link rel="stylesheet" href="css/listProgram.css"> -->
 </head>
 
 <body>

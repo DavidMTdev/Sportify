@@ -81,6 +81,11 @@ background: #606060;
     padding: 15px 0;
 }
 
+img{
+    width: 250px;
+    height: 250px;
+}
+
 @media screen and (max-width:900px){
     .list-program{
         display: grid;
