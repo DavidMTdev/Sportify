@@ -67,8 +67,4 @@ if($imcRecurrence == 1){
 
     <?php endforeach; ?>
 </div>
-</main>
-
-</body>
-
-</html>
+<?php require_once("includes/footer.php"); ?>

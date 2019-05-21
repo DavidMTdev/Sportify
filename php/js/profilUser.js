@@ -26,7 +26,7 @@ function changeInfoBody() {
 	createInput('.js-form', 'text', 'poid_u', 'Poid', '');
 	// createLabel('.js-form-body', 'taille', 'Votre taille');
 	createInput('.js-form', 'text', 'taille', 'Taille', '');
-	createButtonSubmit('submit-info_u', '.js-form');
+	createButtonSubmit('submit-body', '.js-form');
 }
 
 function changeInfoPassword() {
@@ -40,7 +40,7 @@ function changeInfoPassword() {
 	createInput('.js-form', 'password', 'new-password', 'New Password', '');
 	// createLabel('.js-form-password', 'confirm-password', 'Confirmer Mot de passe<');
 	createInput('.js-form', 'password', 'confirm-password', 'Confirm Password', '');
-	createButtonSubmit('submit-info_u', '.js-form');
+	createButtonSubmit('submit-password_u', '.js-form');
 }
 
 function changeInfoContact() {
@@ -50,7 +50,7 @@ function changeInfoContact() {
 	createForm('js-form', '');
 	// createLabel('.js-form-contact', 'telephone_u', 'Telephone');
 	createInput('.js-form', 'text', 'telephone_u', 'Telephone', '');
-	createButtonSubmit('submit-info_u', '.js-form');
+	createButtonSubmit('submit-contact_u', '.js-form');
 }
 
 function changeInfoAdress() {
@@ -64,7 +64,7 @@ function changeInfoAdress() {
 	createInput('.js-form', 'text', 'ville_u', 'Ville', '');
 	// createLabel('.js-form-adress', 'code_postal_u', 'Code Postal');
 	createInput('.js-form', 'text', 'code_postal_u', 'Code Postal', '');
-	createButtonSubmit('submit-info_u', '.js-form');
+	createButtonSubmit('submit-adress_u', '.js-form');
 }
 
 function changeInfoPrincipal() {

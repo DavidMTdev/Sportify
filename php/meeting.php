@@ -3,7 +3,7 @@ $dataTime = new DateTime();
 $today = $dataTime->format("Y-m-d");
 $premium = premium();
 $imcRecurrence = imcRecurrence();
-if($imcRecurrence == 1){
+if ($imcRecurrence == 1) {
     header('location: imc.php');
 }
 ?>
@@ -16,12 +16,13 @@ if($imcRecurrence == 1){
         <div class="border"></div>
     </div>
 
-
-    <form action="listProgram.php" method="get" class="meeting-form">
-        <input type="date" name="date" class="meeting-form-input" value=<?= $today ?>>
-        <input type="hidden" name="id_coach" value=<?= $idCoach[0]['id_coach']; ?>>
-        <button type="submit" name='id' class="meeting-form-submit" value=<?= $sessionPremium[0]['id_premium'] ?>>Créer une séance</button>
-    </form>
+    <div class="meeting-form-container">
+        <form action="listProgram.php" method="get" class="meeting-form">
+            <input type="date" name="date" class="meeting-form-input" value=<?= $today ?>>
+            <input type="hidden" name="id_coach" value=<?= $idCoach[0]['id_coach']; ?>>
+            <button type="submit" name='id' class="meeting-form-submit" value=<?= $sessionPremium[0]['id_premium'] ?>>Créer une séance</button>
+        </form>
+    </div>
 
     <div class="meeting-principal-container">
         <?php foreach ($sessionPremium as $key => $value) : ?>
@@ -59,11 +60,6 @@ if($imcRecurrence == 1){
                     </div>
 
                 </div>
-                <div class="client-seance">
-                    <form action=<?= "meeting.php" ?> method="get">
-                        <button class="button-create-seance" type="submit" name="id" value=<?= $value['id_premium']; ?>>Créer une séance</button>
-                    </form>
-                </div>
             </div>
         <?php endforeach; ?>
 
@@ -80,35 +76,36 @@ if($imcRecurrence == 1){
             <div class="border"></div>
         </div>
 
-
-        <form action="listProgram.php" method="get" class="meeting-form">
-            <input type="date" name="date" id="" class="meeting-form-input" value=<?= $today ?>>
-            <button type="submit" name='id' class="meeting-form-submit" value=<?= $statementUser[0]['id_utilisateur'] ?>>Créer une séance</button>
-        </form>
+        <div class="meeting-form-container">
+            <form action="listProgram.php" method="get" class="meeting-form">
+                <input type="date" name="date" id="" class="meeting-form-input" value=<?= $today ?>>
+                <button type="submit" name='id' class="meeting-form-submit" value=<?= $statementUser[0]['id_utilisateur'] ?>>Créer une séance</button>
+            </form>
+        </div>
 
 
 
         <div class="meeting-principal-container">
 
-            <div class="meeting-container">
-                <div class="meeting-infos-container">
-                    <div class="meeting-infos-title">
-                        <div class="meeting-number-title">
-                            <h4>Numéro de la Séance</h4>
-                        </div>
-                        <div class="meeting-date-title">
-                            <h4>Date</h4>
-                        </div>
-                        <div class="meeting-validation-title">
-                            <h4>Valider</h4>
-                        </div>
-                        <div class="meeting-weight-title">
-                            <h4>Poids</h4>
-                        </div>
-                    </div>
-                    <?php if (!($result)) : ?>
+            <?php if (!($result)) : ?>
 
-                        <?php foreach ($statementUser as $key => $value) : ?>
+                <?php foreach ($statementUser as $key => $value) : ?>
+                    <div class="meeting-container">
+                        <div class="meeting-infos-container">
+                            <div class="meeting-infos-title">
+                                <div class="meeting-number-title">
+                                    <h4>Numéro de la Séance</h4>
+                                </div>
+                                <div class="meeting-date-title">
+                                    <h4>Date</h4>
+                                </div>
+                                <div class="meeting-validation-title">
+                                    <h4>Valider</h4>
+                                </div>
+                                <div class="meeting-weight-title">
+                                    <h4>Poids</h4>
+                                </div>
+                            </div>
                             <div class="meeting-infos">
                                 <div class="meeting-number">
                                     <h5><?= $key + 1 ?></h5>
@@ -124,11 +121,6 @@ if($imcRecurrence == 1){
                                 </div>
                             </div>
 
-                        </div>
-                        <div class="client-seance">
-                            <form action=<?= "meeting.php" ?> method="get">
-                                <button class="button-create-seance" type="submit" name="id" value=<?= $value['id_premium']; ?>>Créer une séance</button>
-                            </form>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -194,18 +186,10 @@ if($imcRecurrence == 1){
                         </div>
 
                     </div>
-                    <div class="meeting-button">
-                        <form action=<?= "meeting.php" ?> method="get">
-                            <button type="submit" name='id_seance' class="button-create-seance" value=<?= $value['id_seance'] ?>>Valider les informations</button>
-                        </form>
-                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
     <?php endif; ?>
 <?php endif; ?>
 
-</main>
-</body>
-
-</html>
+<?php require_once("includes/footer.php"); ?>

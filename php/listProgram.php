@@ -1,6 +1,6 @@
-<?php require_once("includes/header.php"); 
+<?php require_once("includes/header.php");
 $imcRecurrence = imcRecurrence();
-if($imcRecurrence == 1){
+if ($imcRecurrence == 1) {
     header('location: imc.php');
 }
 ?>
@@ -109,9 +109,4 @@ if($imcRecurrence == 1){
     </div>
 
 <?php endif; ?>
-
-</main>
-
-</body>
-
-</html>
+<?php require_once("includes/footer.php"); ?>

@@ -236,21 +236,21 @@ insert into exercice values (79,'releve lateral debout','0.png','haltere',1);
 insert into exercice values (80,'releve lateral debout','0.png','haltere',2);
 insert into exercice values (81,'releve lateral debout','0.png','haltere',3);
 
-insert into programme values (1,'performance','0.png',null,1,'gagner en performance');
-insert into programme values (2,'performance','0.png',null,2,'gagner en performance');
-insert into programme values (3,'performance','0.png',null,3,'gagner en performance');
-insert into programme values (4,'se tonifier','0.png',null,1,'gagner en tonification');
-insert into programme values (5,'se tonifier','0.png',null,2,'gagner en tonification');
-insert into programme values (6,'se tonifier','0.png',null,3,'gagner en tonification');
-insert into programme values (7,'prise de masse','0.png',null,1,'prendre en masse');
-insert into programme values (8,'prise de masse','0.png',null,2,'prendre en masse');
-insert into programme values (9,'prise de masse','0.png',null,3,'prendre en masse');
-insert into programme values (10,'perte de poid','0.png',null,1,'perdre du poid');
-insert into programme values (11,'perte de poid','0.png',null,2,'perdre du poid');
-insert into programme values (12,'perte de poid','0.png',null,3,'perdre du poid');
-insert into programme values (13,'remise en forme','0.png',null,1,'se remettre en forme');
-insert into programme values (14,'remise en forme','0.png',null,2,'se remettre en forme');
-insert into programme values (15,'remise en forme','0.png',null,3,'se remettre en forme');
+insert into programme values (1,'Performance','performance1.jpg',null,1,'Ce programme a pour but d"améliorer vos performances sportives');
+insert into programme values (2,'Performance','performance2.jpg',null,2,'Ce programme a pour but d"améliorer vos performances sportives');
+insert into programme values (3,'Performance','performance3.jpg',null,3,'Ce programme a pour but d"améliorer vos performances sportives');
+insert into programme values (4,'Tonification','tonification1.jpg',null,1,'Augmente la résistance et l"élasticité des muscles');
+insert into programme values (5,'Tonification','tonification2.jpg',null,2,'Augmente la résistance et l"élasticité des muscles');
+insert into programme values (6,'Tonification','tonification3.jpg',null,3,'Augmente la résistance et l"élasticité des muscles');
+insert into programme values (7,'Prise de masse','prisedemasse1.jpg',null,1,'Augmenter sa masse musculaire');
+insert into programme values (8,'Prise de masse','prisedemasse2.jpg',null,2,'Augmenter sa masse musculaire');
+insert into programme values (9,'Prise de masse','prisedemasse3.jpg',null,3,'Augmenter sa masse musculaire');
+insert into programme values (10,'Perte de poids','pertedepoids1.jpg',null,1,'Perdre du poids en réduisant sa masse graisseuse');
+insert into programme values (11,'Perte de poids','pertedepoids2.jpg',null,2,'Perdre du poids en réduisant sa masse graisseuse');
+insert into programme values (12,'Perte de poids','pertedepoids3.jpg',null,3,'Perdre du poids en réduisant sa masse graisseuse');
+insert into programme values (13,'Remise en forme','remiseenforme3.jpg',null,1,'Permettre aux utilisateurs de se remettre dans des conditions sportives');
+insert into programme values (14,'Remise en forme','remiseenforme2.jpg',null,2,'Permettre aux utilisateurs de se remettre dans des conditions sportives');
+insert into programme values (15,'Remise en forme','remiseenforme1.jpg',null,3,'Permettre aux utilisateurs de se remettre dans des conditions sportives');
 
 ALTER table programme modify id_programme int AUTO_INCREMENT;
 
