@@ -13,7 +13,7 @@ $listPoid = [];
 <form action="" name="form" id="form" method="post">
     <?php foreach ($listExercice as $key => $value) : ?>
         <?php if ($listExercice[$key]['id_exercice'] <= 81) : ?>
-            <img src="../upload/<?php echo $listExercice[$key]['images_ex'] ?>" alt="">
+            <img src="images/<?php echo $listExercice[$key]['images_ex'] ?>" alt="">
             <input type="checkbox" id="checkbox<?= $key ?>" name="exercice<?= $listExercice[$key]['id_exercice'] ?>">
             <label for="checkbox<?= $key ?>"><?= $listExercice[$key]['nom_ex']; ?></label>
             <?php if ($_SESSION['niveau'] == 4 &&  empty($listExercice[$key]['duree'])) : ?>
