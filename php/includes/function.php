@@ -23,7 +23,7 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
             $_SESSION["connectedUser"] = true;
             $_SESSION["connectedAt"] = new DateTime();
 
-            header('Location: accueil.php');
+            header('Location: home.php');
 
             break;
 
@@ -37,20 +37,17 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
                     $_SESSION["connectedCoach"] = true;
                     $_SESSION["connecte dAt"] = new DateTime();
 
-                    header('Location: accueil.php');
+                    header('Location: home.php');
 
                     break;
                 }
-            }
-            if (isset($success)) {
-                break;
             }
         } else {
             $error = "Votre identifiant est incorrecte !";
         }
     }
     if (isset($error)) {
-        echo $error;
+        return $error;
     }
 }
 
@@ -105,28 +102,32 @@ if (isset($_POST['mdp']) && isset($_POST['verification']) && isset($_POST['submi
                 ':id_utilisateur' => $statementUser[0]['id_utilisateur'],
             ));
 
-            $success = "Vous etes inscrit !";
-
-
-
+            // $success = "Vous etes inscrit !";
+            header('Location: profil.php');
 
             // header('Location: profil.php');
         } elseif ($mail == 1) {
-            echo 'compte deja existant';
+            $error = 'compte deja existant';
+            return $error;
         } elseif ($PostalCode == 2) {
-            echo 'code postal pas bon';
+            $error = 'code postal pas bon';
+            return $error;
         } elseif ($phone == 3) {
-            echo 'numero de telephone incorrect';
+            $error = 'numero de telephone incorrect';
+            return $error;
         } elseif ($choice == 1) {
-            echo "tu n'a pas rempli ton age";
+            $error = "tu n'a pas rempli ton age";
+            return $error;
         } elseif ($choice == 2) {
-            echo "tu n'a pas rempli ton poid";
+            $error = "tu n'a pas rempli ton poid";
+            return $error;
         } elseif ($choice == 3) {
-            echo "tu n'a pas rempli ta taille";
+            $error = "tu n'a pas rempli ta taille";
+            return $error;
         }
     } else {
         $error = 'les deux mot de passe ne sont pas pareil';
-        echo $error;
+        return $error;
     }
 }
 
@@ -196,14 +197,17 @@ function upload()
 
         $file = strtolower($file);
         move_uploaded_file($_FILES['img']['tmp_name'], $folder);
-        echo 'ton image a bien été modifer';
+        // echo 'ton image a bien été modifer';
         return $file;
     } elseif ($_FILES['img']['size'] == 0) {
-        echo "tu n'a pas ajouté d'image";
+        $error = "tu n'a pas ajouté d'image";
+        return $error;
     } elseif ($error == 1) {
-        echo "l'extension n'est pas bonne";
+        $error = "l'extension n'est pas bonne";
+        return $error;
     } elseif ($error == 2) {
-        echo "l'image est trop lourde";
+        $error = "l'image est trop lourde";
+        return $error;
     }
 }
 // retourne un message d'erreur si le mail existe deja
@@ -246,7 +250,8 @@ function choice()
     }
 }
 // calcul l'imc ainsi que le poid ideal par rapport a la taille
-function Imc(){   
+function Imc()
+{
     $imc = ($_POST['poid'] / pow($_POST['taille'], 2)) * 10000;
     $poidIdeal = pow(($_POST['taille'] / 100), 2) * 21.75;
     echo 'Ton IMC est de : ' . round($imc, 2) . "<br>" . "le poid ideal pour " . $_POST['taille'][0] . "m" . $_POST['taille'][1] . $_POST['taille'][2] . " est de : " . round($poidIdeal) . "kg <br>";
@@ -303,6 +308,7 @@ if (isset($_POST['submit-info_c'])) {
         ));
         echo 'tes infos ont bien été modifier';
     }
+    header('location: profil.php');
 }
 
 // modifie l'adresse,la ville et le code postal du coach'
@@ -334,6 +340,7 @@ if (isset($_POST['submit-adress_c'])) {
     } elseif ($PostalCode != 5) {
         echo 'ton code postal est invalide';
     }
+    header('location: profil.php');
 }
 
 // modifie le telephone du coach
@@ -357,6 +364,7 @@ if (isset($_POST['submit-contact_c'])) {
     } elseif ($lentelephone != 10) {
         echo 'ton numero de telephone est invalide';
     }
+    header('location: profil.php');
 }
 // modifie la specialite du coach
 if (isset($_POST['submit-speciality'])) {
@@ -375,6 +383,7 @@ if (isset($_POST['submit-speciality'])) {
         ));
         echo 'ta specialite a bien été modifié';
     }
+    header('location: profil.php');
 }
 
 // modifie le mot de passe du coach
@@ -402,10 +411,8 @@ if (isset($_POST['submit-password_c'])) {
 // modifie l'image du coach
 if (isset($_POST['submit-image_c'])) {
     upload();
+    header('location: profil.php');
 }
-
-
-
 
 // modifie le nom,prenom et age de l'utilisateur
 if (isset($_POST['submit-info_u'])) {
@@ -439,6 +446,7 @@ if (isset($_POST['submit-info_u'])) {
             ':description_u' => $_POST['description_u']
         ));
     }
+    header('location: profil.php');
 }
 
 // modifie l'adresse,la ville et le code postal de l'utilisateur
@@ -470,6 +478,7 @@ if (isset($_POST['submit-adress_u'])) {
     } elseif ($PostalCode != 5) {
         echo 'ton code postal est invalide';
     }
+    header('location: profil.php');
 }
 
 // modifie le telephone de l'utilisateur
@@ -492,6 +501,7 @@ if (isset($_POST['submit-contact_u'])) {
     } elseif ($lentelephone != 10) {
         echo 'ton numero de telephone est invalide';
     }
+    header('location: profil.php');
 }
 
 // modifie les mensurations de l'utilisateur
@@ -515,6 +525,7 @@ if (isset($_POST['submit-body'])) {
             'poid_u' => $_POST['poid_u']
         ));
     }
+    header('location: profil.php');
 }
 
 
@@ -539,41 +550,50 @@ if (isset($_POST['submit-password_u'])) {
     } elseif ($_POST['new-password'] != $_POST['confirm-password']) {
         echo "ton nouveau de mot de passe n'est pas confirmer";
     }
+    header('location: profil.php');
 }
 
 // modifie l'image de l'utilisateur
 if (isset($_POST['submit-image_u'])) {
     upload();
+    header('location: profil.php');
 }
 
 //pour devenir premium
-if (isset($_POST['submitPremium'])) {
-    $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
-    $premium = $pdo->query(
-        'SELECT id_utilisateur FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"'
-    );
-    $premium = $premium->fetchAll(PDO::FETCH_ASSOC);
+if (isset($_SESSION['connectedUser']) && $_SESSION['connectedUser'] && isset($_POST['submitPremium'])) {
+    if (isset($_POST['submitPremium'])) {
+        $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+        $premium = $pdo->query(
+            'SELECT id_utilisateur FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"'
+        );
+        $premium = $premium->fetchAll(PDO::FETCH_ASSOC);
 
-    $statementPremium = $pdo->prepare(
-        ('UPDATE utilisateur SET id_premium = :id_premium WHERE mail_u = "' . $_SESSION["login"] . '"')
-    );
-    $statementPremium->execute(array(
-        ':id_premium' => $premium[0]['id_utilisateur']
-    ));
-    $statementPremiumDate = $pdo->prepare(
-        "INSERT INTO premium(id_premium, date_abo_debut,date_abo_fin) 
-        VALUES (:id_premium, :date_abo_debut, :date_abo_fin)"
-    );
-    $date = date('Y-m-d');
-    $dateFin = date('Y-m-d', strtotime("+1 year"));
-    $statementPremiumDate->execute(array(
-        ':id_premium' => $premium[0]['id_utilisateur'],
-        ':date_abo_debut' => $date,
-        ':date_abo_fin' => $dateFin
-    ));
+        $statementPremium = $pdo->prepare(
+            ('UPDATE utilisateur SET id_premium = :id_premium WHERE mail_u = "' . $_SESSION["login"] . '"')
+        );
+        $statementPremium->execute(array(
+            ':id_premium' => $premium[0]['id_utilisateur']
+        ));
+        $statementPremiumDate = $pdo->prepare(
+            "INSERT INTO premium(id_premium, date_abo_debut,date_abo_fin) 
+            VALUES (:id_premium, :date_abo_debut, :date_abo_fin)"
+        );
+        $date = date('Y-m-d');
+        $dateFin = date('Y-m-d', strtotime("+1 year"));
+        $statementPremiumDate->execute(array(
+            ':id_premium' => $premium[0]['id_utilisateur'],
+            ':date_abo_debut' => $date,
+            ':date_abo_fin' => $dateFin
+        ));
 
-    header('location: profil.php');
+        header('location: profil.php');
+    }
+} else {
+    // header('location: premium.php');
+    $error = "Vous devez etre connecté";
+    return $error;
 }
+
 
 // pour savoir si l'utilisateur est premium ou pas
 function premium()
@@ -595,22 +615,6 @@ if (isset($_GET['id_coach'])) {
     $listeCoachProfil = $pdo->query('SELECT * FROM coach WHERE id_coach = "' . $_GET['id_coach'] . '"');
     $listeCoachProfil = $listeCoachProfil->fetchAll(PDO::FETCH_ASSOC);
     $_SESSION['id_coach'] = $listeCoachProfil[0]['id_coach'];
-}
-
-// redirection quand le User est connecté
-if (isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"]) {
-    if (isset($_GET["page"]) && $_GET["page"] === "login" || $_SERVER["REQUEST_URI"] === "/Sportify/php/login.php") {
-        header('Location: accueil.php');
-    } elseif (isset($_GET["page"]) && $_GET["page"] === "signup" || $_SERVER["REQUEST_URI"] === "/Sportify/php/signup.php") {
-        header('Location: profil.php');
-    }
-}
-
-// redirection quand le Coach est connecté
-if (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) {
-    if ((isset($_GET["page"]) && $_GET["page"] === "login" || $_SERVER["REQUEST_URI"] === "/Sportify/php/login.php") || (isset($_GET["page"]) && $_GET["page"] === "signup" || $_SERVER["REQUEST_URI"] === "/Sportify/php/signup.php")) {
-        header('Location: accueil.php');
-    }
 }
 
 
@@ -1054,6 +1058,31 @@ if (isset($_POST['date']) && isset($_POST['id_prog']) && isset($_POST['id'])) {
     }
 }
 
+if (!(isset($_SESSION["connectedCoach"])) && !(isset($_SESSION["connectedUser"]))) {
+    if ((isset($_GET["page"]) && $_GET["page"] === "profil" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/profil.php") || (isset($_GET["page"]) && $_GET["page"] === "list-coach-profil" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/listecoachprofil.php")  || (isset($_GET["page"]) && $_GET["page"] === "coach" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/coach.php") || (isset($_GET["page"]) && $_GET["page"] === "client" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/client.php") || (isset($_GET["page"]) && $_GET["page"] === "list-Exercice" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/choiceExercice.php") || (isset($_GET["page"]) && $_GET["page"] === "meeting" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/meeting.php") || (isset($_GET["page"]) && $_GET["page"] === "list-program" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/listProgram.php")) {
+        header('Location: login.php');
+    }
+}
+
+// redirection quand le User est connecté
+if (isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"]) {
+    if (isset($_GET["page"]) && $_GET["page"] === "login" || $_SERVER["REQUEST_URI"] === "/Sportify/php/login.php") {
+        header('Location: home.php');
+    } elseif (isset($_GET["page"]) && $_GET["page"] === "signup" || $_SERVER["REQUEST_URI"] === "/Sportify/php/signup.php") {
+        header('Location: profil.php');
+    } elseif (isset($_GET["page"]) && $_GET["page"] === "list-coach-profil" || $_SERVER["REQUEST_URI"] === "/Sportify/php/listecoachprofil.php") {
+        header('Location: coach.php');
+    } elseif (isset($_GET["page"]) && $_GET["page"] === "list-program" || $_SERVER["REQUEST_URI"] === "/Sportify/php/listProgram.php") {
+        header('Location: meeting.php');
+    }
+}
+
+// redirection quand le Coach est connecté
+if (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) {
+    if ((isset($_GET["page"]) && $_GET["page"] === "login" || $_SERVER["REQUEST_URI"] === "/Sportify/php/login.php") || (isset($_GET["page"]) && $_GET["page"] === "signup" || $_SERVER["REQUEST_URI"] === "/Sportify/php/signup.php")) {
+        header('Location: home.php');
+    }
+}
 // si l'utilisateur est connecter on recupere ces infos
 if (isset($_SESSION["connectedUser"])) {
     $statementAllUser = $pdo->query('SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"');
@@ -1062,24 +1091,32 @@ if (isset($_SESSION["connectedUser"])) {
 
 // valide l'imc sur la page imc et ajoute une ligne dans la table imc
 if (isset($_POST['valide_imc'])) {
-        $Imc = Imc();
-        $statementDay = $pdo->prepare(
-            "INSERT INTO imc (imc, date_imc, id_utilisateur) 
+    $Imc = Imc();
+    $statementDay = $pdo->prepare(
+        "INSERT INTO imc (imc, date_imc, id_utilisateur) 
         VALUES (:imc, :date_imc, :id_utilisateur)"
-        );
+    );
 
+<<<<<<< HEAD
         $statementDay->execute(array(
             ':imc' => $Imc,
             ':date_imc' => date('Y-m-d'),
             ':id_utilisateur' => $statementAllUser[0]['id_utilisateur'],
         ));
+=======
+    $statementDay->execute(array(
+        ':imc' => $Imc,
+        ':date_imc' => date('Y-m-d'),
+        ':id_utilisateur' => $statementUser[0]['id_utilisateur'],
+    ));
+>>>>>>> 978be5b3a5716dbd0a4be6c0b1f78b5b578f3439
 
-        $statementValidation_imc = $pdo->prepare(
-            ('UPDATE utilisateur SET validation_imc = :validation_imc WHERE mail_u = "' . $_SESSION["login"] . '"')
-        );
-        $statementValidation_imc->execute(array(
-            ':validation_imc' => 1
-        ));
+    $statementValidation_imc = $pdo->prepare(
+        ('UPDATE utilisateur SET validation_imc = :validation_imc WHERE mail_u = "' . $_SESSION["login"] . '"')
+    );
+    $statementValidation_imc->execute(array(
+        ':validation_imc' => 1
+    ));
 }
 
 // la variable $stmImc est transferer vers graphic.js pour le graphique. on recupere les infos imc de l'utilisateur connecter

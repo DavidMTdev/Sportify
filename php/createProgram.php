@@ -90,8 +90,4 @@ if($imcRecurrence == 1){
     </div>
 <?php endif; ?>
 
-</main>
-
-</body>
-
-</html>
+<?php require_once("includes/footer.php"); ?>

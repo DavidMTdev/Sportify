@@ -192,7 +192,4 @@ if ($imcRecurrence == 1) {
     <?php endif; ?>
 <?php endif; ?>
 
-</main>
-</body>
-
-</html>
+<?php require_once("includes/footer.php"); ?>
