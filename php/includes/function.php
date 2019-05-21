@@ -67,8 +67,8 @@ if (isset($_POST['mdp']) && isset($_POST['verification']) && isset($_POST['submi
 
         if (!($mail == 1) && !($PostalCode == 2) && !($phone == 3) && empty($choice)) {
             $statement = $pdo->prepare(
-                "INSERT INTO utilisateur ( nom_u, prenom_u, mdp_u, age_u, adresse_u, ville_u, code_postal_u, mail_u, telephone_u, poid_u, taille) 
-                VALUES (:nom_u , :prenom_u, :mdp_u, :age_u, :adresse_u, :ville_u, :code_postal_u, :mail_u, :telephone_u, :poid_u, :taille)"
+                "INSERT INTO utilisateur ( nom_u, prenom_u, mdp_u, age_u, adresse_u, ville_u, code_postal_u, mail_u, telephone_u, poid_u, taille, validation_imc) 
+                VALUES (:nom_u , :prenom_u, :mdp_u, :age_u, :adresse_u, :ville_u, :code_postal_u, :mail_u, :telephone_u, :poid_u, :taille, :validation_imc)"
             );
             $statement->execute(array(
                 ':nom_u' => $_POST['nom'],
@@ -82,16 +82,35 @@ if (isset($_POST['mdp']) && isset($_POST['verification']) && isset($_POST['submi
                 ':telephone_u' => $_POST['tel'],
                 ':poid_u' => $_POST['poid'],
                 ':taille' => $_POST['taille'],
+                'validation_imc' => 1
             ));
-
-            $success = "Vous etes inscrit !";
-            echo Imc() . $success;
 
             $_SESSION["login"] = $_POST['email'];
             $_SESSION["connectedUser"] = true;
             $_SESSION["connectedAt"] = new DateTime();
 
-            header('Location: profil.php');
+            $statementUser = $pdo->query('SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"');
+            $statementUser = $statementUser->fetchAll(PDO::FETCH_ASSOC);
+
+
+            $Imc = Imc();
+            $statementDay = $pdo->prepare(
+                "INSERT INTO imc (imc, date_imc, id_utilisateur) 
+                VALUES (:imc, :date_imc, :id_utilisateur)"
+            );
+
+            $statementDay->execute(array(
+                ':imc' => $Imc,
+                ':date_imc' => date('Y-m-d'),
+                ':id_utilisateur' => $statementUser[0]['id_utilisateur'],
+            ));
+
+            $success = "Vous etes inscrit !";
+
+
+
+
+            // header('Location: profil.php');
         } elseif ($mail == 1) {
             $error = 'compte deja existant';
             return $error;
@@ -241,6 +260,7 @@ function Imc()
     $imc = ($_POST['poid'] / pow($_POST['taille'], 2)) * 10000;
     $poidIdeal = pow(($_POST['taille'] / 100), 2) * 21.75;
     echo 'Ton IMC est de : ' . round($imc, 2) . "<br>" . "le poid ideal pour " . $_POST['taille'][0] . "m" . $_POST['taille'][1] . $_POST['taille'][2] . " est de : " . round($poidIdeal) . "kg <br>";
+    return $imc;
 }
 
 // permet de recuperer toute les infos du coach si il est connecter
@@ -1069,5 +1089,78 @@ if (isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"]) {
 if (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) {
     if ((isset($_GET["page"]) && $_GET["page"] === "login" || $_SERVER["REQUEST_URI"] === "/Sportify/php/login.php") || (isset($_GET["page"]) && $_GET["page"] === "signup" || $_SERVER["REQUEST_URI"] === "/Sportify/php/signup.php")) {
         header('Location: home.php');
+    }
+}
+// si l'utilisateur est connecter on recupere ces infos
+if (isset($_SESSION["connectedUser"])) {
+    $statementUser = $pdo->query('SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"');
+    $statementUser = $statementUser->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// valide l'imc sur la page imc et ajoute une ligne dans la table imc
+if (isset($_POST['valide_imc'])) {
+    $Imc = Imc();
+    $statementDay = $pdo->prepare(
+        "INSERT INTO imc (imc, date_imc, id_utilisateur) 
+        VALUES (:imc, :date_imc, :id_utilisateur)"
+    );
+
+    $statementDay->execute(array(
+        ':imc' => $Imc,
+        ':date_imc' => date('Y-m-d'),
+        ':id_utilisateur' => $statementUser[0]['id_utilisateur'],
+    ));
+
+    $statementValidation_imc = $pdo->prepare(
+        ('UPDATE utilisateur SET validation_imc = :validation_imc WHERE mail_u = "' . $_SESSION["login"] . '"')
+    );
+    $statementValidation_imc->execute(array(
+        ':validation_imc' => 1
+    ));
+}
+
+// la variable $stmImc est transferer vers graphic.js pour le graphique. on recupere les infos imc de l'utilisateur connecter
+if (isset($_SESSION["connectedUser"])) {
+    $stmImc = $pdo->query(
+        'SELECT imc, date_imc FROM imc WHERE id_utilisateur = "' . $statementUser[0]['id_utilisateur'] . '"'
+    );
+    $stmImc = $stmImc->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+// function pour que l'imc soit demander toute les 2 semaines
+function imcRecurrence()
+{
+    if (isset($_SESSION["connectedUser"])) {
+        $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
+
+        $statementUser = $pdo->query('SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"');
+        $statementUser = $statementUser->fetchAll(PDO::FETCH_ASSOC);
+
+        $statementDate_imc = $pdo->query('SELECT date_imc FROM imc WHERE id_utilisateur = "' . $statementUser[0]['id_utilisateur'] . '"');
+        $statementDate_imc = $statementDate_imc->fetchAll(PDO::FETCH_ASSOC);
+
+        $lastDate = $statementDate_imc[count($statementDate_imc) - 1]['date_imc'];
+        $lastDate = strtotime(date("Y-m-d", strtotime($lastDate)) . " +1 day");
+
+        $day = strtotime(date('Y-m-d'));
+
+        if ($day == $lastDate) {
+            $statementValidation_imc = $pdo->prepare(
+                ('UPDATE utilisateur SET validation_imc = :validation_imc WHERE mail_u = "' . $_SESSION["login"] . '"')
+            );
+            $statementValidation_imc->execute(array(
+                ':validation_imc' => 0
+            ));
+        }
+
+        $statementUser = $pdo->query('SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"');
+        $statementUser = $statementUser->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($statementUser[0]['validation_imc'] == 0) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }

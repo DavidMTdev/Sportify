@@ -1,0 +1,103 @@
+body{
+    background: #606060;
+}
+
+.border{
+    width: 160px;
+    height: 5px;
+    background: #1ed760;
+    margin: 15px auto;
+}
+
+.create-session-container{
+    display: flex;
+    justify-content: center;
+}
+
+.create-program-title{
+    text-align: center;
+    color: white;
+    padding: 20px 0;
+}
+
+.create-session-input{
+    background: none;
+    margin: 10px;
+    border: 2px solid #404040;
+    padding: 14px 10px;
+    width: 300px;
+    max-height: 50px;
+    max-width: 300px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    box-shadow: 0 4px 4px #404040;
+    transition: 0.25s;
+}
+
+.create-session-input::placeholder{
+    color: white;
+}
+
+.create-session-input:focus{
+    border-color: #33cc66;
+}
+
+.create-session-level{
+    display: flex;
+    justify-content: center;
+}
+
+.create-session-level option{
+    color: black;
+}
+
+.create-session-button{
+    background: none;
+    margin: 20px 0;
+    text-align: center;
+    border: 2px solid #1ed760;
+    padding: 14px 10px;
+    width: 100%;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.create-session-button:hover{
+    background : #1ed760;
+}
+
+input[type = "file"]{
+    display: none;
+}
+
+label{
+    color: white;
+    /* height: 60px; */
+    width: 300px;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border: 2px solid #1ed760;
+    padding: 14px 10px;
+    outline: none;
+    border-radius: 24px;
+    box-shadow: 0 4px 4px #404040;
+    transition: 0.25s;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+label img{
+    padding: 0 5px;
+}
+
+
+
+

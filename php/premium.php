@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 <?php require_once('includes/header.php');
 
+=======
+<?php require_once('includes/header.php') ;
+$imcRecurrence = imcRecurrence();
+if($imcRecurrence == 1){
+    header('location: imc.php');
+}
+>>>>>>> ebc0c4e88663352173eab9eff7af41d48af60680
 ?>
 
 <div class="index-comparison">
