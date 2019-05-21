@@ -42,9 +42,6 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
                     break;
                 }
             }
-            if (isset($success)) {
-                break;
-            }
         } else {
             $error = "Votre identifiant est incorrecte !";
         }
@@ -105,10 +102,8 @@ if (isset($_POST['mdp']) && isset($_POST['verification']) && isset($_POST['submi
                 ':id_utilisateur' => $statementUser[0]['id_utilisateur'],
             ));
 
-            $success = "Vous etes inscrit !";
-
-
-
+            // $success = "Vous etes inscrit !";
+            header('Location: profil.php');
 
             // header('Location: profil.php');
         } elseif ($mail == 1) {
@@ -418,9 +413,6 @@ if (isset($_POST['submit-image_c'])) {
     upload();
     header('location: profil.php');
 }
-
-
-
 
 // modifie le nom,prenom et age de l'utilisateur
 if (isset($_POST['submit-info_u'])) {
