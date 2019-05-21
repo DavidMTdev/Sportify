@@ -124,6 +124,14 @@ body{
     background : #1ed760;
 }
 
+.client-seance{
+    display: flex;
+    justify-content: center;
+}
+.client-seance form{
+    width: auto;
+}
+
 @media screen and (max-width:700px){
     .meeting-form .meeting-form-input{
         border: 0;

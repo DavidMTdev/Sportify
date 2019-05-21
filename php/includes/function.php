@@ -588,13 +588,7 @@ if (isset($_SESSION['connectedUser']) && $_SESSION['connectedUser'] && isset($_P
 
         header('location: profil.php');
     }
-}
-// else {
-//     // header('location: premium.php');
-//     $error = "Vous devez etre connecté";
-//     return $error;
-// }
-
+} 
 
 // pour savoir si l'utilisateur est premium ou pas
 function premium()
