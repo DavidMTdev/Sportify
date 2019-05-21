@@ -590,7 +590,6 @@ if (isset($_SESSION['connectedUser']) && $_SESSION['connectedUser'] && isset($_P
     }
 } 
 
-
 // pour savoir si l'utilisateur est premium ou pas
 function premium()
 {
