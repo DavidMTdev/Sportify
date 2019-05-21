@@ -1056,8 +1056,8 @@ if (isset($_POST['date']) && isset($_POST['id_prog']) && isset($_POST['id'])) {
 
 // si l'utilisateur est connecter on recupere ces infos
 if (isset($_SESSION["connectedUser"])) {
-    $statementUser = $pdo->query('SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"');
-    $statementUser = $statementUser->fetchAll(PDO::FETCH_ASSOC);
+    $statementAllUser = $pdo->query('SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"');
+    $statementAllUser = $statementAllUser->fetchAll(PDO::FETCH_ASSOC);
 }
 
 // valide l'imc sur la page imc et ajoute une ligne dans la table imc
@@ -1071,7 +1071,7 @@ if (isset($_POST['valide_imc'])) {
         $statementDay->execute(array(
             ':imc' => $Imc,
             ':date_imc' => date('Y-m-d'),
-            ':id_utilisateur' => $statementUser[0]['id_utilisateur'],
+            ':id_utilisateur' => $statementAllUser[0]['id_utilisateur'],
         ));
 
         $statementValidation_imc = $pdo->prepare(
@@ -1085,7 +1085,7 @@ if (isset($_POST['valide_imc'])) {
 // la variable $stmImc est transferer vers graphic.js pour le graphique. on recupere les infos imc de l'utilisateur connecter
 if (isset($_SESSION["connectedUser"])) {
     $stmImc = $pdo->query(
-        'SELECT imc, date_imc FROM imc WHERE id_utilisateur = "' . $statementUser[0]['id_utilisateur'] . '"'
+        'SELECT imc, date_imc FROM imc WHERE id_utilisateur = "' . $statementAllUser[0]['id_utilisateur'] . '"'
     );
     $stmImc = $stmImc->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -1097,10 +1097,10 @@ function imcRecurrence()
     if (isset($_SESSION["connectedUser"])) {
         $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
 
-        $statementUser = $pdo->query('SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"');
-        $statementUser = $statementUser->fetchAll(PDO::FETCH_ASSOC);
+        $statementAllUser = $pdo->query('SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"');
+        $statementAllUser = $statementAllUser->fetchAll(PDO::FETCH_ASSOC);
 
-        $statementDate_imc = $pdo->query('SELECT date_imc FROM imc WHERE id_utilisateur = "' . $statementUser[0]['id_utilisateur'] . '"');
+        $statementDate_imc = $pdo->query('SELECT date_imc FROM imc WHERE id_utilisateur = "' . $statementAllUser[0]['id_utilisateur'] . '"');
         $statementDate_imc = $statementDate_imc->fetchAll(PDO::FETCH_ASSOC);
 
         $lastDate = $statementDate_imc[count($statementDate_imc) - 1]['date_imc'];
@@ -1117,10 +1117,10 @@ function imcRecurrence()
             ));
         }
 
-        $statementUser = $pdo->query('SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"');
-        $statementUser = $statementUser->fetchAll(PDO::FETCH_ASSOC);
+        $statementAllUser = $pdo->query('SELECT * FROM utilisateur WHERE mail_u = "' . $_SESSION["login"] . '"');
+        $statementAllUser = $statementAllUser->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($statementUser[0]['validation_imc'] == 0) {
+        if ($statementAllUser[0]['validation_imc'] == 0) {
             return 1;
         } else {
             return 0;
