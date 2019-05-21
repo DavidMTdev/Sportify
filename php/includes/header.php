@@ -36,6 +36,8 @@ if (empty($_SESSION['id_coach'])) {
         <link rel="stylesheet" href="css/listprogram.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "client" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/createProgram.php") : ?>
         <link rel="stylesheet" href="css/createprogram.css">
+    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "home" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/home.php") : ?>
+        <link rel="stylesheet" href="css/home.css">
     <?php endif; ?>
     <link rel="stylesheet" href="css/error.css">
 
