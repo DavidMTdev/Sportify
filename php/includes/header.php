@@ -28,17 +28,14 @@ if (empty($_SESSION['id_coach'])) {
         <link rel="stylesheet" href="css/premium.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "client" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/client.php") : ?>
         <link rel="stylesheet" href="css/client.css">
-<<<<<<< HEAD
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "food-supplements" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/food-supplements.php") : ?>
         <link rel="stylesheet" href="css/food-supplements.css">
-=======
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "client" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/meeting.php") : ?>
         <link rel="stylesheet" href="css/meeting.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "client" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/listProgram.php") : ?>
         <link rel="stylesheet" href="css/listprogram.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "client" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/createProgram.php") : ?>
         <link rel="stylesheet" href="css/createprogram.css">
->>>>>>> ebc0c4e88663352173eab9eff7af41d48af60680
     <?php endif; ?>
     <link rel="stylesheet" href="css/error.css">
 
