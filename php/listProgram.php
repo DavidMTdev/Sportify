@@ -56,8 +56,4 @@
         </div>
     <?php endforeach; ?>
 <?php endif; ?>
-</main>
-
-</body>
-
-</html>
+<?php require_once("includes/footer.php"); ?>

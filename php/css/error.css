@@ -1,0 +1,14 @@
+.error-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.error-message {
+	margin: 20px;
+	height: 50px;
+	width: 30%;
+	background: rgba(255, 145, 145, 0.842);
+	border: 5px rgb(255, 98, 98) solid;
+	border-radius: 10px;
+}

@@ -7,7 +7,7 @@
 
      <div class="nav">
          <ul class="nav-menu">
-             <li><a href="">Nutrition</a></li>
+             <li><a href="food-supplements.php">Nutrition</a></li>
              <?php if (isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"]) :
                     if (empty($premium[0]['id_premium'])) : ?>
                      <li><a href="profil.php">Profil</a></li>
@@ -30,6 +30,10 @@
              <?php else : ?>
                  <li><a href="login.php">Se connecter</a></li>
              <?php endif; ?>
+
          </ul>
+     </div>
+     <div class="menu-burger">
+         <img src="icons/icons8-menu-70.png" alt="">
      </div>
  </div>

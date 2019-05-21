@@ -25,9 +25,6 @@ endforeach; ?>
     <button type="submit" name="submit_choiceExercice">valider les exercices</button>
 
 </form>
-</main>
-
 <script src="js/choiceExercice.js"></script>
-</body>
 
-</html>
+<?php require_once("includes/footer.php"); ?>

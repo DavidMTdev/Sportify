@@ -12,8 +12,8 @@ if (isset($_GET["page"])) {
         case 'profil':
             require_once("profil.php");
             break;
-        case 'accueil':
-            require_once("accueil.php");
+        case 'home':
+            require_once("home.php");
             break;
         case 'coach':
             require_once("coach.php");
@@ -26,9 +26,4 @@ if (isset($_GET["page"])) {
 ?>
 <form action="" method="get" name="page"></form>
 
-</main>
-<footer></footer>
-
-</body>
-
-</html>
+<?php require_once("includes/footer.php"); ?>

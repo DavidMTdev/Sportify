@@ -158,7 +158,4 @@ $premium = premium();
     </div>
     <!-- coach -->
 <?php endif; ?>
-</main>
-</body>
-
-</html>
+<?php require_once("includes/footer.php"); ?>
