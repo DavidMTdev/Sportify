@@ -588,11 +588,7 @@ if (isset($_SESSION['connectedUser']) && $_SESSION['connectedUser'] && isset($_P
 
         header('location: profil.php');
     }
-} else {
-    // header('location: premium.php');
-    $error = "Vous devez etre connecté";
-    return $error;
-}
+} 
 
 
 // pour savoir si l'utilisateur est premium ou pas
@@ -1097,19 +1093,11 @@ if (isset($_POST['valide_imc'])) {
         VALUES (:imc, :date_imc, :id_utilisateur)"
     );
 
-<<<<<<< HEAD
-        $statementDay->execute(array(
-            ':imc' => $Imc,
-            ':date_imc' => date('Y-m-d'),
-            ':id_utilisateur' => $statementAllUser[0]['id_utilisateur'],
-        ));
-=======
     $statementDay->execute(array(
         ':imc' => $Imc,
         ':date_imc' => date('Y-m-d'),
         ':id_utilisateur' => $statementUser[0]['id_utilisateur'],
     ));
->>>>>>> 978be5b3a5716dbd0a4be6c0b1f78b5b578f3439
 
     $statementValidation_imc = $pdo->prepare(
         ('UPDATE utilisateur SET validation_imc = :validation_imc WHERE mail_u = "' . $_SESSION["login"] . '"')

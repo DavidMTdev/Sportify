@@ -55,6 +55,9 @@ body{
     align-items: center;
     padding: 10px 0 0 0 ;
 }
+.client-seance form{
+    margin: 0 10px;
+}
 
 .button-create-seance{
     background: none;
@@ -70,6 +73,29 @@ body{
 }
 
 .button-create-seance:hover{
+    background : #1ed760;
+}
+
+.button-visit-profil{
+    background: none;
+    text-align: center;
+    border: 2px solid #1ed760;
+    padding: 14px 10px;
+    width: 150px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button-visit-profil img{
+    padding: 0 10px;
+}
+
+.button-visit-profil:hover{
     background : #1ed760;
 }
 

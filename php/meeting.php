@@ -36,7 +36,7 @@ if ($imcRecurrence == 1) {
                             <h4>Date</h4>
                         </div>
                         <div class="meeting-validation-title">
-                            <h4>Valider</h4>
+                            <h4>Valider la séance</h4>
                         </div>
                         <div class="meeting-coach-title">
                             <h4>Coach</h4>
@@ -59,6 +59,11 @@ if ($imcRecurrence == 1) {
 
                     </div>
 
+                </div>
+                <div class="client-seance">
+                    <form action=<?= "meeting.php" ?> method="get">
+                        <button class="button-create-seance" type="submit" name="id" value=<?= $value['id_premium']; ?>>Valider</button>
+                    </form>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -100,10 +105,7 @@ if ($imcRecurrence == 1) {
                                     <h4>Date</h4>
                                 </div>
                                 <div class="meeting-validation-title">
-                                    <h4>Valider</h4>
-                                </div>
-                                <div class="meeting-weight-title">
-                                    <h4>Poids</h4>
+                                    <h4>Valider la séance</h4>
                                 </div>
                             </div>
                             <div class="meeting-infos">
@@ -116,12 +118,16 @@ if ($imcRecurrence == 1) {
                                 <div class="meeting-validation">
                                     <input type="checkbox" name="checked" <?= checkedCheckBox($value['validation_s']); ?>>
                                 </div>
-                                <div class="meeting-weight">
-                                    <input type="number" name="weigth">
-                                </div>
                             </div>
 
                         </div>
+
+                        <div class="client-seance">
+                            <form action=<?= "meeting.php" ?> method="get">
+                                <button class="button-create-seance" type="submit" name="id" value=<?= $value['id_utilisateur']; ?>>Valider</button>
+                            </form>
+                        </div>
+
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
@@ -139,7 +145,7 @@ if ($imcRecurrence == 1) {
         <div class="meeting-form-container">
             <form action="listProgram.php" method="get" class="meeting-form">
                 <input type="date" name="date" class="meeting-form-input" value=<?= $today ?>>
-                <button type="submit" name='id' class="meeting-form-submit" value=<?= $sessionPremium[0]['id_utilisateur'] ?>>Créer une séance</button>
+                <button type="submit" name='id' class="meeting-form-submit" value=<?= $sessionPremium[0]['id_utilisateur'] ?>>Valider</button>
             </form>
         </div>
 
@@ -158,9 +164,6 @@ if ($imcRecurrence == 1) {
                             <div class="meeting-validation-title">
                                 <h4>Valider la séance</h4>
                             </div>
-                            <div class="meeting-weight-title">
-                                <h4>Poids après séance</h4>
-                            </div>
                             <div class="meeting-coach-title">
                                 <h4>Coach</h4>
                             </div>
@@ -176,9 +179,6 @@ if ($imcRecurrence == 1) {
                             <div class="meeting-validation">
                                 <input type="checkbox" name="checked" <?= checkedCheckBox($value['validation_s']); ?>>
                             </div>
-                            <div class="meeting-weight">
-                                <input class="weight-input" type="number" name="weigth">
-                            </div>
                             <div class="meeting-coach">
                                 <h5><?= $value['nom_c'] ?></h5>
                             </div>
@@ -186,10 +186,18 @@ if ($imcRecurrence == 1) {
                         </div>
 
                     </div>
+                    <div class="meeting-button">
+                        <form action=<?= "meeting.php" ?> method="get">
+                            <button type="submit" name='id_seance' class="button-create-seance" value=<?= $value['id_seance'] ?>>Valider les informations</button>
+                        </form>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
     <?php endif; ?>
 <?php endif; ?>
 
-<?php require_once("includes/footer.php"); ?>
+</main>
+</body>
+
+</html>
