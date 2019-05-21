@@ -61,7 +61,10 @@ if ($imcRecurrence == 1) {
 
                 </div>
                 <div class="client-seance">
-                    <form action=<?= "meeting.php" ?> method="get">
+                    <form action="program.php" method="get">
+                        <button class="button-create-seance" type="submit" name="id_program" value=<?= $value['id_programme']; ?>>Programme</button>
+                    </form>
+                    <form action="meeting.php" method="get">
                         <button class="button-create-seance" type="submit" name="id" value=<?= $value['id_premium']; ?>>Valider</button>
                     </form>
                 </div>
@@ -95,40 +98,39 @@ if ($imcRecurrence == 1) {
             <?php if (!($result)) : ?>
 
                 <?php foreach ($statementUser as $key => $value) : ?>
-                    <div class="meeting-container">
-                        <div class="meeting-infos-container">
-                            <div class="meeting-infos-title">
-                                <div class="meeting-number-title">
-                                    <h4>Numéro de la Séance</h4>
+                    <form action=<?= "meeting.php" ?> method="get">
+                        <div class="meeting-container">
+                            <div class="meeting-infos-container">
+                                <div class="meeting-infos-title">
+                                    <div class="meeting-number-title">
+                                        <h4>Numéro de la Séance</h4>
+                                    </div>
+                                    <div class="meeting-date-title">
+                                        <h4>Date</h4>
+                                    </div>
+                                    <div class="meeting-validation-title">
+                                        <h4>Valider la séance</h4>
+                                    </div>
                                 </div>
-                                <div class="meeting-date-title">
-                                    <h4>Date</h4>
+                                <div class="meeting-infos">
+                                    <div class="meeting-number">
+                                        <h5><?= $key + 1 ?></h5>
+                                    </div>
+                                    <div class="meeting-date">
+                                        <h5><?= $value['dates'] ?></h5>
+                                    </div>
+                                    <div class="meeting-validation">
+                                        <input type="checkbox" name="checked" <?= checkedCheckBox($value['validation_s']); ?>>
+                                    </div>
                                 </div>
-                                <div class="meeting-validation-title">
-                                    <h4>Valider la séance</h4>
-                                </div>
+
                             </div>
-                            <div class="meeting-infos">
-                                <div class="meeting-number">
-                                    <h5><?= $key + 1 ?></h5>
-                                </div>
-                                <div class="meeting-date">
-                                    <h5><?= $value['dates'] ?></h5>
-                                </div>
-                                <div class="meeting-validation">
-                                    <input type="checkbox" name="checked" <?= checkedCheckBox($value['validation_s']); ?>>
-                                </div>
+                            <div class="client-seance">
+                                <button class="button-create-seance" type="submit" name="id_seance" value=<?= $value['id_seance']; ?>>Valider</button>
                             </div>
-
                         </div>
+                    </form>
 
-                        <div class="client-seance">
-                            <form action=<?= "meeting.php" ?> method="get">
-                                <button class="button-create-seance" type="submit" name="id" value=<?= $value['id_utilisateur']; ?>>Valider</button>
-                            </form>
-                        </div>
-
-                    </div>
                 <?php endforeach; ?>
             <?php endif; ?>
 
@@ -152,46 +154,48 @@ if ($imcRecurrence == 1) {
 
         <div class="meeting-principal-container">
             <?php foreach ($sessionPremium as $key => $value) : ?>
-                <div class="meeting-container">
-                    <div class="meeting-infos-container">
-                        <div class="meeting-infos-title">
-                            <div class="meeting-number-title">
-                                <h4>Séance N°</h4>
+                <form action=<?= "meeting.php" ?> method="get">
+
+                    <div class="meeting-container">
+                        <div class="meeting-infos-container">
+                            <div class="meeting-infos-title">
+                                <div class="meeting-number-title">
+                                    <h4>Séance N°</h4>
+                                </div>
+                                <div class="meeting-date-title">
+                                    <h4>Date</h4>
+                                </div>
+                                <div class="meeting-validation-title">
+                                    <h4>Valider la séance</h4>
+                                </div>
+                                <div class="meeting-coach-title">
+                                    <h4>Coach</h4>
+                                </div>
                             </div>
-                            <div class="meeting-date-title">
-                                <h4>Date</h4>
+
+                            <div class="meeting-infos">
+                                <div class="meeting-number">
+                                    <h5><?= $key + 1 ?></h5>
+                                </div>
+                                <div class="meeting-date">
+                                    <h5><?= $value['dates'] ?></h5>
+                                </div>
+                                <div class="meeting-validation">
+                                    <input type="checkbox" name="checked" <?= checkedCheckBox($value['validation_s']); ?>>
+                                </div>
+                                <div class="meeting-coach">
+                                    <h5><?= $value['nom_c'] ?></h5>
+                                </div>
+
                             </div>
-                            <div class="meeting-validation-title">
-                                <h4>Valider la séance</h4>
-                            </div>
-                            <div class="meeting-coach-title">
-                                <h4>Coach</h4>
-                            </div>
+
                         </div>
-
-                        <div class="meeting-infos">
-                            <div class="meeting-number">
-                                <h5><?= $key + 1 ?></h5>
-                            </div>
-                            <div class="meeting-date">
-                                <h5><?= $value['dates'] ?></h5>
-                            </div>
-                            <div class="meeting-validation">
-                                <input type="checkbox" name="checked" <?= checkedCheckBox($value['validation_s']); ?>>
-                            </div>
-                            <div class="meeting-coach">
-                                <h5><?= $value['nom_c'] ?></h5>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="meeting-button">
-                        <form action=<?= "meeting.php" ?> method="get">
+                        <div class="meeting-button">
                             <button type="submit" name='id_seance' class="button-create-seance" value=<?= $value['id_seance'] ?>>Valider les informations</button>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                </form>
+
             <?php endforeach; ?>
         </div>
     <?php endif; ?>

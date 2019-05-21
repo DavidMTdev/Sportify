@@ -588,7 +588,7 @@ if (isset($_SESSION['connectedUser']) && $_SESSION['connectedUser'] && isset($_P
 
         header('location: profil.php');
     }
-} 
+}
 
 // pour savoir si l'utilisateur est premium ou pas
 function premium()
@@ -893,7 +893,7 @@ if ((isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"])) {
     if (isset($_GET['id'])) {
         $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
 
-        $statementPremium = $pdo->query('SELECT u.id_premium, s.id_seance, nom_u, prenom_u, dates, validation_s, nom_c
+        $statementPremium = $pdo->query('SELECT u.id_premium, s.id_seance, nom_u, prenom_u, dates, validation_s, nom_c, s.id_programme
         FROM utilisateur u
         join premium prem on u.id_premium = prem.id_premium
         join programmer prog on prog.id_premium = prem.id_premium
@@ -901,7 +901,7 @@ if ((isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"])) {
         join coach c on c.id_coach = prog.id_coach
         where u.id_premium = 1
         UNION
-        SELECT u.id_premium, s.id_seance, nom_u, prenom_u, dates, validation_s, nom_c
+        SELECT u.id_premium, s.id_seance, nom_u, prenom_u, dates, validation_s, nom_c, s.id_programme
         FROM utilisateur u
    		LEFT join creer cr ON cr.id_utilisateur = u.id_utilisateur
         LEFT join seance s on cr.id_seance = s.id_seance
@@ -978,7 +978,7 @@ function checkedCheckBox($checkBox)
 // valider la séance de user
 if (isset($_GET['id_seance'])) {
 
-    if (isset($_GET['checked']) && $_GET['weigth'] != '') {
+    if (isset($_GET['checked'])) {
         $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
         $statement = $pdo->prepare(
             ('UPDATE seance SET validation_s = :validation_s WHERE id_seance = "' . $_GET['id_seance'] . '"')
@@ -987,12 +987,12 @@ if (isset($_GET['id_seance'])) {
             ':validation_s' => 1
         ));
 
-        $statement = $pdo->prepare(
-            ('UPDATE seance SET poid_s = :poid_s WHERE id_seance = "' . $_GET['id_seance'] . '"')
-        );
-        $statement->execute(array(
-            ':poid_s' => $_GET['weigth']
-        ));
+        // $statement = $pdo->prepare(
+        //     ('UPDATE seance SET poid_s = :poid_s WHERE id_seance = "' . $_GET['id_seance'] . '"')
+        // );
+        // $statement->execute(array(
+        //     ':poid_s' => $_GET['weigth']
+        // ));
     } else {
         $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
         $statement = $pdo->prepare(
@@ -1002,14 +1002,14 @@ if (isset($_GET['id_seance'])) {
             ':validation_s' => 0
         ));
 
-        if (isset($_GET['weigth'])) {
-            $statement = $pdo->prepare(
-                ('UPDATE seance SET poid_s = :poid_s WHERE id_seance = "' . $_GET['id_seance'] . '"')
-            );
-            $statement->execute(array(
-                ':poid_s' => NULL
-            ));
-        }
+        // if (isset($_GET['weigth'])) {
+        //     $statement = $pdo->prepare(
+        //         ('UPDATE seance SET poid_s = :poid_s WHERE id_seance = "' . $_GET['id_seance'] . '"')
+        //     );
+        //     $statement->execute(array(
+        //         ':poid_s' => NULL
+        //     ));
+        // }
     }
 }
 // var_dump($_SERVER);
@@ -1157,4 +1157,15 @@ function imcRecurrence()
     }
 }
 
+if (isset($_GET['id_program'])) {
+    $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
 
+    $statementProgram = $pdo->query('SELECT * FROM programme WHERE id_programme = "' . $_GET["id_program"] . '"');
+    $statementProgram = $statementProgram->fetchAll(PDO::FETCH_ASSOC);
+
+    $statementListExercice = $pdo->query('SELECT * FROM exercice ex 
+    JOIN possede p ON ex.id_exercice = p.id_exercice
+    JOIN repete r ON  r.id_repete = ex.id_repete
+    WHERE id_programme = "' . $_GET["id_program"] . '"');
+    $statementListExercice = $statementListExercice->fetchAll(PDO::FETCH_ASSOC);
+}
