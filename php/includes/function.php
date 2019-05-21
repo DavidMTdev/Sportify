@@ -612,6 +612,12 @@ if (isset($_GET['id_coach'])) {
     $_SESSION['id_coach'] = $listeCoachProfil[0]['id_coach'];
 }
 
+if (isset($_GET['id_premium'])) {
+    $listePremiumProfil = $pdo->query('SELECT * FROM utilisateur WHERE id_premium = "' . $_GET['id_premium'] . '"');
+    $listePremiumProfil = $listePremiumProfil->fetchAll(PDO::FETCH_ASSOC);
+    $_SESSION['id_premium'] = $listePremiumProfil[0]['id_premium'];
+}
+
 
 // Afficher la liste des user premium
 if (isset($_SESSION["connectedCoach"]) && $_SESSION["connectedCoach"]) {
@@ -1131,10 +1137,6 @@ function imcRecurrence()
         $lastDate = strtotime(date("Y-m-d", strtotime($lastDate)) . " +1 day");
 
         $day = strtotime(date('Y-m-d'));
-<<<<<<< HEAD
-=======
-
->>>>>>> 09ca292b38430261548697389bdb35a8f4344a2a
         if ($day == $lastDate) {
             $statementValidation_imc = $pdo->prepare(
                 ('UPDATE utilisateur SET validation_imc = :validation_imc WHERE mail_u = "' . $_SESSION["login"] . '"')
@@ -1154,3 +1156,5 @@ function imcRecurrence()
         }
     }
 }
+
+
