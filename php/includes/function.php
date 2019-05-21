@@ -644,20 +644,20 @@ if (isset($_POST['submit_create_program'])) {
         "INSERT INTO programme ( nom_pro, descriptions, niveau, objectif) 
         VALUES (:nom_pro , :descriptions, :niveau, :objectif)"
     );
-    if ($_POST['niveau'] == "niveau") {
+    if ($_POST['niveau'] == "Niveau") {
         echo "tu n'a pas choisis de niveau";
     } else {
         switch ($_POST['niveau']) {
-            case 'debutant':
+            case 'Débutant':
                 $niveau = 1;
                 break;
-            case 'intermediare':
+            case 'Intermédiaire':
                 $niveau = 2;
                 break;
-            case 'difficile':
+            case 'Difficile':
                 $niveau = 3;
                 break;
-            case 'custom':
+            case 'Custom':
                 $niveau = 4;
                 break;
         }
@@ -1107,7 +1107,7 @@ function imcRecurrence()
         $lastDate = strtotime(date("Y-m-d", strtotime($lastDate)) . " +1 day");
 
         $day = strtotime(date('Y-m-d'));
-        
+
         if ($day == $lastDate) {
             $statementValidation_imc = $pdo->prepare(
                 ('UPDATE utilisateur SET validation_imc = :validation_imc WHERE mail_u = "' . $_SESSION["login"] . '"')

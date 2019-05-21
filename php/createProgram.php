@@ -35,7 +35,7 @@ if($imcRecurrence == 1){
             </div>
 
             <div class="create-session-level">
-                <SELECT name="niveau" size="1" class="create-session-input" required>
+                <SELECT name="niveau" size="1" class="create-session-input" >
                     <OPTION> Niveau
                     <OPTION> Débutant
                     <OPTION> Intermédiaire
@@ -74,7 +74,7 @@ if($imcRecurrence == 1){
             </div>
 
             <div class="create-session-level">
-                <SELECT name="niveau" size="1" class="create-session-input" required>
+                <SELECT name="niveau" size="1" class="create-session-input" >
                     <OPTION> Niveau
                     <OPTION> Débutant
                     <OPTION> Intermédiaire
