@@ -23,7 +23,7 @@ function changeInfoBody() {
 	createProfilFrom();
 	createForm('js-form', '');
 	// createLabel('.js-form-body', 'poid_u', 'Votre poid');
-	createInput('.js-form', 'text', 'poid_u', 'Poid', '');
+	createInput('.js-form', 'text', 'poid_u', 'Poids', '');
 	// createLabel('.js-form-body', 'taille', 'Votre taille');
 	createInput('.js-form', 'text', 'taille', 'Taille', '');
 	createButtonSubmit('submit-body', '.js-form');
@@ -35,11 +35,11 @@ function changeInfoPassword() {
 	createProfilFrom();
 	createForm('js-form', '');
 	// createLabel('.js-form-password', 'ancient-password', 'Ancien Mot de passe<');
-	createInput('.js-form', 'password', 'ancient-password', 'Ancient Password', '');
+	createInput('.js-form', 'Mot de passe actuel', 'Ancien mot de passe', 'Ancien mot de passe', '');
 	// createLabel('.js-form-password', 'new-password', 'Ancien Mot de passe<');
-	createInput('.js-form', 'password', 'new-password', 'New Password', '');
+	createInput('.js-form', 'Mot de passe', 'Nouveau mot de passe', 'Nouveau mot de passe', '');
 	// createLabel('.js-form-password', 'confirm-password', 'Confirmer Mot de passe<');
-	createInput('.js-form', 'password', 'confirm-password', 'Confirm Password', '');
+	createInput('.js-form', 'Mot de passe', 'Confirmer le mot de passe', 'Confirmer le mot de passe', '');
 	createButtonSubmit('submit-password_u', '.js-form');
 }
 
@@ -78,7 +78,7 @@ function changeInfoPrincipal() {
 	createInput('.js-form', 'text', 'prenom_u', 'Prenom', '');
 	// createLabel('.js-form-principal', 'age_u', 'Age');
 	createInput('.js-form', 'text', 'age_u', 'Age', '');
-	createTextArea('.js-form', 'description_u', 'enter une description');
+	createTextArea('.js-form', 'description_u', 'Entrez une Description');
 	createButtonSubmit('submit-info_u', '.js-form');
 }
 
@@ -87,7 +87,7 @@ function changeImg() {
 	createH2('image');
 	createProfilFrom();
 	createForm('js-form', 'multipart/form-data');
-	// createLabel('.js-form-img', 'img', 'choisi une image');
+	// createLabel('.js-form', 'img', 'choisi une image');
 	createInput('.js-form', 'file', 'img', '', '');
 	createButtonSubmit('submit-image_u', '.js-form');
 }

@@ -11,4 +11,9 @@
 	background: rgba(255, 145, 145, 0.842);
 	border: 5px rgb(255, 98, 98) solid;
 	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: rgb(255, 255, 255);
+	text-transform: uppercase;
 }

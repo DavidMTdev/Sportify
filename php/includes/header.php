@@ -38,11 +38,15 @@ if (empty($_SESSION['id_coach'])) {
         <link rel="stylesheet" href="css/createprogram.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "home" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/home.php") : ?>
         <link rel="stylesheet" href="css/home.css">
+    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "choiceExercice" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/choiceExercice.php") : ?>
+        <link rel="stylesheet" href="css/choiceExercice.css">
+        <?php elseif (isset($_GET["page"]) && $_GET["page"] === "program" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/program.php") : ?>
+        <link rel="stylesheet" href="css/program.css">
     <?php endif; ?>
     <link rel="stylesheet" href="css/error.css">
 
 
-    <?php if (isset($_GET["page"]) && $_GET["page"] === "profil" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/profil.php" ) : ?>
+    <?php if (isset($_GET["page"]) && $_GET["page"] === "profil" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/profil.php") : ?>
         <?php if (isset($_SESSION["connectedUser"]) &&  $_SESSION["connectedUser"]) : ?>
             <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
             <script src="js/profilUser.js" async></script>

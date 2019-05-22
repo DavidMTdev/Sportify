@@ -1,13 +1,68 @@
 /* menu pour les modifications */
+
+.js-form{
+    display: flex;
+    flex-direction: column;
+}
+
 .js-profil-menu {
 	background: #616161;
 	position: fixed;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	width: 700px;
-    height: 400px;
+	width: 800px;
+    height: 500px;
     box-shadow: 0 6px 4px rgba(0,0,0,.5);
+}
+
+.js-profil-menu h2{
+    padding-top:10px;
+}
+
+.js-form input{
+    border: 0;
+    background: none;
+    margin: 10px;
+    border: 2px solid #404040;
+    padding: 14px 10px;
+    width: 400px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    box-shadow: 0 4px 4px #404040;
+    transition: 0.25s;
+}
+
+.js-form input:focus{
+    border-color: #33cc66;
+}
+
+.js-profil-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    /* padding: 20px 0; */
+}
+
+.js-profil-form button{
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #33cc66;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.js-profil-form button:hover{
+    background : #33cc66;
 }
 
 .js-profil-menu h2{
@@ -81,15 +136,34 @@
 }
 
 .js-filter-blur{
-    background: white;
+    background: #404040;
     position: fixed;
     top: 0;
     left:0;
     bottom: 0;
     right: 0;
-    opacity: 0.2;
+    opacity: 0.8;
     height: 100vh;
     width: 100vw;
     filter: blur(5px);
+}
+
+.js-form input[type = "file"]{
+    cursor: pointer;
+}
+
+.js-form textarea{
+    background: none;
+    margin: 5px;
+    border: 2px solid #404040;
+    padding: 14px 10px;
+    width: 400px;
+    max-width: 400px;
+    max-height: 50px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    box-shadow: 0 4px 4px #404040;
+    transition: 0.25s;
 }
 

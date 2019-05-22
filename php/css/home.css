@@ -73,17 +73,24 @@ a{
 .comparison-footer{
     margin: 50px 0 10px;
 }
+
 .comparison-button{
-    width: auto;
-    background:#33cc66;
-    color: white;
-    padding: 20px;
-    border-radius : 20px;
+    background: none;
+    display: block;
+    margin: 20px auto;
     text-align: center;
+    border: 2px solid #33cc66;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+}
+
+.comparison-button:hover{
+    background : #33cc66;
 }
 
 .comparison-button img{
@@ -95,7 +102,6 @@ a{
 .index-comparison {
     width: 80%;
     display: flex;
-    /* justify-content: space-around; */
     flex-wrap: wrap;
 }
 

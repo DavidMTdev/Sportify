@@ -1,0 +1,148 @@
+body{
+    background: #606060;
+}
+
+.border{
+    width:160px;
+    height:5px;
+    background:#3c6;
+    margin:18px auto;
+}
+
+.choiceexercice-container{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.choiceexercice-infos-container{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.choiceexercice-infos{
+    /* height: 100%; */
+    width: 80%;
+    padding: 20px;
+    background: #404040;
+    box-shadow: 0 8px 8px rgba(0,0,0,0.2)
+}
+
+
+
+.choiceexercice-infos img{
+    height: 150px;
+    width: 170px;
+}
+
+.choiceexercice-infos-title-container{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    height: 90px;
+}
+.choiceexercice-infos-title{
+    text-align: center;
+    
+}
+
+.choiceexercice-infos-title label{
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.choiceexercice-infos-img{
+    display: flex;
+    justify-content: center;
+}
+
+.choiceexercice-infos-input{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0
+}
+
+.choiceexercice-checkbox{
+width: 20px;
+height: 20px;
+background: #c6c6c6;
+border-radius: 20px;
+box-shadow: 0 0 5px rgba(0,0,0,.2);
+}
+
+.choiceexercice-submit{
+    background: none;
+    text-align: center;
+    border: 2px solid #1ed760;
+    padding: 14px 10px;
+    width: 250px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.choiceexercice-submit:hover{
+    background : #1ed760;
+}
+
+.choiceexercice-submit-container{
+    display:flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.choiceexercice-custom-input-container{
+    display: flex;
+    justify-content: center;
+}
+
+.choiceexercice-custom-input{
+    display: flex;
+    flex-direction: column;
+}
+
+.choiceexercice-custom-input input{
+        border: 0;
+        background: none;
+        margin: 10px;
+        border: 2px solid #606060;
+        padding: 14px 10px;
+        /* width: 300px; */
+        outline: none;
+        color: white;
+        border-radius: 24px;
+        box-shadow: 0 4px 4px #404040;
+        transition: 0.25s;
+    
+    
+}
+.choiceexercice-custom-input input:focus{
+    border-color: #33cc66;
+}
+
+
+
+
+@media screen and (max-width:1050px){
+    .choiceexercice-container{
+        display: grid;
+        grid-template-columns: 33.3% 33.3% 33.3%;
+    }
+}
+
+@media screen and (max-width:790px){
+    .choiceexercice-container{
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+}
+
+@media screen and (max-width:525px){
+    .choiceexercice-container{
+        display: grid;
+        grid-template-columns: 100%;
+    }
+}

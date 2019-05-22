@@ -1,7 +1,7 @@
 <?php require_once("includes/header.php");
 $premium = premium();
 $imcRecurrence = imcRecurrence();
-if($imcRecurrence == 1){
+if ($imcRecurrence == 1) {
     header('location: imc.php');
 }
 
@@ -88,10 +88,18 @@ if($imcRecurrence == 1){
     </div>
     </div>
 
-    <div class="graphic" style="width: 50%; height: 50%;">
-    <button class="left">gauche</button>
-    <button class="right">droite</button>
-    <canvas id="myChart" width="400" height="400"></canvas>
+    <div class="canvas-container">
+        <div class="canvas-title">
+            <h2>Suivi D'IMC</h2>
+            <div class="border"></div>
+        </div>
+        <div class="graphic-container">
+            <div class="graphic" style="width: 50%; height: 50%;">
+
+
+                <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
+        </div>
     </div>
     <!-- user -->
 <?php elseif (isset($_SESSION["connectedCoach"]) &&  $_SESSION["connectedCoach"]) : ?>

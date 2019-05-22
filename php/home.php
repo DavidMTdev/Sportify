@@ -27,11 +27,13 @@ if ($imcRecurrence == 1) {
                 </ul>
 
                 <div class="comparison-footer">
-                    <a href="">
-                        <div class="comparison-button">
+                    <!-- <a href=""> -->
+
+                    <button class="comparison-button"><img src="assets/icons/icons8-caddie-16.png" alt="">Achetez le maintenant</button>
+                        <!-- <div class="comparison-button">
                             <img src="assets/icons/icons8-caddie-16.png" alt="">Achetez le maintenant
-                        </div>
-                    </a>
+                        </div> -->
+                    <!-- </a> -->
                 </div>
             </div>
         </div>
@@ -62,11 +64,7 @@ if ($imcRecurrence == 1) {
 
                 <div class="comparison-footer">
                     <form action="" method="post">
-                        <button type="submit" name="submitPremium">
-                            <div class="comparison-button">
-                                <img src="icons/icons8-caddie-16.png" alt="">Achetez le maintenant
-                            </div>
-                        </button>
+                        <button type="submit" class="comparison-button" name="submitPremium"><img src="assets/icons/icons8-caddie-16.png" alt="">Achetez le maintenant</button>
                     </form>
                 </div>
             </div>
