@@ -46,7 +46,13 @@ if (empty($_SESSION['id_coach'])) {
         <link rel="stylesheet" href="css/program.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "music" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/music.php") : ?>
         <link rel="stylesheet" href="css/music.css">
-    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "playlist1" || isset($_GET["page"]) && $_GET["page"] === "playlist2"|| isset($_GET["page"]) && $_GET["page"] === "playlist3" || isset($_GET["page"]) && $_GET["page"] === "playlist4" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/playlist1.php" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/playlist2.php" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/playlist3.php" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/playlist4.php") : ?>
+    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "playlist1" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/playlist1.php") : ?>
+        <link rel="stylesheet" href="css/playlist.css">
+    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "playlist2" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/playlist2.php") : ?>
+        <link rel="stylesheet" href="css/playlist.css">
+    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "playlist3" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/playlist3.php") : ?>
+        <link rel="stylesheet" href="css/playlist.css">
+    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "playlist4" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/playlist4.php") : ?>
         <link rel="stylesheet" href="css/playlist.css">
 
     <?php endif; ?>

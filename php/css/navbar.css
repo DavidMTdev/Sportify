@@ -85,6 +85,10 @@ main{
     display: none;
 }
 
+.menu-burger img{
+    cursor: pointer;
+}
+
 @media screen and (max-width:900px){
     .nav-menu{
         display: block;

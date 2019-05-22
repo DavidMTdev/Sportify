@@ -104,59 +104,85 @@ if ($imcRecurrence == 1) {
         <div class="music">
 
             <div class="playlist-container">
-                <div class="playlist">
-                    <a href="../HTML/playlist1.html"><img src="../../Image/page-musique 2.0/bodybuilding.jpg" alt="" /></a>
-                    <div class="playlist-title-container">
+                <a href="playlist1.php">
+                    <div class="playlist">
+
+                        <div class="playlist-title-container">
                             <h3>Musculation</h3>
                             <div class="border"></div>
                         </div>
-                    <p>"La résistance que vous affrontez dans le gym <br>
-                        et la résistance que vous affrontez dans la vie <br>
-                        ne peuvent que vous rendre plus fort."</p>
-                </div>
-            </div>
-
-
-            <div class="playlist-container">
-                <div class="playlist">
-                    <a href="../HTML/playlist2.html"><img src="../../Image/page-musique 2.0/crossfit.jpg" alt=""></a>
-                    <ul>
-                        <div class="playlist-title-container">
-                            <h3>Crossfit</h3>
-                            <div class="border"></div>
+                        <div class="playlist-infos-container">
+                            <img src="images/page-musique 2.0/bodybuilding.jpg" alt="">
+                            <p>"La résistance que vous affrontez dans le gym <br>
+                                et la résistance que vous affrontez dans la vie <br>
+                                ne peuvent que vous rendre plus fort."</p>
                         </div>
-                        <p>"Lorsque que vient le temps de bien manger et de s’entraîner, <br>
-                            il y a pas de "Je commencerai demain." <br>
-                            Demain, c’est la maladie."</p>
-                    </ul>
-                </div>
+
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="playlist-container">
+                <a href="playlist2.php">
+                    <div class="playlist">
+
+                        <ul>
+                            <div class="playlist-title-container">
+                                <h3>Crossfit</h3>
+                                <div class="border"></div>
+                            </div>
+
+                            <div class="playlist-infos-container">
+                                <img src="images/page-musique 2.0/crossfit.jpg" alt="">
+                                <p>"Lorsque que vient le temps de bien manger et de s’entraîner, <br>
+                                    il y a pas de "Je commencerai demain." <br>
+                                    Demain, c’est la maladie."</p>
+                            </div>
+
+                        </ul>
+                    </div>
+                </a>
             </div>
 
             <div class="playlist-container">
-                <div class="playlist">
-                    <a href="../HTML/playlist3.html"><img src="../../Image/page-musique 2.0/workout.jpg" alt=""></a>
-                    <ul>
+                <a href="playlist3.php">
+                    <div class="playlist">
+
+                        <!-- <ul> -->
                         <div class="playlist-title-container">
                             <h3>Workout</h3>
                             <div class="border"></div>
                         </div>
-                        <p> "Aucun citoyen n’a le droit de rester un amateur face à l’entraînement… <br>
-                            quelle disgrâce pour un homme <br>
-                            de devenir vieux sans jamais avoir vu la beauté et la force complète de son corps."</p>
-                    </ul>
-                </div>
+                        <div class="playlist-infos-container">
+                            <img src="images/page-musique 2.0/workout.jpg" alt="">
+                            <p> "Aucun citoyen n’a le droit de rester un amateur face à l’entraînement… <br>
+                                quelle disgrâce pour un homme <br>
+                                de devenir vieux sans jamais avoir vu la beauté et la force complète de son corps."</p>
+                        </div>
+                        <!-- </ul> -->
+                    </div>
+                </a>
             </div>
 
-            <div class="playlist">
-                <a href="../HTML/playlist4.html"><img src="../../Image/page-musique 2.0/cardio.jpg" alt=""></a>
-                <ul>
-                    <div class="playlist-title-container">
-                        <h3>Cardio</h3>
-                        <div class="border"></div>
+            <div class="playlist-container">
+                <a href="playlist4.php">
+                    <div class="playlist">
+
+                        <ul>
+                            <div class="playlist-title-container">
+                                <h3>Cardio</h3>
+                                <div class="border"></div>
+                            </div>
+                            <div class="playlist-infos-container">
+                                <img src="images/page-musique 2.0/cardio.jpg" alt="">
+                                <p>"Le combat est gagné ou perdu bien avant de monter sur le ring, <br>
+                                    le vrai combat est dans le gym et sur la route lorsque je vais courir."</p>
+                            </div>
+
+                        </ul>
                     </div>
-                    <p>"Le combat est gagné ou perdu bien avant de monter sur le ring, <br>
-                        le vrai combat est dans le gym et sur la route lorsque je vais courir."</p>
-                </ul>
+                </a>
             </div>
         </div>
     </div>
