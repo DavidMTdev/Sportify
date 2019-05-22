@@ -53,12 +53,13 @@ if ($imcRecurrence == 1) {
                                 </div>
                             <?php endif; ?>
 
-                            <form action="meeting.php" method="post">
+                            <form action=<?= "meeting.php?id=" . $_GET['id'] ?> method="post">
                                 <input type="hidden" name="date" value=<?= $_GET['date']; ?>>
                                 <input type="hidden" name="id_prog" value=<?= $value['id_programme']; ?>>
                                 <input type="hidden" name="id" value=<?= $_GET['id']; ?>>
                                 <input type="hidden" name="id_coach" value=<?= $_GET['id_coach']; ?>>
-                                <div class="program_img"><img src=<?= "../upload/" . $value['images_pro'] ?>></div>
+
+                                <div class="program_img"><img src=<?= "images/" . $value['images_pro'] ?>></div>
                                 <div class="program-description">
                                     <h2>Description</h2>
                                     <div><?= $value['descriptions'] ?></div>
@@ -126,7 +127,7 @@ if ($imcRecurrence == 1) {
                                 <input type="hidden" name="date" value=<?= $_GET['date']; ?>>
                                 <input type="hidden" name="id_prog" value=<?= $value['id_programme']; ?>>
                                 <input type="hidden" name="id" value=<?= $_GET['id']; ?>>
-                                <div class="program_img"><img src=<?= "../upload/" . $value['images_pro'] ?>></div>
+                                <div class="program_img"><img src=<?= "images/" . $value['images_pro'] ?>></div>
                                 <div class="program-description">
                                     <h2>Description</h2>
                                     <div><?= $value['descriptions'] ?></div>

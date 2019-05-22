@@ -99,6 +99,8 @@ body{
     background : #1ed760;
 }
 
+
+
 @media screen and (max-width:950px){
     .client-principal-container{
         padding: 20px 0;

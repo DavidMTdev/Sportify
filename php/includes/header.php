@@ -44,7 +44,7 @@ if (empty($_SESSION['id_coach'])) {
     <link rel="stylesheet" href="css/error.css">
 
 
-    <?php if (isset($_GET["page"]) && $_GET["page"] === "profil" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/profil.php") : ?>
+    <?php if (isset($_GET["page"]) && $_GET["page"] === "profil" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/profil.php" ) : ?>
         <?php if (isset($_SESSION["connectedUser"]) &&  $_SESSION["connectedUser"]) : ?>
             <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
             <script src="js/profilUser.js" async></script>

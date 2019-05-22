@@ -14,7 +14,7 @@ if ($imcRecurrence == 1) {
         <div class="border"></div>
     </div>
     <?php foreach ($listPremium as $key => $value) : ?>
-
+    
         <div class="client-container">
             <div class="client-infos-container">
                 <div class="client-infos-title">
@@ -57,20 +57,20 @@ if ($imcRecurrence == 1) {
             </div>
 
             <div class="client-seance">
-
-                <form action="">
-                    <button class="button-visit-profil" type="submit" name="id" value=<?= $value['id_premium']; ?>><img src="icons/icons8-utilisateur-24.png" alt=""> Profil</button>
+            
+                <form action="listeClientprofil.php" method="get">
+                <button class="button-visit-profil" type="submit" name="id_premium" value=<?= $value['id_premium']; ?>><img src="icons/icons8-utilisateur-24.png" alt=""> Profil</button>
                 </form>
 
                 <form action=<?= "meeting.php" ?> method="get">
-                    <button class="button-create-seance" type="submit" name="id" value=<?= $value['id_premium']; ?>>Créer une séance</button>
+                <button class="button-create-seance" type="submit" name="id" value=<?= $value['id_premium']; ?>>Créer une séance</button>
                 </form>
 
             </div>
         </div>
 
 
-
+        
 
     <?php endforeach; ?>
 </div>
