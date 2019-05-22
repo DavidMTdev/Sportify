@@ -47,7 +47,7 @@
                     <li>Perte de poids </li>
                     <li>Musculation</li>
                 </ul>
-                <a href="">
+                <a href="whey.php">
                     <div class="button-information">
                         En savoir plus <img src="icons/icons8-flèche-droite-24.png" alt="">
                     </div>
@@ -76,7 +76,7 @@
                     <li>Musculation</li>
                 </ul>
                 <div class="supplement-button">
-                    <a href="">
+                    <a href="BCAA.php">
                         <div class="button-information">
                             En savoir plus <img src="icons/icons8-flèche-droite-24.png" alt="">
                         </div>
@@ -107,7 +107,7 @@
                     <li>Musculation</li>
                 </ul>
                 <div class="supplement-button">
-                    <a href="">
+                    <a href="Pre-Workout.php">
                         <div class="button-information">
                             En savoir plus <img src="icons/icons8-flèche-droite-24.png" alt="">
                         </div>
@@ -138,7 +138,7 @@
                     <li>Perte de poids</li>
                 </ul>
                 <div class="supplement-button">
-                    <a href="">
+                    <a href="Caseine.php">
                         <div class="button-information">
                             En savoir plus <img src="icons/icons8-flèche-droite-24.png" alt="">
                         </div>
@@ -168,7 +168,7 @@
                     <li>Perte de poids</li>
                 </ul>
                 <div class="supplement-button">
-                    <a href="">
+                    <a href="Gainer.php">
                         <div class="button-information">
                             En savoir plus <img src="icons/icons8-flèche-droite-24.png" alt="">
                         </div>
@@ -200,7 +200,7 @@
                     <li>Perte de poids</li>
                 </ul>
                 <div class="supplement-button">
-                    <a href="">
+                    <a href="creatine.php">
                         <div class="button-information">
                             En savoir plus <img src="icons/icons8-flèche-droite-24.png" alt="">
                         </div>

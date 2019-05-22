@@ -174,8 +174,12 @@ function upload()
     if ($_FILES['img']['size'] > 1 * pow(10, 6)) {
         $error = 2;
     }
+    if ($file == "") {
+        $imgPro = '0.png';
+    } else {
+        $imgPro = $var . "P" . $extension;
+    }
 
-    $imgPro = $var . "P" . $extension;
     if (!isset($error)) {
         if ($file != $imgPro) {
             if (isset($_SESSION["connectedCoach"])) {
@@ -921,7 +925,7 @@ if (isset($_GET["page"]) && $_GET["page"] === "meeting" || $_SERVER["SCRIPT_NAME
 
         if (empty($premium[0]['id_premium'])) {
             $statementUser = $pdo->query(
-                'SELECT u.id_utilisateur, s.id_seance, dates, validation_s
+                'SELECT u.id_utilisateur, s.id_seance, dates, validation_s, s.id_programme
         FROM utilisateur u
         join creer cr on cr.id_utilisateur = u.id_utilisateur
         join seance s on s.id_seance = cr.id_seance
@@ -941,7 +945,7 @@ if (isset($_GET["page"]) && $_GET["page"] === "meeting" || $_SERVER["SCRIPT_NAME
             }
             $result = false;
         } else {
-            $statementPremium = $pdo->query('SELECT u.id_utilisateur, s.id_seance, dates, validation_s, nom_c
+            $statementPremium = $pdo->query('SELECT u.id_utilisateur, s.id_seance, dates, validation_s, nom_c, s.id_programme
         FROM utilisateur u
         left join creer cr on cr.id_utilisateur = u.id_utilisateur
         left join seance s on s.id_seance = cr.id_seance

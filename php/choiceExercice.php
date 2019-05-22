@@ -10,7 +10,7 @@ $listPoid = [];
 
 ?>
 
-<form action="" name="form" id="form" method="post">
+<form action="meeting.php" name="form" id="form" method="post">
     <div class="choiceexercice-container">
         <?php foreach ($listExercice as $key => $value) : ?>
             <?php if ($listExercice[$key]['id_exercice'] <= 81) : ?>
@@ -58,6 +58,5 @@ $listPoid = [];
         <button type="submit" name="submit_choiceExercice" class="choiceexercice-submit">Valider les exercices</button>
     </div>
 </form>
-<script src="js/choiceExercice.js"></script>
 
 <?php require_once("includes/footer.php"); ?>
