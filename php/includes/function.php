@@ -174,17 +174,12 @@ function upload()
     if ($_FILES['img']['size'] > 1 * pow(10, 6)) {
         $error = 2;
     }
-<<<<<<< HEAD
     if ($file == "") {
         $imgPro = '0.png';
     } else {
         $imgPro = $var . "P" . $extension;
     }
 
-=======
-
-    $imgPro = $var . "P" . $extension;
->>>>>>> aa4979e6b0fef7932af9c92cbe972c9e35817fc4
     if (!isset($error)) {
         if ($file != $imgPro) {
             if (isset($_SESSION["connectedCoach"])) {
