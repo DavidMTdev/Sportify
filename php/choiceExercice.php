@@ -16,22 +16,6 @@ $listPoid = [];
             <?php if ($listExercice[$key]['id_exercice'] <= 81) : ?>
                 <div class="choiceexercice-infos-container">
                     <div class="choiceexercice-infos">
-    <?php foreach ($listExercice as $key => $value) : ?>
-        <?php if ($listExercice[$key]['id_exercice'] <= 81) : ?>
-            <img src="images/<?php echo $listExercice[$key]['images_ex'] ?>" alt="">
-            <input type="checkbox" id="checkbox<?= $key ?>" name="exercice<?= $listExercice[$key]['id_exercice'] ?>">
-            <label for="checkbox<?= $key ?>"><?= $listExercice[$key]['nom_ex']; ?></label>
-            <?php if ($_SESSION['niveau'] == 4 &&  empty($listExercice[$key]['duree'])) : ?>
-                <input type="number" id="" name="custom<?= $listExercice[$key]['id_exercice'] ?>" placeholder="nombre repetition">
-                <input type="number" id="" name="serie<?= $listExercice[$key]['id_exercice'] ?>" placeholder="nombre de serie">
-            <?php elseif ($_SESSION['niveau'] == 4) : ?>
-                <input type="time" id="" name="custom<?= $listExercice[$key]['id_exercice'] ?>">
-                <input type="number" id="" name="serie<?= $listExercice[$key]['id_exercice'] ?>" placeholder="nombre de serie">
-            <?php endif; ?>
-            <br>
-        <?php endif;
-endforeach; ?>
-    <button type="submit" name="submit_choiceExercice">valider les exercices</button>
 
                         <div class="choiceexercice-infos-title-container">
                             <div class="choiceexercice-infos-title">
@@ -41,7 +25,7 @@ endforeach; ?>
                         </div>
 
                         <div class="choiceexercice-infos-img">
-                            <img src="../upload/<?php echo $listExercice[$key]['images_ex'] ?>" alt="">
+                            <img src="images/<?php echo $listExercice[$key]['images_ex'] ?>" alt="">
                         </div>
 
                         <div class="choiceexercice-infos-input">

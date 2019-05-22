@@ -163,9 +163,9 @@ insert into exercice values (6,'developper assis','developperassis.jpg','presse 
 insert into exercice values (7,'rameur horizontale','rameur.jpg','rameur',1);
 insert into exercice values (8,'rameur horizontale','rameur.jpg','rameur',2);
 insert into exercice values (9,'rameur horizontale','rameur.jpg','rameur',3);
-insert into exercice values (10,'banc crunch','banccrunch.jpg','banc',1);
-insert into exercice values (11,'banc crunch','banccrunch.jpg','banc',2);
-insert into exercice values (12,'banc crunch','banccrunch.jpg','banc',3);
+insert into exercice values (10,'banc crunch','banccrunch.jpeg','banc',1);
+insert into exercice values (11,'banc crunch','banccrunch.jpeg','banc',2);
+insert into exercice values (12,'banc crunch','banccrunch.jpeg','banc',3);
 insert into exercice values (13,'extension jambe assis','extensionjambe.jpg','leg extension',1);
 insert into exercice values (14,'extension jambe assis','extensionjambe.jpg','leg extension',2);
 insert into exercice values (15,'extension jambe assis','extensionjambe.jpg','leg extension',3);
@@ -205,9 +205,9 @@ insert into exercice values (48,'developper coucher','developpecoucher.jpg','dev
 insert into exercice values (49,'sit up','situp.jpg',null,1);
 insert into exercice values (50,'sit up','situp.jpg',null,2);
 insert into exercice values (51,'sit up','situp.jpg',null,3);
-insert into exercice values (52,'fente inverse, alterne haltere','fenteinversealterne.jpg','haltere',1);
-insert into exercice values (53,'fente inverse, alterne haltere','fenteinversealterne.jpg','haltere',2);
-insert into exercice values (54,'fente inverse, alterne haltere','fenteinversealterne.jpg','haltere',3);
+insert into exercice values (52,'fente inverse, alterne haltere','fenteinversealterne.png','haltere',1);
+insert into exercice values (53,'fente inverse, alterne haltere','fenteinversealterne.png','haltere',2);
+insert into exercice values (54,'fente inverse, alterne haltere','fenteinversealterne.png','haltere',3);
 insert into exercice values (55,'developper epaule haltere','developperepaule.jpg','haltere',1);
 insert into exercice values (56,'developper epaule haltere','developperepaule.jpg','haltere',2);
 insert into exercice values (57,'developper epaule haltere','developperepaule.jpg','haltere',3);
