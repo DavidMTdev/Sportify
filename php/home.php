@@ -49,7 +49,7 @@ if ($imcRecurrence == 1) {
                         </ul>
 
                         <div class="comparison-footer">
-                            <button class="comparison-button"><img src="icons/icons8-caddie-16.png" alt="">Achetez le maintenant</button>
+                            <button class="comparison-button"><img src="icons/icons8-caddie-16.png" alt="">Activer</button>
                         </div>
 
                     </div>
