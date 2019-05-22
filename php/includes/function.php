@@ -1131,10 +1131,7 @@ function imcRecurrence()
         $lastDate = strtotime(date("Y-m-d", strtotime($lastDate)) . " +1 day");
 
         $day = strtotime(date('Y-m-d'));
-<<<<<<< HEAD
         
-=======
->>>>>>> 22f2b95f1bb85dfb68642981f5a1ba6e5d3394c5
         if ($day == $lastDate) {
             $statementValidation_imc = $pdo->prepare(
                 ('UPDATE utilisateur SET validation_imc = :validation_imc WHERE mail_u = "' . $_SESSION["login"] . '"')
