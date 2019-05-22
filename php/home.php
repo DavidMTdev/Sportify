@@ -126,21 +126,17 @@ if ($imcRecurrence == 1) {
             <div class="playlist-container">
                 <a href="playlist2.php">
                     <div class="playlist">
+                        <div class="playlist-title-container">
+                            <h3>Crossfit</h3>
+                            <div class="border"></div>
+                        </div>
 
-                        <ul>
-                            <div class="playlist-title-container">
-                                <h3>Crossfit</h3>
-                                <div class="border"></div>
-                            </div>
-
-                            <div class="playlist-infos-container">
-                                <img src="images/page-musique 2.0/crossfit.jpg" alt="">
-                                <p>"Lorsque que vient le temps de bien manger et de s’entraîner, <br>
-                                    il y a pas de "Je commencerai demain." <br>
-                                    Demain, c’est la maladie."</p>
-                            </div>
-
-                        </ul>
+                        <div class="playlist-infos-container">
+                            <img src="images/page-musique 2.0/crossfit.jpg" alt="">
+                            <p>"Lorsque que vient le temps de bien manger et de s’entraîner, <br>
+                                il y a pas de "Je commencerai demain." <br>
+                                Demain, c’est la maladie."</p>
+                        </div>
                     </div>
                 </a>
             </div>
@@ -148,8 +144,6 @@ if ($imcRecurrence == 1) {
             <div class="playlist-container">
                 <a href="playlist3.php">
                     <div class="playlist">
-
-                        <!-- <ul> -->
                         <div class="playlist-title-container">
                             <h3>Workout</h3>
                             <div class="border"></div>
@@ -160,7 +154,6 @@ if ($imcRecurrence == 1) {
                                 quelle disgrâce pour un homme <br>
                                 de devenir vieux sans jamais avoir vu la beauté et la force complète de son corps."</p>
                         </div>
-                        <!-- </ul> -->
                     </div>
                 </a>
             </div>
@@ -168,19 +161,15 @@ if ($imcRecurrence == 1) {
             <div class="playlist-container">
                 <a href="playlist4.php">
                     <div class="playlist">
-
-                        <ul>
-                            <div class="playlist-title-container">
-                                <h3>Cardio</h3>
-                                <div class="border"></div>
-                            </div>
-                            <div class="playlist-infos-container">
-                                <img src="images/page-musique 2.0/cardio.jpg" alt="">
-                                <p>"Le combat est gagné ou perdu bien avant de monter sur le ring, <br>
-                                    le vrai combat est dans le gym et sur la route lorsque je vais courir."</p>
-                            </div>
-
-                        </ul>
+                        <div class="playlist-title-container">
+                            <h3>Cardio</h3>
+                            <div class="border"></div>
+                        </div>
+                        <div class="playlist-infos-container">
+                            <img src="images/page-musique 2.0/cardio.jpg" alt="">
+                            <p>"Le combat est gagné ou perdu bien avant de monter sur le ring, <br>
+                                le vrai combat est dans le gym et sur la route lorsque je vais courir."</p>
+                        </div>
                     </div>
                 </a>
             </div>
