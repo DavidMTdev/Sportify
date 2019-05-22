@@ -215,3 +215,24 @@ body{
 .speciality-modify:hover{
     background : #1ed760;
 }
+
+.canvas-container{
+    color: white;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: #404040 1px solid;
+}
+
+.canvas-title h2{
+    text-align: center;
+}
+
+.graphic-container{
+    display: flex;
+    justify-content: center;
+}
+
+canvas{
+    height: 80%;
+    width: 80%;
+}
