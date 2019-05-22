@@ -177,12 +177,12 @@ function upload()
     if ($_FILES['img']['size'] > 1 * pow(10, 6)) {
         $error = 2;
     }
-    if($file == ""){
+    if ($file == "") {
         $imgPro = '0.png';
-    } else{
+    } else {
         $imgPro = $var . "P" . $extension;
     }
-    
+
     if (!isset($error)) {
         if ($file != $imgPro) {
             if (isset($_SESSION["connectedCoach"])) {
@@ -1103,7 +1103,7 @@ if (isset($_POST['valide_imc'])) {
     $statementDay->execute(array(
         ':imc' => $Imc,
         ':date_imc' => date('Y-m-d'),
-        ':id_utilisateur' => $statementUser[0]['id_utilisateur'],
+        ':id_utilisateur' => $statementAllUser[0]['id_utilisateur'],
     ));
 
     $statementValidation_imc = $pdo->prepare(

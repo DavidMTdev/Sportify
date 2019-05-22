@@ -10,7 +10,7 @@ $listPoid = [];
 
 ?>
 
-<form action="" name="form" id="form" method="post">
+<form action="meeting.php" name="form" id="form" method="post">
     <div class="choiceexercice-container">
         <?php foreach ($listExercice as $key => $value) : ?>
             <?php if ($listExercice[$key]['id_exercice'] <= 81) : ?>

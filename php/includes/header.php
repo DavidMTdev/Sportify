@@ -30,6 +30,8 @@ if (empty($_SESSION['id_coach'])) {
         <link rel="stylesheet" href="css/client.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "food-supplements" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/food-supplements.php") : ?>
         <link rel="stylesheet" href="css/food-supplements.css">
+    <?php elseif ($_SERVER["SCRIPT_NAME"] === "/Sportify/php/BCAA.php" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/Caseine.php" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/creatine.php" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/Gainer.php" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/Pre-Workout.php" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/whey.php") : ?>
+        <link rel="stylesheet" href="css/supplement-page.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "meeting" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/meeting.php") : ?>
         <link rel="stylesheet" href="css/meeting.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "list-program" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/listProgram.php") : ?>
@@ -40,7 +42,7 @@ if (empty($_SESSION['id_coach'])) {
         <link rel="stylesheet" href="css/home.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "choiceExercice" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/choiceExercice.php") : ?>
         <link rel="stylesheet" href="css/choiceExercice.css">
-        <?php elseif (isset($_GET["page"]) && $_GET["page"] === "program" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/program.php") : ?>
+    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "program" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/program.php") : ?>
         <link rel="stylesheet" href="css/program.css">
     <?php endif; ?>
     <link rel="stylesheet" href="css/error.css">
