@@ -58,6 +58,5 @@ $listPoid = [];
         <button type="submit" name="submit_choiceExercice" class="choiceexercice-submit">Valider les exercices</button>
     </div>
 </form>
-<script src="js/choiceExercice.js"></script>
 
 <?php require_once("includes/footer.php"); ?>
