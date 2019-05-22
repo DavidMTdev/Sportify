@@ -1,0 +1,167 @@
+*{
+  list-style: none;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #606060;
+}
+
+main{
+    margin-top: 70px;
+}
+
+header{
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+}
+
+.playlist{
+  padding: 0 100px;
+}
+
+.search-box{
+  background: #2f3640;
+  height: 40px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+}
+.search-box:hover > .search-txt{
+  width: 240px;
+  padding: 0 6px;
+}
+.search-box:hover > .search-btn{
+  background: whitesmoke;
+}
+.search-btn{
+  color: #33CC66;
+  float: right;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #2f3640;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+.search-txt{
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: whitesmoke;
+  font-size: 16px;
+  transition: 0.4s;
+  width: 0px;
+}
+
+.home{
+    padding: 50px;
+}
+  
+
+.pictures img{
+    width: 80px;
+    height: 70px;
+    border-radius: 10%;
+}
+
+.icon img{
+    width: 30px;
+    height: 30px;
+}
+
+table td{
+    /* padding-bottom: 50px;
+    padding-right: 40px; */
+
+    padding: 25px 20px;
+}
+
+.playlist table th{
+  /* padding-bottom: 50px;
+  padding-right: 40px; */
+  padding: 25px 20px;
+}
+.playlist table{    
+  /* border-color: none; */
+  z-index: 1;
+  background: #33CC66;
+  border-spacing: 0px  2px;
+}
+tr{
+  background: #404040;
+
+}
+
+
+p{
+    /* float: left; */
+    /* padding-top: 170px; */
+    display: flex;
+    justify-content:  
+    
+}
+h3{
+    /* padding-left: 40px; */
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+}
+
+table{
+    /* margin-top: 60px; */
+    /* width: ; */
+    /* box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5); */
+    /* width: 80%; */
+    width: 100%;
+    background: #404040;
+  border-radius: 8px;
+
+}
+
+.border{
+    width: 160px;
+    height: 5px;
+    background: #1ed760;
+    margin: 15px auto;
+}
+
+thead{
+    color: #33CC66;
+}
+
+.flex-enter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.grid img{
+  width: auto;
+  height: 130px;
+  border-radius: 10%;
+  margin: 20px;
+  margin-bottom: 0;
+}
+
+.grid .image{
+  text-align: center;
+}
+
+.grid .text{
+  display: flex;
+  align-items: flex-end;
+  margin-left: 10px;
+}

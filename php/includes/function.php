@@ -858,8 +858,7 @@ if (isset($_POST['submit_choiceExercice'])) {
                     ':nb_serie' => $listchecked[$key]['nb_serie'],
                 ));
             }
-
-            header('location: meeting.php');
+ 
         }
     } elseif ($_SESSION['niveau'] == 4 && empty($listInput)) {
         echo "tu as rempli un input sans cocher l'exercice";
@@ -877,7 +876,6 @@ if (isset($_POST['submit_choiceExercice'])) {
                         ':nb_serie' => ($_SESSION['niveau'] + 2)
                     ));
                 }
-                header('location: meeting.php');
             } else {
                 echo 'il faut minimum 2 exercices a ton programme';
             }
