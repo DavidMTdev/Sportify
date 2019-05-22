@@ -96,9 +96,6 @@ if ($imcRecurrence == 1) {
         <div class="graphic-container">
             <div class="graphic" style="width: 50%; height: 50%;">
 
-                <button class="left">gauche</button>
-                <button class="right">droite</button>
-
 
                 <canvas id="myChart" width="400" height="400"></canvas>
             </div>

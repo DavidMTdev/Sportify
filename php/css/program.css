@@ -1,0 +1,63 @@
+body{
+    background: #606060;
+}
+
+.border{
+    width: 160px;
+    height: 5px;
+    background: #1ed760;
+    margin: 15px auto;
+}
+
+.program-title-container{
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.program-exercice-title-container{
+    display: flex;
+    justify-content: center;
+    color:white;
+}
+
+/* .program-infos-container{
+    display: grid;
+} */
+
+.program-allexercice-infos-container{
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+}
+
+.program-exercice-infos-title{
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+}
+
+.program-exercice-infos-container{
+    display: flex;
+    justify-content: center;
+}
+.program-exercice-infos{
+    text-align: center;
+    color: white;
+    padding: 10px 0;
+}
+
+.exercice-infos-container{
+    background: #404040;
+    padding: 30px 0;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+}
+.program-exercice-infos-img img{
+    width: 150px;
+    height: 100px;
+}
+.program-exercice-infos-img{
+    display: flex;
+    justify-content: center;
+}
