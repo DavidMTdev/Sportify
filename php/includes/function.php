@@ -139,21 +139,18 @@ function upload()
     $file = $_FILES['img']['name'];
     $extension = strrchr($file, '.');
 
-
     $pdo = new PDO("mysql:host=localhost:3306;dbname=sportify", "root", "");
     if (isset($_POST['submit_create_program'])) {
-        if ($file != "") {
-            $stmId = $pdo->query('SELECT id_programme FROM programme');
-            $id = $stmId->fetchAll(PDO::FETCH_ASSOC);
-            $var = $id[count($id) - 1]['id_programme'];
-            $file = $var . "P" . $extension;
-            $stmprogram = $pdo->prepare(
-                ('UPDATE programme SET images_pro = :images_pro WHERE id_programme = "' . $var . '"')
-            );
-            $stmprogram->execute(array(
-                ':images_pro' => $file
-            ));
-        }
+        $stmId = $pdo->query('SELECT id_programme FROM programme');
+        $id = $stmId->fetchAll(PDO::FETCH_ASSOC);
+        $var = $id[count($id) - 1]['id_programme'];
+        $file = $var . "P" . $extension;
+        $stmprogram = $pdo->prepare(
+            ('UPDATE programme SET images_pro = :images_pro WHERE id_programme = "' . $var . '"')
+        );
+        $stmprogram->execute(array(
+            ':images_pro' => $file
+        ));
     } elseif (isset($_SESSION["connectedCoach"])) {
         $stmId = $pdo->query('SELECT id_coach FROM coach WHERE mail_c = "' . $_SESSION["login"] . '"');
         $id = $stmId->fetchAll(PDO::FETCH_ASSOC);
@@ -177,12 +174,12 @@ function upload()
     if ($_FILES['img']['size'] > 1 * pow(10, 6)) {
         $error = 2;
     }
-    if($file == ""){
+    if ($file == "") {
         $imgPro = '0.png';
-    } else{
+    } else {
         $imgPro = $var . "P" . $extension;
     }
-    
+
     if (!isset($error)) {
         if ($file != $imgPro) {
             if (isset($_SESSION["connectedCoach"])) {
@@ -303,9 +300,9 @@ if (isset($_POST['submit-info_c'])) {
     }
     $lenDescription = strlen($_POST['description_c']);
     if ($_POST['age_c'] == $profilCoach[0]['age_c'] && $_POST['prenom_c'] == $profilCoach[0]['prenom_c'] && $_POST['nom_c'] == $profilCoach[0]['nom_c'] && $_POST['description_c'] == $profilCoach[0]['description_c']) {
-        echo  "Rien n'a été modifié";
+        echo  "rien n'a été modifié";
     } elseif ($lenDescription > 250) {
-        echo 'Ra description fais plus de 250 caracteres';
+        echo 'ta description fais plus de 250 caracteres';
     } else {
         $statement->execute(array(
             ':nom_c' => $_POST['nom_c'],
@@ -313,7 +310,7 @@ if (isset($_POST['submit-info_c'])) {
             ':age_c' => $_POST['age_c'],
             'description_c' => $_POST['description_c']
         ));
-        echo 'Tes infos ont bien été modifier';
+        echo 'tes infos ont bien été modifier';
     }
     header('location: profil.php');
 }
@@ -336,16 +333,16 @@ if (isset($_POST['submit-adress_c'])) {
 
     $PostalCode = strlen($_POST['code_postal_c']);
     if ($_POST['adresse_c'] == $profilCoach[0]['adresse_c'] && $_POST['ville_c'] == $profilCoach[0]['ville_c'] && $_POST['code_postal_c'] == $profilCoach[0]['code_postal_c']) {
-        echo  "Rien n'a été modifié";
+        echo  "rien n'a été modifié";
     } elseif ($PostalCode == 5) {
-        echo 'Tes infos ont bien été modifier';
+        echo 'tes infos ont bien été modifier';
         $statement->execute(array(
             ':adresse_c' => $_POST['adresse_c'],
             ':ville_c' => $_POST['ville_c'],
             'code_postal_c' => $_POST['code_postal_c']
         ));
     } elseif ($PostalCode != 5) {
-        echo 'Ton code postal est invalide';
+        echo 'ton code postal est invalide';
     }
     header('location: profil.php');
 }
@@ -362,14 +359,14 @@ if (isset($_POST['submit-contact_c'])) {
 
     $lentelephone = strlen($_POST['telephone_c']);
     if ($_POST['telephone_c'] == $profilCoach[0]['telephone_c']) {
-        echo  "Rien n'a été modifié";
+        echo  "rien n'a été modifié";
     } elseif ($lentelephone == 10) {
-        echo 'Tes infos ont bien été modifier';
+        echo 'tes infos ont bien été modifier';
         $statement->execute(array(
             ':telephone_c' => $_POST['telephone_c']
         ));
     } elseif ($lentelephone != 10) {
-        echo 'Ton numero de telephone est invalide';
+        echo 'ton numero de telephone est invalide';
     }
     header('location: profil.php');
 }
@@ -383,12 +380,12 @@ if (isset($_POST['submit-speciality'])) {
         $_POST['specialite'] = $profilCoach[0]['specialite'];
     }
     if ($_POST['specialite'] == $profilCoach[0]['specialite']) {
-        echo  "Rien n'a été modifié";
+        echo  "rien n'a été modifié";
     } else {
         $statement->execute(array(
             ':specialite' => $_POST['specialite']
         ));
-        echo 'Ta specialite a bien été modifié';
+        echo 'ta specialite a bien été modifié';
     }
     header('location: profil.php');
 }
@@ -408,11 +405,11 @@ if (isset($_POST['submit-password_c'])) {
         $statement->execute(array(
             ':mdp_c' => $_POST['new-password']
         ));
-        echo 'Ton nouveau mot de passe est créé';
+        echo 'ton nouveau mot de passe est creer';
     } elseif ($mdp[0]['mdp_c'] != $_POST['ancient-password']) {
-        echo "Ce n'est pas ton ancien mot de passe";
+        echo "ce n'est pas ton ancien mot de passe";
     } elseif ($_POST['new-password'] != $_POST['confirm-password']) {
-        echo "Ton nouveau de mot de passe n'est pas confirmé";
+        echo "ton nouveau de mot de passe n'est pas confirmer";
     }
 }
 // modifie l'image du coach
@@ -474,16 +471,16 @@ if (isset($_POST['submit-adress_u'])) {
 
     $PostalCode = strlen($_POST['code_postal_u']);
     if ($_POST['adresse_u'] == $user[0]['adresse_u'] && $_POST['ville_u'] == $user[0]['ville_u'] && $_POST['code_postal_u'] == $user[0]['code_postal_u']) {
-        echo  "Rien n'a été modifié";
+        echo  "rien n'a été modifié";
     } elseif ($PostalCode == 5) {
-        echo 'Tes infos ont bien été modifié';
+        echo 'tes infos ont bien été modifier';
         $statement->execute(array(
             ':adresse_u' => $_POST['adresse_u'],
             ':ville_u' => $_POST['ville_u'],
             'code_postal_u' => $_POST['code_postal_u']
         ));
     } elseif ($PostalCode != 5) {
-        echo 'Ton code postal est invalide';
+        echo 'ton code postal est invalide';
     }
     header('location: profil.php');
 }
@@ -499,14 +496,14 @@ if (isset($_POST['submit-contact_u'])) {
     }
     $lentelephone = strlen($_POST['telephone_u']);
     if ($_POST['telephone_u'] == $user[0]['telephone_u']) {
-        echo  "Rien n'a été modifié";
+        echo  "rien n'a été modifié";
     } elseif ($lentelephone == 10) {
-        echo 'Tes infos ont bien été modifiées';
+        echo 'tes infos ont bien été modifier';
         $statement->execute(array(
             ':telephone_u' => $_POST['telephone_u']
         ));
     } elseif ($lentelephone != 10) {
-        echo 'Ton numero de téléphone est invalide';
+        echo 'ton numero de telephone est invalide';
     }
     header('location: profil.php');
 }
@@ -524,9 +521,9 @@ if (isset($_POST['submit-body'])) {
         $_POST['poid_u'] = $user[0]['poid_u'];
     }
     if ($_POST['taille'] == $user[0]['taille'] && $_POST['poid_u'] == $user[0]['poid_u']) {
-        echo  "Rien n'a été modifié";
+        echo  "rien n'a été modifié";
     } else {
-        echo 'Tes mensurations ont bien été modifiées';
+        echo 'tes mensurations ont bien été modifié';
         $statement->execute(array(
             ':taille' => $_POST['taille'],
             'poid_u' => $_POST['poid_u']
@@ -551,11 +548,11 @@ if (isset($_POST['submit-password_u'])) {
         $statement->execute(array(
             ':mdp_u' => $_POST['new-password']
         ));
-        echo 'Ton nouveau mot de passe est créé';
+        echo 'ton nouveau mot de passe est creer';
     } elseif ($mdp[0]['mdp_u'] != $_POST['ancient-password']) {
-        echo "Ce n'est pas ton ancien mot de passe";
+        echo "ce n'est pas ton ancien mot de passe";
     } elseif ($_POST['new-password'] != $_POST['confirm-password']) {
-        echo "Ton nouveau de mot de passe n'est pas confirmé";
+        echo "ton nouveau de mot de passe n'est pas confirmer";
     }
     header('location: profil.php');
 }
@@ -657,7 +654,7 @@ if (isset($_POST['submit_create_program'])) {
         VALUES (:nom_pro , :descriptions, :niveau, :objectif)"
     );
     if ($_POST['niveau'] == "Niveau") {
-        echo "Tu n'a pas choisis de niveau";
+        echo "tu n'a pas choisis de niveau";
     } else {
         switch ($_POST['niveau']) {
             case 'Débutant':
@@ -680,6 +677,7 @@ if (isset($_POST['submit_create_program'])) {
             ':objectif' => $_POST['objectif']
         ));
         upload();
+        echo 'tu as creer ton programme';
     }
     $_SESSION['niveau'] = $niveau;
 
@@ -773,6 +771,7 @@ if (isset($_POST['submit_choiceExercice'])) {
     if ($_SESSION['niveau'] == 4) {
         $count = 0;
         foreach ($statementExercice as $key => $value) {
+            var_dump($key);
             if (isset($_POST['exercice' . $key])) {
 
                 $listchecked[] = [
@@ -789,6 +788,7 @@ if (isset($_POST['submit_choiceExercice'])) {
             }
             // var_dump($_POST['exercice' . $key]);
         }
+        var_dump($listchecked);
     } else {
         foreach ($statementExercice as $key => $value) {
             if (isset($_POST['exercice' . $key])) {
@@ -862,9 +862,11 @@ if (isset($_POST['submit_choiceExercice'])) {
                     ':nb_serie' => $listchecked[$key]['nb_serie'],
                 ));
             }
+
+            header('location: meeting.php');
         }
     } elseif ($_SESSION['niveau'] == 4 && empty($listInput)) {
-        echo "Tu as rempli un input sans cocher l'exercice";
+        echo "tu as rempli un input sans cocher l'exercice";
     } else {
         if (!empty($listchecked)) {
             if (count($listchecked) > 1) {
@@ -879,12 +881,12 @@ if (isset($_POST['submit_choiceExercice'])) {
                         ':nb_serie' => ($_SESSION['niveau'] + 2)
                     ));
                 }
-                echo 'Ton programme a bien été creer';
+                header('location: meeting.php');
             } else {
-                echo 'Il faut minimum 2 exercices a ton programme';
+                echo 'il faut minimum 2 exercices a ton programme';
             }
         } else {
-            echo 'Il faut minimum 2 exercices a ton programme';
+            echo 'il faut minimum 2 exercices a ton programme';
         }
     }
 }
@@ -1103,7 +1105,7 @@ if (isset($_POST['valide_imc'])) {
     $statementDay->execute(array(
         ':imc' => $Imc,
         ':date_imc' => date('Y-m-d'),
-        ':id_utilisateur' => $statementUser[0]['id_utilisateur'],
+        ':id_utilisateur' => $statementAllUser[0]['id_utilisateur'],
     ));
 
     $statementValidation_imc = $pdo->prepare(
@@ -1139,7 +1141,6 @@ function imcRecurrence()
         $lastDate = strtotime(date("Y-m-d", strtotime($lastDate)) . " +1 day");
 
         $day = strtotime(date('Y-m-d'));
-
         if ($day == $lastDate) {
             $statementValidation_imc = $pdo->prepare(
                 ('UPDATE utilisateur SET validation_imc = :validation_imc WHERE mail_u = "' . $_SESSION["login"] . '"')

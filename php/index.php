@@ -1,5 +1,9 @@
 <?php require_once("includes/header.php");
 
+if ($_SERVER["SCRIPT_NAME"] === "/Sportify/php/index.php") {
+    header('Location: home.php');
+}
+
 if (isset($_GET["page"])) {
     $variable = $_GET["page"];
     switch ($variable) {
