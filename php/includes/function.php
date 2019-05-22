@@ -859,7 +859,7 @@ if (isset($_POST['submit_choiceExercice'])) {
                 ));
             }
 
-            echo 'ton programme custom a été creer';
+            header('location: meeting.php');
         }
     } elseif ($_SESSION['niveau'] == 4 && empty($listInput)) {
         echo "tu as rempli un input sans cocher l'exercice";
@@ -877,7 +877,7 @@ if (isset($_POST['submit_choiceExercice'])) {
                         ':nb_serie' => ($_SESSION['niveau'] + 2)
                     ));
                 }
-                echo 'ton programme a bien été creer';
+                header('location: meeting.php');
             } else {
                 echo 'il faut minimum 2 exercices a ton programme';
             }
@@ -1101,7 +1101,7 @@ if (isset($_POST['valide_imc'])) {
     $statementDay->execute(array(
         ':imc' => $Imc,
         ':date_imc' => date('Y-m-d'),
-        ':id_utilisateur' => $statementUser[0]['id_utilisateur'],
+        ':id_utilisateur' => $statementAllUser[0]['id_utilisateur'],
     ));
 
     $statementValidation_imc = $pdo->prepare(
