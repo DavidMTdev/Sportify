@@ -677,7 +677,7 @@ if (isset($_POST['submit_create_program'])) {
             ':objectif' => $_POST['objectif']
         ));
         upload();
-        echo 'tu as creer ton programme';
+        // echo 'tu as creer ton programme';
     }
     $_SESSION['niveau'] = $niveau;
 

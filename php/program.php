@@ -13,12 +13,28 @@ if ($imcRecurrence == 1) {
     </div>
 </div>
 
-
-<div class="program-infos"><img src=<?= "images/" . $statementProgram[0]['images_pro'] ?> alt=""></div>
-<div class="program-infos"><?= $statementProgram[0]['nom_pro'] ?></div>
-<div class="program-infos"><?= $statementProgram[0]['niveau'] ?></div>
-<div class="program-infos"><?= $statementProgram[0]['objectif'] ?></div>
-<div class="program-infos"><?= $statementProgram[0]['descriptions'] ?></div>
+<div class="program-infos-container">
+    <div class="program-infos-img">
+        <div class="program-infos"><img src=<?= "images/" . $statementProgram[0]['images_pro'] ?> alt=""></div>
+    </div>
+    <div class="program-infos-title">
+        <div class="program-infos">
+            <h2><?= $statementProgram[0]['nom_pro'] ?></h2>
+            <div class="border"></div>
+        </div>
+        <div class="program-infos">
+            <h3>Niveau : <?= $statementProgram[0]['niveau'] ?></h3>
+            <br>
+        </div>
+        <div class="program-infos">
+            <h3>Objectif : <?= $statementProgram[0]['objectif'] ?></h3>
+            <br>
+        </div>
+        <div class="program-infos">
+            <h3>Description : <?= $statementProgram[0]['descriptions'] ?></h3>
+        </div>
+    </div>
+</div>
 
 
 <div class="program-exercice-title-container">
@@ -57,9 +73,9 @@ if ($imcRecurrence == 1) {
                         </div>
                     <?php else : ?>
                         <div class="program-exercice-infos">
-                        <h3>Nombre de répétitions/série :</h3>
+                            <h3>Nombre de répétitions/série :</h3>
                             <?= $value['nb_rep'] ?>
-                    </div>
+                        </div>
                     <?php endif; ?>
                 </div>
             </div>

@@ -111,7 +111,7 @@ if ($imcRecurrence == 1) {
             </div>
             <div class="profil-principal">
                 <h2><?= $profilCoach[0]['nom_c'] . " " . $profilCoach[0]['prenom_c'] ?></h2>
-                <h3><?= $profilCoach[0]['age_c'] ?></h3>
+                <h3><?= $profilCoach[0]['age_c'] ?> ans</h3>
                 <h3 class="profil-premium">Coach</h3>
                 <br>
                 <h3>Description</h3>

@@ -14,7 +14,7 @@ if ($imcRecurrence == 1) {
                 <h4>Sportify vous propose un accompagnement sportif afin de vous aider a remplir vos objectifs.
                     Nos coach vous proposerons des programmes personalisés et vous pourrez suivre votre
                     évolution au fil du temps grace a notre calcul de performance et d'IMC en ligne. Donc finis
-                    les excuse pour ne pas faire de sport car Sportify et la !</h4>
+                    les excuse pour ne pas faire de sport car Sportify est la !</h4>
             </div>
         </div>
     </section>
@@ -32,7 +32,7 @@ if ($imcRecurrence == 1) {
                     <div class="comparison-header">
                         <img src="icons/basic-icon-white.png" alt="">
                         <div class="comparison-title">
-                            <h2>Basic</h2>
+                            <h2>Basique</h2>
                             <h3>Gratuit</h3>
                         </div>
                     </div>

@@ -20,11 +20,8 @@ body{
     display: flex;
     justify-content: center;
     color:white;
+    padding: 20px 0;
 }
-
-/* .program-infos-container{
-    display: grid;
-} */
 
 .program-allexercice-infos-container{
     display: grid;
@@ -35,6 +32,7 @@ body{
     text-align: center;
     color: white;
     text-transform: uppercase;
+    
 }
 
 .program-exercice-infos-container{
@@ -62,4 +60,40 @@ body{
 .program-exercice-infos-img{
     display: flex;
     justify-content: center;
+}
+
+.program-infos-container{
+    display: flex;
+    /* justify-content: center; */
+    padding: 20px ;
+    background: #404040;
+}
+
+.program-infos-img img{
+    height: 250px;
+    width: 250px;
+    border-radius: 20px;
+}
+.program-infos-img{
+    padding-right: 50px;
+}
+.program-infos-title{
+    color: white;
+}
+.program-infos h2{
+    text-align: center;
+}
+
+@media screen and (max-width:900px){
+    .program-allexercice-infos-container {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+}
+
+@media screen and (max-width:500px){
+    .program-allexercice-infos-container {
+        display: grid;
+        grid-template-columns: 100%;
+    }
 }
