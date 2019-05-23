@@ -44,8 +44,6 @@ if (empty($_SESSION['id_coach'])) {
         <link rel="stylesheet" href="css/choiceExercice.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "program" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/program.php") : ?>
         <link rel="stylesheet" href="css/program.css">
-    <?php elseif (isset($_GET["page"]) && $_GET["page"] === "music" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/music.php") : ?>
-        <link rel="stylesheet" href="css/music.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "playlist1" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/playlist1.php") : ?>
         <link rel="stylesheet" href="css/playlist.css">
     <?php elseif (isset($_GET["page"]) && $_GET["page"] === "playlist2" || $_SERVER["SCRIPT_NAME"] === "/Sportify/php/playlist2.php") : ?>
