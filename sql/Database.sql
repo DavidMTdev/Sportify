@@ -131,7 +131,7 @@ create table creer(
     id_seance int not null,
     primary key (id_utilisateur,id_seance),
     FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur),
-    FOREIGN KEY (id_seance) REFERENCES seanceid_seance(id_seance)
+    FOREIGN KEY (id_seance) REFERENCES seance(id_seance)
 );
 
 create table imc(
