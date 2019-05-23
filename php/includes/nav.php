@@ -8,7 +8,6 @@
      <div class="nav">
          <ul class="nav-menu">
              <li><a href="food-supplements.php">Nutrition</a></li>
-             <li><a href="music.php">Musique</a></li>
              <?php if (isset($_SESSION["connectedUser"]) && $_SESSION["connectedUser"]) :
                     if (empty($premium[0]['id_premium'])) : ?>
                      <li><a href="profil.php">Profil</a></li>
